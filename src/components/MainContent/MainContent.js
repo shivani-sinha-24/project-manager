@@ -12,7 +12,7 @@ import { updateMultiList, updateSingleList } from '../../redux/lists/ListAction'
 
 const MainContent = ({setIsOpen,isOpen,setListItem,listItem,projects}) => {
 
-  const lists = useSelector(state=>state.lists)
+  const lists = useSelector(state=>state?.lists?.lists)
   const dispatch = useDispatch()
 
   const [loader, setLoader] = useState(false)

@@ -8,7 +8,7 @@ const ListItem = ({ list, item, setListItem, setIsOpen, provided, snapshot, setL
   const [itemName, setItemName] = useState(item.name);
 
   const dispatch= useDispatch()
-  const listItem = useSelector((state)=>state.listItems.filter(listItem=>listItem._id==item))
+  const listItem = useSelector((state)=>state?.lists?.listItems?.filter(listItem=>listItem._id==item))
   
   useEffect(()=>{
     dispatch(getListItems())
