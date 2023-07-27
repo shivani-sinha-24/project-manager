@@ -1,0 +1,88 @@
+.left-menu{
+    width: 100%;
+    background-color: var(--bg-rgb-180-180-180);
+    height: 100%;
+    padding: 0px 10px;
+    overflow: hidden;
+    /* color: #717070; */
+    color: var(--side-menu-text-black);
+    font-weight: var(--side-menu-fw-bold);
+    font-size: var(--side-menu-fs-large);
+}
+.left-menu-top-options{
+  padding: 10px 5px;
+  border-bottom: 1px solid grey;
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
+}
+.left-menu-bottom{
+  padding: 0px 15px;
+}
+.left-menu .top-options{
+  color: var(--side-menu-text-black) !important;
+}
+.left-menu .options{
+  padding: 5px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  border-radius: var(--border-5px);
+  color: var(--side-menu-text-2nd-color);
+}
+.left-menu .options:hover{
+  background-color: var(--side-menu-hover-bg);
+  cursor: pointer;
+  /* color: #363639; */
+}
+.left-menu .rotate-left{
+  color:var( --side-menu-arrow-animation);
+  font-weight: var( --side-menu-fw-bold );
+  animation-name: rotateLeft;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+} 
+@keyframes rotateLeft {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-90deg);
+  }
+}
+.left-menu .rotate-right{
+  color:var( --side-menu-arrow-animation);
+  font-weight: var( --side-menu-fw-bold );
+  animation-name: rotateright;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+} 
+@keyframes rotateright {
+  from {
+    transform: rotate(-90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+.left-menu .animate-arrow ,.left-menu .projects, .left-menu .starred, .left-menu .insights, .left-menu .team{
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.left-menu .option-bottom{
+  margin:10px;
+  display: flex;
+  flex-direction: column;
+}
+.left-menu .options span.material-symbols-rounded{
+  color: var(--side-menu-text-2nd-color);
+}
+/* .insights, .projects, .starred, .team{
+  cursor: pointer;
+  border-bottom: 1px solid grey;
+} */
+.left-menu .insights:hover, .left-menu .projects:hover, .left-menu .starred:hover, .left-menu .team:hover{
+  cursor: pointer;
+}

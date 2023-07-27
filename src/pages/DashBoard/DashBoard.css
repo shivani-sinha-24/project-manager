@@ -1,0 +1,19 @@
+.dashboard{
+    /* width: 100%;
+    height: 100%; */
+    display: flex;
+    margin: 0;
+    padding: 0;
+    /* width: 100vw; */
+    height: 100vh;
+    overflow: hidden;
+}
+.center{
+    height: 100%;
+    position: relative;
+    /* transition: all 0.3s ease; */
+}
+
+.left-side-menu ,.right-side-menu, .center{
+    transition: all 0.3s ease;
+}

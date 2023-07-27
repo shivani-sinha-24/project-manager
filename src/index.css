@@ -1,13 +1,130 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+* a{
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+background: none; 
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+background: var(--bg-grey); 
+border-radius: 10px;
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+background: #717070; 
+}
+
+/* font-family for whole body element */
+body {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+/* CSS Variables */
+:root{
+  /* text color */
+  --text-black : black;
+  --text-white : white;
+
+  /* background color */
+  --bg-black : black;
+  --bg-white : white;
+  --bg-rgb-180-180-180 :rgb(180, 180, 180);
+  --bg-grey : grey;
+
+  /* border-radius */
+  --border-5px : 5px; 
+
+  /* box-shadow */
+  --box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
+
+  /* Top Nav */
+  --top-nav-fs-medium : medium;
+  --top-nav-fs-larger : larger;
+  --top-nav-fs-large : large;
+  --top-nav-fw-bold : 900;
+
+  /* Side Menus (Left & Right) */
+  --side-menu-text-black : black;
+  --side-menu-text-2nd-color : #363639;
+  --side-menu-arrow-animation : rgb(68, 68, 68);
+  --side-menu-fw-bold : bold;
+  --side-menu-fw-bolder : bolder;
+  --side-menu-fs-small : small;
+  --side-menu-fs-large : large;
+  --side-menu-fs-larger : larger;
+  --side-menu-hover-bg : rgb(118, 118, 118);
+
+  /* Main Content Lists*/
+  --list-container-bg : black;
+  --list-container-heading-text : rgb(180, 180, 180);
+  --list-container-heading-text-fs-medium : medium;
+  --list-container-list-item-text : black;
+  --list-container-border-radius : 15px;
+  --list-container-list-item-bg : grey;
+  --list-container-add-list-item-bg-hover : rgb(34, 34, 34);
+  --list-container-add-list-item-text : rgb(180, 180, 180);
+  
+  /* Modal */
+  --modal-section-bg: white ;   /* set bg white for whole modal in background */
+  --modal-width: 50%;
+  --modal-height: 80%;
+  --modal-fw-bold : bold ;
+  --modal-fw-bolder : bolder ;
+  --modal-fs-smaller : smaller;
+  --modal-fs-medium : medium;
+  --modal-fs-large : large;
+  --modal-fs-larger : larger;
+  --modal-fs-x-large : x-large;
+  --modal-header-bg: steelblue ;
+  --modal-header-text: white ;
+  --modal-header-btn-text: white ;
+  --modal-header-btn-border-clr: white ;
+  --modal-header-btn-border-radius: 10px ;
+  --modal-header-button-bg: none ;
+  --modal-body-botton-text: black ;
+  --modal-body-botton-bg: none;
+  --modal-body-button-hover-bg:rgb(145, 145, 145) ;
+  --modal-body-button-hover-text: white ;
+  /* --modal-body-bottom-hover-bg: rgb(183, 183, 183); */
+  --modal-body-bottom-fw-medium: medium;
+  --modal-body-button-bg : whitesmoke;
+  /* --modal-footer-bg: ; */
+  --modal-dropdown-bg: ;
+  --modal-dropdown-text:black ;
+  /* --modal-dropdown-text-hover: white; */
+  /* --modal-dropdown-item-bg: ; */
+  --modal-show-prev-task-text :blue;
+  --modal-dropdown-item-hover-bg: slategray;
+  --modal-border-1 :1px solid black;
+  --modal-border-2 :1px solid grey;
+  --modal-cmnt-btn-bg :steelblue;
+  --modal-cmnt-btn-text :white;
+
+  /* Project Pages */
+  --project-page-bg : rgb(247, 242, 242);
+  --project-page-fs-larger : larger;
+  --project-page-fs-smaller : smaller;
+  --project-page-fs-medium : medium;
+  --project-page-fs-large : large;
+  --project-page-fs-xx-large : xx-large;
+  --project-page-fw-bold : bold;
+  --project-page-fw-bolder : bolder;
+  --project-page-sample-nav-text-color : rgb(66, 65, 65) ;
+  --project-page-sample-nav-active-text-color : rgb(74, 66, 66) !important;
+  --project-page-new-project-form-border : 1px solid black; 
 }

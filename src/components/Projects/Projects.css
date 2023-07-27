@@ -1,0 +1,37 @@
+.parent{
+    position: relative;
+}
+.add-project-options{
+    position: absolute;
+    padding: 10px 0; 
+    left: 120px;
+    top: 20px;
+    background-color: gray;
+    color: #363639;
+    z-index: 600;
+    border-radius: 5px;;
+}
+.add-projects-options div:hover{
+    background-color: rgb(104, 103, 103);
+    color: #363639;
+}
+.add-project-options div{
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    border-radius: 5px;
+}
+.projects button{
+    border-radius: 5px;
+    border: none;
+    color: #363639;
+    background: none;
+    font-size:x-small;
+}
+.projects button:hover{
+    cursor: pointer;
+    background-color: grey;
+}

@@ -1,0 +1,37 @@
+.project-page{
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+    background-color: var(--project-page-bg);
+}
+.project-page-top{
+    display: flex;
+    /* margin: 0 0 10px 0; */
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 5%;
+}
+.project-page-top button{
+    /* padding: 10px; */
+    border-radius: 5px;
+    background:none;
+    border: none;
+    /* color: white; */
+    font-size: var(--project-page-fs-larger);
+}
+.project-page-top :nth-child(1){
+    padding: 5px;
+}
+.project-page-top :nth-child(2){
+    padding: 8px 10px;
+}
+.project-page-top button:hover{
+    cursor: pointer;
+    background-color: gray;
+}
+.project-page-bottom{
+    height: 95%;
+    width: 100%;
+}

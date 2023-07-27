@@ -1,0 +1,131 @@
+.lists-container{
+    width: 100%;
+    margin-right: 0;
+    padding: 20px;
+    min-height: 90%;
+    overflow-x: auto;
+}
+.child{
+    width: 280px;
+    margin: 10px;
+    float: left;
+    height: fit-content;
+    padding:5px 10px;
+    background-color: var(--list-container-bg);
+    border-radius: var(--list-container-border-radius);
+    color:var(--list-container-heading-text);
+    /* color: rgb(0, 0, 0); */
+}
+.add-list{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    gap: 5px;
+    color: var(--list-container-add-list-text);
+    font-size: large;
+    font-weight:bolder;
+    background-color: rgba(255, 255, 255, 0.25); /* Set the desired opacity */
+    backdrop-filter: blur(10px); /* Apply the blur effect */
+}
+.child input{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: var(--border-5px);
+    background-color: rgb(180, 180, 180);
+    cursor: auto;
+}
+.child button{
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: var(--border-5px);
+    /* font-size: large; */
+    background-color: cadetblue;
+    font-weight: bold;
+}
+.child button:hover{
+    cursor: pointer;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.close-form{
+    font-size: x-large;
+    font-weight: bolder;
+}
+.close-form:hover{
+    cursor: pointer;
+}
+.add-item{
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+    margin-left: 0;
+    gap: 5px;
+    /* color:white; */
+    color: var(--list-container-add-list-item-text);
+    font-size: large;
+    font-weight:bolder;
+    border-radius: var(--border-5px);
+}
+.add-item:hover{
+    background-color: var(--list-container-add-list-item-bg-hover);
+}
+.list-title{
+    width: 100%;
+    padding: 10px;
+    font-size: large;
+    font-weight: 900;
+}
+.list-item{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: var(--border-5px);
+    background-color: gray;
+    color: white;
+}
+.child1 {
+  position: relative;
+}
+.pencil {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  display: none;
+}
+.child1:hover > .pencil{
+  display: inline-block;
+}
+.hidden {
+    display: none;
+}
+.visible{
+    display: block;
+}
+
+
+@media screen and (min-width: 1281px) {
+    /* CSS styles for extra-large screens */
+  
+}
+@media screen and (min-width: 1025px) {
+    /* CSS styles for large screens */
+  
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    /* CSS styles for medium screens */
+  
+}
+@media screen and (max-width: 767px) {
+    /* CSS styles for small screens */
+  
+}
+@media screen and (max-width: 480px) {
+    /* CSS styles for extra-small screens */
+
+}
