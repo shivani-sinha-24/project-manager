@@ -4,13 +4,17 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { creatList } from '../../redux/lists/ListAction';
+import { useParams } from 'react-router-dom';
 
 const ListForm = ({setListsArray,listsArray,setShowListForm}) => {
+    const params = useParams()
+    console.log('params :',params);
     const dispatch = useDispatch() 
     const listObj = {}
     const formik = useFormik({
         initialValues: {
             listname:'',
+            project_id:params.id
         },
         validationSchema:Yup.object({
             listname : Yup.string().required('list name is required'),
@@ -18,7 +22,7 @@ const ListForm = ({setListsArray,listsArray,setShowListForm}) => {
         onSubmit: (values)=>{
             toast.success('List added Successfully')
             setListsArray([...listsArray,{'name':values.listname,'id': String(Number(new Date())),'items':[]}])
-            dispatch(creatList({name:values.listname}))
+            dispatch(creatList({name:values.listname, project_id:params.id}))
             setShowListForm(false)
         }
     })

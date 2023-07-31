@@ -8,10 +8,10 @@ import LeftMenu from '../../components/LeftMenu/LeftMenu'
 import ShowLeftMenu from '../../components/ShowLeftMenu/ShowLeftMenu'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getListItems, getLists } from '../../redux/lists/ListAction'
+import { getListItems, getLists, getSampleProjectCard } from '../../redux/lists/ListAction'
 import { useSelector } from 'react-redux'
 
-const DashBoard = ({ bgImgUrl,setBgImgUrl,projects,lists}) => {
+const DashBoard = ({ bgImgUrl,setBgImgUrl,projects}) => {
   const [showRightMenu,setShowRightMenu] = useState(false)
   const [showLeftMenu,setShowLeftMenu] = useState(false)
   const [editBackground,setEditBackground] = useState(false)
@@ -22,7 +22,8 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl,projects,lists}) => {
   const dispatch = useDispatch()
 
   const projectDetails = projects.filter(project=>project._id==params.id)
-  
+  const lists = useSelector(state=>state?.lists?.lists).filter(list=>list.project_id==params?.id)
+  const sampleList = useSelector(state=>state?.lists?.sampleList)
   const getImages = async () => {
     axios.get(`${process.env.REACT_APP_UNSPLASH_APP_DUMMY_DASHBOARD_API_URL}`)
     .then(res=>{
@@ -36,11 +37,15 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl,projects,lists}) => {
       console.log(err)
     })
   }
+  console.log(sampleList);
   useEffect(()=>{
     // getImages()   //Remove this line of comment to get dimages for background change
-    dispatch(getLists());
+    dispatch(getLists(params.id));
     dispatch(getListItems())
-  }, [])
+    if(lists.length == 0){
+      dispatch(getSampleProjectCard())
+    }
+  }, [params.id])
 
   const dashboardStyle={
     width: showLeftMenu || showRightMenu ? "80%" : "100%", 
@@ -74,7 +79,7 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl,projects,lists}) => {
            setListItem={setListItem} 
            listItem={listItem} 
            imagesArray={imgsArray}
-           lists={lists && lists}
+           lists={lists.length>0?lists:sampleList}
           /> 
       </div>
         <div className="right-side-menu" style={{width: showRightMenu  ? "20%" : "0%"} }>
