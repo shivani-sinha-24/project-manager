@@ -11,7 +11,7 @@ import Register from './pages/registerpage/Register';
 import { useDispatch } from 'react-redux';
 import { getListItems, getLists } from './redux/lists/ListAction';
 import { useSelector } from 'react-redux';
-import MyTaskPage from './pages/myTaskPage/MyTaskPage';
+// import MyTaskPage from './pages/myTaskPage/MyTaskPage';
 
 const App = () => {
   const [step, setStep] = useState(1);
@@ -50,7 +50,7 @@ const App = () => {
         {
           authenticate ?
           <>
-            <Route path='/my-tasks' element={<MyTaskPage/>}/>
+            {/* <Route path='/my-tasks' element={<MyTaskPage/>}/> */}
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/' element={<DashBoard bgImgUrl={bgImgUrl} setBgImgUrl={setBgImgUrl} projects={projects} />}/>
