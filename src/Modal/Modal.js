@@ -386,7 +386,12 @@ export default function Modal({
                 <div className="comments-section">
                   {listItem?.comments?.map(comment=> 
                   <div className="comment">
-
+                    <div className="comnt-user-logo">{comment?.by?.charAt(0).toUpperCase()}</div>
+                    <div className="cmnt-details">
+                      <p>{comment?.by}</p>
+                      <p>{comment?.comment}</p>
+                    </div>
+                    <div className="cmnt-time"><Moment fromNow>{comment?.time}</Moment></div>
                   </div> )}
                 </div>
                 :null
