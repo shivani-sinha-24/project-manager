@@ -8,22 +8,37 @@ import {
   getListItemsFailure,  getListItemsSuccess,  getListItemsStarted,
   updateSingleListRequest,  updateSingleListSuccess,  updateSingleListFailure,
   updateMultiListRequest,  updateMultiListSuccess,  updateMultiListFailure,
+  getSampleProjectCardStarted,  getSampleProjectCardSuccess,  getSampleProjectCardFailure,
 } from './ListSlice'
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-export const getLists = () => async (dispatch) => {
+export const getLists = (value) => async (dispatch) => {
     dispatch(getListsStarted());
     try {
-      const response = await axios.get(`${API_URL}/getProjectCard`);
-      if(response.data){
-        dispatch(getListsSuccess( response.data )); 
+      // console.log(value);
+      const response = await axios.get(`${API_URL}/getProjectCard/${value}`);
+      if(response?.data){
+        dispatch(getListsSuccess( response?.data )); 
       }
+      // console.log(response);
     } catch (error) {
       dispatch(getListsFailure(error.message));
     }
 };
-
+export const getSampleProjectCard = (value) => async (dispatch) => {
+  dispatch(getSampleProjectCardStarted());
+  try {
+    // console.log(value);
+    const response = await axios.get(`${API_URL}/getSampleProjectCard/`);
+    if(response?.data){
+      dispatch(getSampleProjectCardSuccess( response?.data )); 
+    }
+    // console.log(response);
+  } catch (error) {
+    dispatch(getSampleProjectCardFailure(error.message));
+  }
+};
 export const creatList = (value) => async (dispatch) => {
   dispatch(createListRequest());
     try {
@@ -37,6 +52,7 @@ export const creatList = (value) => async (dispatch) => {
 }
 
 export const creatListItem = (value) => async (dispatch) => {
+  console.log('creatListItem');
   dispatch(createListItemRequest());
     try {
       const response = await axios.post(`${API_URL}/createtListItem`,value);

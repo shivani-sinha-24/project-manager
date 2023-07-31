@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Login.css'
-import { Link } from 'react-router-dom'
-import { useFormik } from "formik";
+import { Link, useNavigate } from 'react-router-dom'
+import { replace, useFormik } from "formik";
 import * as Yup from 'yup'
+import { userLogin } from '../../redux/auth/AuthAction';
+import { useDispatch } from 'react-redux';
+import { getListItems, getLists } from '../../redux/lists/ListAction';
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -12,20 +17,29 @@ const Login = () => {
   });
   const formik = useFormik({
     initialValues:{
-      fullName: '',
       email: '',
       password: ''
     },
     validationSchema,
     onSubmit:values=>{
-      console.log(values)
+      dispatch(userLogin(values));
+      navigate('/', {replace:false});
     }
   })
+  const authenticate = sessionStorage.getItem("accessToken");
+
+  useEffect(() => {
+    if (authenticate) {
+      navigate('/', { replace: false });
+      dispatch(getLists())
+      dispatch(getListItems())
+    }
+  }, [authenticate, navigate]);
   
   return (
     <div className='login-page'>
       <div className="container">
-        <h1>Log In to Asana</h1>
+        <h1>Log In to Dousoft</h1>
         <form onSubmit={formik.handleSubmit}>
         <input type="email" placeholder="Email" name='email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
           {formik.errors.email && formik.touched.email &&

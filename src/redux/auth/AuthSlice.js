@@ -10,31 +10,33 @@ const authSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        userRegisterStarted: {
+        userRegisterStarted : state => {
+            state.loading = true;
+        },
+        userRegisterSuccess: (state, action) => {
+            console.log('action.payload :',action.payload);
+        },
+        userRegisterFailure: (state, action) => {
 
         },
-        userRegisterSuccess: {
-
+        userLoginStarted : state => {
+            state.error = null;
         },
-        userRegisterFailure: {
+        userLoginSuccess: (state, action) => {
 
+            console.log('action.payload :',action.payload);
+            state.user = action.payload
         },
-        userLoginStarted: {
-
-        },
-        userLoginSuccess: {
-
-        },
-        userLoginFailure: {
+        userLoginFailure: (state, action) => {
 
         },
         getLoggedinUserStarted: {
 
         },
-        getLoggedinUserSuccess: {
+        getLoggedinUserSuccess: (state, action) => {
 
         },
-        getLoggedinUserFailure: {
+        getLoggedinUserFailure: (state, action) => {
 
         },
     }

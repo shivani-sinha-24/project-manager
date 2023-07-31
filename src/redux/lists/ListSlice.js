@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   lists: [],
   listItems:[],
+  sampleList:[],
   loading: false,
   error: null,
 };
@@ -24,16 +25,28 @@ const listSlice = createSlice({
       state.error = action.payload;
     },
     getListsStarted: (state) => {
-        state.loading = true;
-        state.error = null;
+      state.loading = true;
+      state.error = null;
     },
     getListsSuccess: (state, action) => {
-        state.loading = false;
-        state.lists = action.payload;
+      state.loading = false;
+      state.lists = action.payload;
     },
     getListsFailure: (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+      state.loading = false;
+      state.error = action.payload;
+    },
+    getSampleProjectCardStarted: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    getSampleProjectCardSuccess: (state, action) => {
+      state.loading = false;
+      state.sampleList = action.payload;
+    },
+    getSampleProjectCardFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     },
     createListItemRequest: (state) => {
       state.loading = true;
@@ -102,6 +115,9 @@ export const {
     getListsStarted,
     getListsSuccess,
     getListsFailure,
+    getSampleProjectCardStarted,
+    getSampleProjectCardSuccess,
+    getSampleProjectCardFailure,
     createListRequest,
     createListSuccess,
     createListFailure,

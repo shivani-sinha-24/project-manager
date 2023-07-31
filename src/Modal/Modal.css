@@ -187,13 +187,40 @@
 }
 .sub-task{
   margin: 5px 0 0 0;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   gap: 5px;
 }
+.sub-tasks-items{
+  width: 35%;
+  display: flex;
+  /* gap: 10px; */
+  flex-direction: column;
+}
+.sub-tasks-items .detail{
+  display: flex;
+  gap: 10px;
+}
+.sub-tasks-items .detail div{
+  width:25px;
+  height:25px;
+  border-radius: 50%;
+  background-color: orange;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sub-tasks-items p.time{
+  color: grey;
+  font-size: 10px;
+  text-align: right;
+}
 .sub-task input{
+  margin-top: 5px;
   padding: 5px;
-  width: 85%;
+  width: 100% !important;
   border: none;
 }
 .sub-task i:hover, .sub-task .icon-circle:hover{
@@ -432,9 +459,11 @@ div.question-section textarea.bordered:focus {
   background-color: var(--modal-body-button-bg);
   padding: 10px 1rem;
   margin: 0 -1rem;
-  display: flex;
-  align-items: start;
+}
+.modal-body-bottom .activities-section{
+  display: flex; 
   gap: 10px;
+  align-items: start;
 }
 .profile-logo{
   height: 40px;

@@ -58,7 +58,7 @@ const ListItem = ({ list, item, setListItem, setIsOpen, provided, snapshot, setL
 
         // Update the name of the item
         updatedListsArray[listIndex].items[itemIndex].name = itemName;
-
+        
         // Update the state with the updated listsArray
         setListsArray(updatedListsArray);
       }

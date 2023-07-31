@@ -8,12 +8,17 @@ import Modal from '../../Modal/Modal'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { updateMultiList, updateSingleList } from '../../redux/lists/ListAction'
+import { getSampleProjectCard, updateMultiList, updateSingleList } from '../../redux/lists/ListAction'
+import { useParams } from 'react-router-dom'
 
-const MainContent = ({setIsOpen,isOpen,setListItem,listItem,projects}) => {
+const MainContent = ({lists,setIsOpen,isOpen,setListItem,listItem,projects}) => {
+const params = useParams()
+  
 
-  const lists = useSelector(state=>state?.lists?.lists)
+  console.log('lists :',lists);
   const dispatch = useDispatch()
+  const sampleList = useSelector(state=>state?.lists?.sampleList)
+
 
   const [loader, setLoader] = useState(false)
   const [showListForm,setShowListForm] = useState(false)
@@ -21,9 +26,10 @@ const MainContent = ({setIsOpen,isOpen,setListItem,listItem,projects}) => {
 
   useEffect(() => {
     // Update the listsArray whenever the lists changes
-    setListsArray(lists ? [...lists] : []);
+      setListsArray(lists ? [...lists] : []);
   }, [lists]);
 
+  console.log(lists[0]?.name);
   const onDragEnd = result => {
     const { source, destination } = result;
 
@@ -65,7 +71,7 @@ const MainContent = ({setIsOpen,isOpen,setListItem,listItem,projects}) => {
         return newListsArray;
       });
 
-      dispatch(updateSingleList({_id:destination?.droppableId,items:thisListArrayItems}))
+      lists[0].name!='Sample List'&& dispatch(updateSingleList({_id:destination?.droppableId,items:thisListArrayItems}))
   
       setLoader(true);
       setTimeout(() => setLoader(false));
@@ -91,7 +97,7 @@ const MainContent = ({setIsOpen,isOpen,setListItem,listItem,projects}) => {
       ]
     }
 
-    dispatch(updateMultiList({
+    lists[0].name!='Sample List'&& dispatch(updateMultiList({
       'newSourceList_id':newSourceList?._id ,
       'newSourceList_items':newSourceList?.items,
       'newDestinationList_id':newDestinationList?._id,
@@ -130,7 +136,7 @@ const MainContent = ({setIsOpen,isOpen,setListItem,listItem,projects}) => {
               <div className="child" key={list.id}>
                 <List 
                   index={index} 
-                  listsArray={listsArray} 
+                  listsArray={listsArray.length?listsArray:null} 
                   setListsArray={setListsArray} 
                   list={list}
                   isOpen={isOpen}

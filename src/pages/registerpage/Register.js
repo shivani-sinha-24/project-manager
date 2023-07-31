@@ -32,7 +32,7 @@ const Register = () => {
   return (
     <div className="register-page">
       <div className="container">
-        <h1>Sign Up for Asana</h1>
+        <h1>Sign Up for Dousoft</h1>
         <form onSubmit={formik.handleSubmit}>
           <input type="text" placeholder="Full Name" name='fullName' value={formik.values.fullName} onChange={formik.handleChange} onBlur={formik.handleBlur} />
           {formik.errors.fullName && formik.touched.fullName &&
