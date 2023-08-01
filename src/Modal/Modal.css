@@ -503,3 +503,29 @@ button.calendar{
 .show-prev-tasks:hover{
   cursor: pointer;
 }
+.comments-section .comment{
+  display: flex;
+  gap: 15px;
+} 
+.comments-section p.cmnt-heading{
+  margin-bottom:  5px;
+}
+.comments-section .comment .comnt-user-logo{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  color: white; 
+  background-color: cadetblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.comments-section .comment .cmnt-details .user{
+  /* font-size: 20px; */
+  font-weight: bold;
+}
+.comments-section .comment .cmnt-time{
+  color: gray;
+  font-size: x-small;
+  text-align: end;
+}

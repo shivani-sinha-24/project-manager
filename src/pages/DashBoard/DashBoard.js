@@ -22,7 +22,7 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl,projects}) => {
   const dispatch = useDispatch()
 
   const projectDetails = projects.filter(project=>project._id==params.id)
-  const lists = useSelector(state=>state?.lists?.lists).filter(list=>list.project_id==params?.id)
+  const lists = useSelector(state=>state?.lists?.lists)?.filter(list=>list?.project_id==params?.id)
   const sampleList = useSelector(state=>state?.lists?.sampleList)
   const getImages = async () => {
     axios.get(`${process.env.REACT_APP_UNSPLASH_APP_DUMMY_DASHBOARD_API_URL}`)
@@ -42,7 +42,7 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl,projects}) => {
     // getImages()   //Remove this line of comment to get dimages for background change
     dispatch(getLists(params.id));
     dispatch(getListItems())
-    if(lists.length == 0){
+    if(lists?.length == 0){
       dispatch(getSampleProjectCard())
     }
   }, [params.id])
@@ -79,7 +79,7 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl,projects}) => {
            setListItem={setListItem} 
            listItem={listItem} 
            imagesArray={imgsArray}
-           lists={lists.length>0?lists:sampleList}
+           lists={lists?.length>0?lists:sampleList}
           /> 
       </div>
         <div className="right-side-menu" style={{width: showRightMenu  ? "20%" : "0%"} }>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import './Modal.css';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getListItems, updateListItem } from '../redux/lists/ListAction';
+import { getListItems, getLists, updateListItem } from '../redux/lists/ListAction';
 import { useSelector } from 'react-redux';
 import Moment from 'react-moment';
 
@@ -13,7 +13,7 @@ export default function Modal({
   projects
 }) {
 
-  const user= useSelector(state=>state?.auth?.user?.fullName)
+  const user= useSelector(state=>state?.auth?.user?.fullName || sessionStorage.getItem('name'))
 
   console.log('user :',user);
   const date = new Date().getDate()
@@ -37,19 +37,20 @@ export default function Modal({
   const [addNewProjectNameInput,setAddNewProjectNameInput] = useState('')
   const [newProjectName,setNewProjectName] = useState([])
   const [subtask,setSubtask] = useState({})
+  const [comment,setComment] = useState({})
   const [subTaksArray,setSubTaksArray] = useState({})
 
   let itemDetails = {
     _id:listItem?._id,
-    name:'',
-    due_date:'',
-    priority:'',
-    status:'',
+    name:listItem?.name,
+    due_date:listItem?.due_date,
+    priority:listItem?.priority,
+    status:listItem?.status,
     projects:[],
-    assignee: '',
-    description:'',
-    comment:'',
-    task_date:'',
+    assignee: listItem?.assignee,
+    description:listItem?.description,
+    comments:listItem?.comments,
+    tasks_date:listItem?.tasks_date,
     sub_task:[]
   }
 
@@ -89,16 +90,31 @@ export default function Modal({
   }
 
   const updateItem = ()=>{
-    console.log('update',itemDetails);
+    // console.log('update',itemDetails);
     dispatch(updateListItem(itemDetails))
-    dispatch(getListItems())
+    dispatch(getLists())
+    // dispatch(getListItems())
   }
 
-  const handleSubmit = () => {
+  const handleSubtaskSubmit = () => {
     // setSubTaksArray([...subTaksArray,subtask]);
+    // dispatch(updateListItem(itemDetails))
+    itemDetails = {...itemDetails,sub_task:[...itemDetails?.sub_task,subtask]};
+    console.log(itemDetails);
+    updateItem()
     setShowAddSubTask(false)    
   }
+
+  const handleCommentSubmit = () => {
+    // setSubTaksArray([...subTaksArray,comment]);
+    // dispatch(updateListItem(itemDetails))
+    itemDetails = {...itemDetails,comments:[...itemDetails?.comments,comment]};
+    console.log(itemDetails);
+    updateItem()
+    // setShowAddSubTask(false)    
+  }
   
+  // console.log(subtask);
   return (
       <div className={`modal ${isActive ? "show" : ""} `}>
         <div className="modal-section">
@@ -138,19 +154,19 @@ export default function Modal({
                         </div>
                         <div className="dropdown-recent-bottom">
                           <div onClick={()=>{
-                            itemDetails = ({...itemDetails,task_date:'Recently assigned'})
+                            itemDetails = ({...itemDetails,tasks_date:'Recently assigned'})
                             updateItem()
                             setSelectedRecent('Recently assigned')}}>Recently assigned</div>
                           <div onClick={()=>{
-                            itemDetails = ({...itemDetails,task_date:'Do today'})
+                            itemDetails = ({...itemDetails,tasks_date:'Do today'})
                             updateItem()
                             setSelectedRecent('Do today')}}>Do today</div>
                           <div onClick={()=>{
-                            itemDetails = ({...itemDetails,task_date:'Do next week'})
+                            itemDetails = ({...itemDetails,tasks_date:'Do next week'})
                             updateItem()
                             setSelectedRecent('Do next week')}}>Do next week</div>
                           <div onClick={()=>{
-                            itemDetails = ({...itemDetails,task_date:'Do later'})
+                            itemDetails = ({...itemDetails,tasks_date:'Do later'})
                             updateItem()
                             setSelectedRecent('Do later')}}>Do later</div>
                         </div>
@@ -341,17 +357,18 @@ export default function Modal({
                       <p className='time'> <Moment fromNow>{sub_task?.time}</Moment></p>
                       
                     </div>
+                    // console.log(sub_task,index)
                       ):null
                   }
                 </div>
                 {showAddSubTask ?
                 <div className="sub-task">
                   {/* <i className="fa-regular fa-xl fa-circle-check"></i>  */}
-                  <form action="" onSubmit={e=>{e.preventDefault();handleSubmit()}}>
+                  <form action="" onSubmit={e=>{e.preventDefault();handleSubtaskSubmit()}}>
                     <input autoFocus type="text" id='sub-task' name='sub_task' placeholder='Write your subtask here..' onChange={e=>{
                       setSubtask({name:e.target.value,by:`${user}`,time: new Date()});
-                      itemDetails = {...itemDetails,sub_task:{name:e.target.value,by:`${user}`,time: new Date()}};
-                      updateItem();
+                      itemDetails = {...itemDetails,sub_task:[...itemDetails?.sub_task,{name:e.target.value,by:`${user}`,time: new Date()}]};
+                      // updateItem();
                     }}/>
                   </form>
                   {/* <i className="fa-regular fa-xl fa-calendar"></i>
@@ -384,14 +401,15 @@ export default function Modal({
               {
                 listItem?.comments?.length ?
                 <div className="comments-section">
+                  <p className='cmnt-heading'>Comments</p>
                   {listItem?.comments?.map(comment=> 
                   <div className="comment">
                     <div className="comnt-user-logo">{comment?.by?.charAt(0).toUpperCase()}</div>
                     <div className="cmnt-details">
-                      <p>{comment?.by}</p>
+                      <p className='user'>{comment?.by}</p>
                       <p>{comment?.comment}</p>
+                    <p className="cmnt-time"><Moment fromNow>{comment?.time}</Moment></p>
                     </div>
-                    <div className="cmnt-time"><Moment fromNow>{comment?.time}</Moment></div>
                   </div> )}
                 </div>
                 :null
@@ -442,7 +460,12 @@ export default function Modal({
                       onBlur={handleBlur} 
                       name="" 
                       id="" 
-                      placeholder='Type /for menu'
+                      placeholder='Type /for menu' 
+                      onChange={e=>{
+                        setComment({comment:e.target.value,by:`${user}`,time: new Date()});
+                        itemDetails = {...itemDetails,comments:[...itemDetails?.comments,{comment:e.target.value,by:`${user}`,time: new Date()}]};
+                        // updateItem();
+                      }}
                     >
                     </textarea>
                     <div>
@@ -458,7 +481,7 @@ export default function Modal({
                       </div>
                       <div className="right">
                         Prince will be notified
-                        <button className='cmnt-btn'>Comment</button>
+                        <button className='cmnt-btn' onClick={()=>handleCommentSubmit()}>Comment</button>
                       </div>
                     </div>
                   </div>
