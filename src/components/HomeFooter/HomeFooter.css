@@ -1,0 +1,111 @@
+.home-footer{
+    padding: 40px 100px;
+    width: 100%;
+    background-color: #2A2B2C;
+    color: white;
+}
+.home-footer .footer-container{
+    flex-basis: 100%;
+    padding: 0 8.3333333333%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.home-footer .footer-container .f-logo{
+    display: flex;
+    gap: 8px;
+}
+.home-footer .footer-container .f-download {
+    display: flex;gap: 5px;align-items: center;justify-content: center;
+}
+.home-footer .footer-container .f-download button{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    background:black;
+    padding: 8px 15px;
+    color: grey;
+    border-radius: 8px;
+    border: none;
+    opacity: 0.5;
+}
+.home-footer .footer-container .f-download .apple{
+    border: 1px solid white;
+}
+
+/* HOVER CSS */
+.home-footer .footer-container .lang span:hover,
+.home-footer .footer-container .t-n-p span:hover,
+.home-footer .footer-container .f-download button:hover,
+.home-footer .footer-container .f-logo i:hover{
+    cursor: pointer;
+}
+.home-footer .footer-container .t-n-p:hover,
+.home-footer .footer-container .copy:hover{
+    cursor: default;
+}
+.home-footer .footer-container .t-n-p span:hover{
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+.home-footer .footer-container .f-logo i:hover{
+    scale: 1.25;
+    color: rgb(230, 230, 230);
+}
+.home-footer .footer-container .f-download button:hover{
+    opacity: 1;
+    color: white;
+}
+
+/* MEDIA QUERIES */
+
+/* Your styles for XS devices */
+@media (max-width: 575.99px) {
+    .home-footer{
+        padding: 100px 20px 50px 20px;
+    }
+    .home-footer .footer-container{
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+
+    }
+}
+
+/* Your styles for SM devices */
+@media (min-width: 576px) and (max-width: 767.99px) {
+    .home-footer{
+        padding: 100px 20px 50px 20px;
+    }
+    .home-footer .footer-container{
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+
+    }
+    
+}
+
+/* Your styles for MD devices */
+@media (min-width: 768px) and (max-width: 991.99px) {
+    .home-footer .footer-container{
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+
+    }
+}
+
+/* Your styles for LG devices */
+@media (min-width: 992px) and (max-width: 1199.99px) {
+    .home-footer{
+        padding: 100px 50px;
+    }
+}
+
+/* Your styles for XL devices */
+@media (min-width: 1200px) {
+    
+} 

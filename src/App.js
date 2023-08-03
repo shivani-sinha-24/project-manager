@@ -11,6 +11,7 @@ import Register from './pages/registerpage/Register';
 import { useDispatch } from 'react-redux';
 import { getListItems, getLists } from './redux/lists/ListAction';
 import { useSelector } from 'react-redux';
+import Homepage from './pages/homepage/Homepage';
 // import MyTaskPage from './pages/myTaskPage/MyTaskPage';
 
 const App = () => {
@@ -53,7 +54,8 @@ const App = () => {
             {/* <Route path='/my-tasks' element={<MyTaskPage/>}/> */}
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
-            <Route path='/' element={<DashBoard bgImgUrl={bgImgUrl} setBgImgUrl={setBgImgUrl} projects={projects} />}/>
+            {/* <Route path='/' element={<DashBoard bgImgUrl={bgImgUrl} setBgImgUrl={setBgImgUrl} projects={projects} />}/> */}
+            <Route path='/' element={<Homepage />}/>
             <Route path='/:id' element={<DashBoard bgImgUrl={bgImgUrl} setBgImgUrl={setBgImgUrl} projects={projects} />}/>
             <Route path='/projects' element={<Project step={step} setStep={setStep}  bgImgUrl={bgImgUrl} setBgImgUrl={setBgImgUrl} />}>
               {/* <Route path='/projects/new' element={<NewProject/>}/> */}

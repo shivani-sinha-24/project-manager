@@ -1,0 +1,228 @@
+.get-started{
+    padding: 50px 100px 80px 100px;
+    background-color: black;
+    color: white;
+    width: 100%;
+}
+.get-started .get-started-top{
+    border-bottom: 1px solid grey ;
+    text-align: center;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 0;
+}
+.get-started .get-started-top img{
+    width: 100px;
+    height: 100px;
+    scale: 1.5;
+}
+.get-started .get-started-top p{
+    padding: 0 150px;
+    font-size: 3.5rem;
+}
+.get-started .get-started-top button{
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 20px 35px;
+    margin: 40px 0;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+.get-started .bottom{
+    width: 100%;
+    display: flex;
+    justify-content:flex-start;
+    padding: 80px 0 40px 0;
+}
+.get-started .bottom>div.img {
+    flex-basis: 10%;
+}
+.get-started .bottom div img{
+    width: 50px;
+    height: 50px;
+    scale: 1.5;
+}
+.get-started .bottom .links{
+    flex-basis: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.get-started .bottom .links div{
+    flex-basis: 20%;
+    margin-bottom: 0;
+}
+.get-started .bottom div p.top{
+    color: gray;
+    font-weight: bolder;
+    margin: 0 0 40px 0;
+}
+.get-started .bottom div p{
+    margin: 0 0 20px 0;
+}
+
+/* HOVER CSS */
+.get-started .bottom div img:hover, 
+.get-started .get-started-top button:hover,
+.get-started .bottom div p:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+.get-started .get-started-top button:hover{
+    background-color: #F06A6A;
+    color: black;
+    text-decoration: none;
+}
+.get-started .bottom div p.top:hover{
+    cursor: default;
+    text-decoration: none;
+}
+
+/* MEDIA QUERIES */
+
+/* Your styles for XS devices */
+@media (max-width: 575.99px) {
+    .get-started{
+        padding: 100px 20px 50px 20px;
+    }
+    .get-started .get-started-top{
+        text-align: start;
+        align-items:flex-start;
+        justify-content: flex-start;
+        padding: 30px 0;
+        height: fit-content;
+    }
+    .get-started .get-started-top img{
+        width: 60px;
+        height: 60px;
+        scale: 1.5;
+    }
+    .get-started .get-started-top p{
+        margin: 10px 0;
+        padding: 0 0px;
+        font-size: 2.2rem;
+    }
+    .get-started .get-started-top button{
+        width: 100%;
+        padding: 20px 35px;
+        margin: 40px 0 30px 0;
+    }  
+    .get-started .bottom{
+        flex-direction: column;
+        gap: 50px;
+    }
+    .get-started .bottom .links{
+        justify-content:flex-start;
+    }
+    .get-started .bottom .links div{
+        flex-basis: 48%;
+        margin-bottom: 40px;
+    }
+}
+
+/* Your styles for SM devices */
+@media (min-width: 576px) and (max-width: 767.99px) {
+    .get-started{
+        padding: 100px 20px 50px 20px;
+    }
+    .get-started .get-started-top{
+        text-align: start;
+        align-items:flex-start;
+        justify-content: flex-start;
+        padding: 30px 0;
+        height: fit-content;
+    }
+    .get-started .get-started-top img{
+        width: 60px;
+        height: 60px;
+        scale: 1.5;
+    }
+    .get-started .get-started-top p{
+        margin: 10px 0;
+        padding: 0 0px;
+        font-size: 2.2rem;
+    }
+    .get-started .get-started-top button{
+        width: 100%;
+        padding: 20px 35px;
+        margin: 40px 0 30px 0;
+    }  
+    .get-started .bottom{
+        flex-direction: column;
+        gap: 50px;
+    }
+    .get-started .bottom .links{
+        justify-content:flex-start;
+    }
+    .get-started .bottom .links div{
+        flex-basis: 48%;
+        margin-bottom: 40px;
+    }
+}
+
+/* Your styles for MD devices */
+@media (min-width: 768px) and (max-width: 991.99px) {
+    .get-started{
+        padding: 100px 50px;
+    }
+    .get-started .get-started-top{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+    }
+    .get-started .get-started-top img{
+        width: 80px;
+        height: 80px;
+    }
+    .get-started .get-started-top p{
+        padding: 0 50px;
+        font-size: 2.25rem;
+    }    
+    .get-started .get-started-top button{
+        width: fit-content;
+    }
+    .get-started .bottom{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .get-started .bottom .links{
+        justify-content: flex-start;
+    }
+    .get-started .bottom .links div{
+        flex-basis: 30%;
+        margin-bottom: 40px;
+    }
+}
+
+/* Your styles for LG devices */
+@media (min-width: 992px) and (max-width: 1199.99px) {
+    .get-started{
+        padding: 100px 50px;
+    }
+    .get-started .get-started-top img{
+        width: 80px;
+        height: 80px;
+    }
+    .get-started .get-started-top p{
+        padding: 0 50px;
+        font-size: 3rem;
+    }
+    .get-started .bottom .links {
+        justify-content: start;
+    }
+    .get-started .bottom .links div{
+        flex-basis: 30%;
+        margin-bottom: 40px;
+    }
+}
+
+/* Your styles for XL devices */
+@media (min-width: 1200px) {
+
+} 

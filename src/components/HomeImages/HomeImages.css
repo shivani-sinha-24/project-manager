@@ -1,0 +1,102 @@
+.home-images{
+    padding: 100px;
+    background-color: #f5f3f3;
+    width: 100%;;
+}
+.home-images .home-images-top{
+    margin: 30px 0;
+}
+.home-images .home-images-top .p1{
+    font-size: 2.3rem;
+    margin: 0 0 25px 0;
+}
+.home-images .home-images-top .p2{
+    font-size: 1.25rem;
+    color: rgb(92, 92, 92);   
+    margin: 0 0 25px 0;
+}
+.home-images .home-images-bottom{
+    display: flex;
+    gap: 40px;
+    
+}
+.home-images .home-images-bottom .img-card{
+    background-color: white;
+    border-radius: 5px;
+    width: 100%;
+}
+.home-images .home-images-bottom .img-card .img-card-top img{
+    width: 100%;
+}
+.home-images .home-images-bottom .img-card .img-card-bottom{
+    padding: 40px;
+}
+.home-images .home-images-bottom .img-card .img-card-bottom .name{
+    font-size: 1.8rem;
+    margin: 0 0 40px 0;
+}
+.home-images .home-images-bottom .img-card .img-card-bottom .detail{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.home-images .home-images-bottom .img-card .img-card-bottom .detail span{
+    font-weight: bold;
+}
+
+/* HOVER CSS */
+.home-images .home-images-bottom .img-card .img-card-bottom .detail:hover{
+    cursor: pointer;
+    color: #F06A6A;
+}
+
+/* MEDIA QUERIES */
+
+/* Your styles for XS devices */
+@media (max-width: 575.99px) {
+    .home-images{
+        padding: 100px 20px 50px 20px;
+    }
+    .home-images .home-images-bottom{
+        flex-direction: column;
+    }
+}
+
+/* Your styles for SM devices */
+@media (min-width: 576px) and (max-width: 767.99px) {
+    .home-images{
+        padding: 100px 20px 50px 20px;
+    }
+    .home-images .home-images-bottom{
+        flex-direction: column;
+    }
+}
+
+/* Your styles for MD devices */
+@media (min-width: 768px) and (max-width: 991.99px) {
+    .home-images{
+        padding: 100px;
+    }
+    .home-images .home-images-bottom{
+        flex-direction: column;
+    }
+}
+
+/* Your styles for LG devices */
+@media (min-width: 992px) and (max-width: 1199.99px) {
+    .home-images{
+        padding: 100px 50px;
+    }
+    .home-images .home-images-bottom .img-card .img-card-bottom .name{
+        font-size: 1.4rem;
+        /* margin: 0 0 20px 0; */
+    }
+    .home-images .home-images-bottom .img-card .img-card-bottom{
+        padding: 30px;
+    }
+}
+
+/* Your styles for XL devices */
+@media (min-width: 1200px) {
+
+} 

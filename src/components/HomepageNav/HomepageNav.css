@@ -1,0 +1,201 @@
+.home-nav{
+    padding: 10px 100px;
+    /* width: 100vw; */
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: large;
+    font-weight: bold;
+    color: grey;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+.home-nav-left{
+    width: 10%;
+    overflow: hidden;
+}
+.home-nav-left img{
+    width: 100%;
+    height: 100%;
+    scale: 1.3;
+}
+.home-nav-center{
+    width: 55%;
+    display: flex;
+    padding: 0 40px;
+    gap: 40px;
+    align-items: center;
+}
+.home-nav-right{
+    width: 35%;
+    display: flex;
+    padding: 0 40px;
+    justify-content: space-between;
+    align-items: center;
+}
+.home-nav-right div.lang{
+    border-right: 1px solid grey;
+    padding: 5px 15px;
+}
+.home-nav-right .right-nav-get-started{
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 2px;
+}
+
+/* HOVER CSS */
+.home-nav-left img:hover,
+.home-nav-center div:hover, 
+.home-nav-right:hover{
+    cursor: pointer;
+}
+.home-nav-right .right-nav-get-started:hover{
+    background-color: #F06A6A;
+    color: black;
+}
+
+/* MEDIA QUERIES */
+
+/* Your styles for XS devices */
+@media (max-width: 499.99px) {
+    .home-nav{
+        padding: 10px;
+        justify-content: space-between;
+        font-size: 16px;
+    }
+    .home-nav .home-nav-left{
+        width: 45%;
+    }
+    .home-nav .home-nav-right{
+        width: 55%;
+        gap: 15px;
+        padding: 0 10px;
+        justify-content: flex-end;
+    }
+    .home-nav-right .right-nav-get-started{
+        padding: 10px 8px;
+    }
+    .home-nav-left img{
+        /* scale: 1; */
+        height: 70%;
+        width: 70%;
+        overflow: hidden;
+    }
+    .home-nav .home-nav-center,
+    .home-nav-right div.lang,
+    .home-nav .home-nav-right .sales-xl,
+    .home-nav .home-nav-right .sales-lg,
+    .home-nav .home-nav-right .login-xl,
+    .home-nav .home-nav-right .login-lg,
+    .home-nav-center div{
+        display: none;
+    }
+    .home-nav .home-nav-right .menu-lg{
+        display: block;
+    }
+}
+
+/* Your styles for SM devices */
+@media (min-width: 500px) and (max-width: 767.99px) {
+    .home-nav{
+        padding: 10px;
+        justify-content: space-between;
+    }
+    .home-nav .home-nav-left{
+        width: 20%;
+    }
+    .home-nav .home-nav-right{
+        width: 40%;
+        padding: 0 20px;
+    }
+    .home-nav-left img{
+        /* scale: 1; */
+        height: 70%;
+        width: 70%;
+        overflow: hidden;
+    }
+    .home-nav .home-nav-center,
+    .home-nav .home-nav-right .sales-xl,
+    .home-nav .home-nav-right .login-xl,
+    .home-nav .home-nav-right .login-lg,
+    .home-nav-center div{
+        display: none;
+    }
+    .home-nav .home-nav-right .menu-lg{
+        display: block;
+    }
+}
+
+/* Your styles for MD devices */
+@media (min-width: 768px) and (max-width: 991.99px) {
+    .home-nav{
+        padding: 10px;
+        justify-content: space-between;
+    }
+    .home-nav .home-nav-left{
+        width: 20%;
+    }
+    .home-nav .home-nav-right{
+        width: 40%;
+        padding: 0 20px;
+    }
+    .home-nav-left img{
+        /* scale: 1; */
+        height: 70%;
+        width: 70%;
+        overflow: hidden;
+    }
+    .home-nav .home-nav-center,
+    .home-nav .home-nav-right .sales-xl,
+    .home-nav .home-nav-right .login-xl,
+    .home-nav .home-nav-right .login-lg,
+    .home-nav-center div{
+        display: none;
+    }
+    .home-nav .home-nav-right .menu-lg{
+        display: block;
+    }
+}
+
+/* Your styles for LG devices */
+@media (min-width: 992px) and (max-width: 1199.99px) {
+    .home-nav{
+        padding: 10px;
+        justify-content: space-between;
+    }
+    .home-nav .home-nav-left{
+        width: 20%;
+    }
+    .home-nav .home-nav-right{
+        padding: 0 20px;
+    }
+    .home-nav-left img{
+        /* scale: 1; */
+        height: 70%;
+        width: 70%;
+        overflow: hidden;
+    }
+    .home-nav .home-nav-center,
+    .home-nav .home-nav-right .sales-xl,
+    .home-nav .home-nav-right .login-xl,
+    .home-nav-center div{
+        display: none;
+    }
+    .home-nav .home-nav-right .login-lg,
+    .home-nav .home-nav-right .menu-lg{
+        display: block;
+    }
+}
+
+/* Your styles for XL devices */
+@media (min-width: 1200px) {
+    .home-nav .home-nav-right .login-lg,
+    .home-nav .home-nav-right .sales-lg,
+    .home-nav .home-nav-right .menu-lg{
+        display: none;
+    }
+} 

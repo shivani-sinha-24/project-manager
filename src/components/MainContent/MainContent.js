@@ -71,7 +71,7 @@ const params = useParams()
         return newListsArray;
       });
 
-      lists[0].name!='Sample List'&& dispatch(updateSingleList({_id:destination?.droppableId,items:thisListArrayItems}))
+      lists[0].name!='Sample List' && dispatch(updateSingleList({_id:destination?.droppableId,items:thisListArrayItems}))
   
       setLoader(true);
       setTimeout(() => setLoader(false));
@@ -97,7 +97,7 @@ const params = useParams()
       ]
     }
 
-    lists[0].name!='Sample List'&& dispatch(updateMultiList({
+    lists[0].name!='Sample List' && dispatch(updateMultiList({
       'newSourceList_id':newSourceList?._id ,
       'newSourceList_items':newSourceList?.items,
       'newDestinationList_id':newDestinationList?._id,

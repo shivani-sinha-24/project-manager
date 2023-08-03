@@ -1,0 +1,181 @@
+import GoogleSheets from '../assets/logos/Google_Sheets_Logo_512px.png'
+import Gmail from '../assets/logos/Gmail_Logo_512px.png'
+import GoogleDrive from '../assets/logos/Google_Drive_Logo_512px.png'
+import Zoom from '../assets/logos/zoom-meeting-logo-transparent-png-21.png'
+import AdobeCreativeCloud from '../assets/logos/adobe-creative-cloud6378.jpg'
+import GoogleCalendar from '../assets/logos/png-transparent-google-calendar-google-s-logo-icon.png'
+import Harvest from '../assets/logos/logo-brand-app-store-harvest-png-favpng-1z1avsNxM9Xhwvq9a1BZceW7d.jpg'
+import Dropbox from '../assets/logos/dropbox-2-logo-png-transparent.png'
+import Slack from '../assets/logos/5cb480cd5f1b6d3fbadece79.png'
+import Jira from '../assets/logos/jira.webp'
+import Salesforce from '../assets/logos/58482f67cef1014c0b5e4a81.png'
+import Onedrive from '../assets/logos/kisspng-onedrive-office-365-microsoft-corporation-microsof-onedrive-howling-pixel-5d033586a2f450.3344148915604913986675.jpg'
+import Zapier from '../assets/logos/zapier-logo-png-transparent.png'
+import Tableau from '../assets/logos/png-transparent-tableau-software-hd-logo.png'
+import sharePoint from '../assets/logos/61046931ada36000041881bd.png'
+import outlook from '../assets/logos/6002f9b951c2ec00048c6c76.png'
+import office365 from '../assets/logos/office 365images.png'
+import box from '../assets/logos/box-logo.png'
+import powerBi from '../assets/logos/png-clipart-power-bi-business-intelligence-microsoft-azure-microsoft-dynamics-cloud-computing-cloud-computing-angle-text-thumbnail.png'
+import Instagantt from '../assets/logos/idQ2CX1ZgA.jpeg'
+import Everhour from '../assets/logos/everhour_mark_on_white@2x.png'
+import Team from '../assets/logos/kisspng-microsoft-teams-office-365-microsoft-office-micros-5cd0b190d544c1.3545819815571808168736.jpg'
+
+const caoruselArray = [
+    {
+      name:'Google Sheets',
+      detail:'For reporting.Pull data from Dousoft into sheets to make custom data, charts and more.',
+      logo:GoogleSheets,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Zoom',
+      detail:'For coordinatio.Turn action items from meeting into tasks in Dousoft right from Zoom.',
+      logo:Zoom,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Adobe Creative Cloud',
+      detail:'For communication.See Dousoft tasks, get feedback and more right from your Adobe apps.',
+      logo:AdobeCreativeCloud,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Google Calendar',
+      detail:'For time management.Add your Dousoft tasks to your calendar to see deadlines.',
+      logo:GoogleCalendar,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Harvest',
+      detail:'For time tracking.Track time to record billable hours and create invoices in Dousoft.',
+      logo:Harvest,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Dropbox',
+      detail:'For file sharing.Attach files from dropbox to Dousoft tasks to Dousoft task pane.',
+      logo:Dropbox,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Slack',
+      detail:'For communication.Add, assign, even comment on Dousoft tasks (and more) in Slack.',
+      logo:Slack,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Google Drive',
+      detail:'For file sharing.Attach files from Google Drive to Dousoft tasks from task pane. ',
+      logo:GoogleDrive,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Jira Cloud',
+      detail:'For coordination.Create Jira issues and track work without leaving Dousoft.',
+      logo:Jira,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Salesforce',
+      detail:'For coordination.Collaborate on Dousoft tasks for pre-sales needs in Salesforce.',
+      logo:Salesforce,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Gmail',
+      detail:'For coordination.Turn email into tasks in Dousoft right from your Gmail inbox.',
+      logo:Gmail,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'One Drive',
+      detail:'For file sharing.Attach Microsoft files to Dousoft tasks from Dousoft task pane.',
+      logo:Onedrive,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Zapier',
+      detail:'For connecting apps.Connect with 1000+ apps to share data and automate routine work.',
+      logo:Zapier,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Tableau',
+      detail:'For reporting.Pull data from Dousoft into Tableau to create custom Dashboards.',
+      logo:Tableau,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Sharepoint',
+      detail:'For file sharing.Attach files from sharepoint to Dousoft tasks from the Dousoft task pane.',
+      logo:sharePoint,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Outlook',
+      detail:'For coordination.Turn emails into tasks in Dousoft right from your Outlook inbox.',
+      logo:outlook,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Office 365',
+      detail:'For communucation.Stay up tp date on work in Dousoft without leaving Microsoft groups.',
+      logo:office365,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Box',
+      detail:'For file sharing.Attach files from Box to Dousoft tasks from the Dousoft task pane.',
+      logo:box,
+      backgroundColor:'',
+      bgImage:''
+    },
+    {
+      name:'Microsoft Power BI',
+      detail:'For reporting.Pull data from Dousoft into Power BI to create custom dashboards.',
+      logo:powerBi,
+      backgroundColor:'',
+      bgImage:''
+    },
+    // {
+    //   name:'Instagantt',
+    //   detail:'For scheduling.Make Gantt charts to see Dousoft tasks and more on timelines.',
+    //   logo:Instagantt,
+    //   backgroundColor:'',
+    //   bgImage:''
+    // },
+    // {
+    //   name:'Everhour',
+    //   detail:'For time tracking.Set up project budgets, track hours and more in Dousoft.',
+    //   logo:Everhour,
+    //   backgroundColor:'',
+    //   bgImage:''
+    // },
+    {
+      name:'Microsoft Teams',
+      detail:'For communication.Add and collaborate on Dousoft tasks without leaving Teams',
+      logo:Team,
+      backgroundColor:'',
+      bgImage:''
+    },
+]
+
+export default caoruselArray

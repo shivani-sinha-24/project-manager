@@ -1,0 +1,208 @@
+.work-progress{
+    padding: 100px 100px;
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    /* height: 780px; */
+    width: 100%;
+    display: flex;
+}
+.work-progress-left{
+    width: 40%;
+    padding: 30px;
+}
+.work-progress-left-top{
+
+}
+.work-progress-left-top .p1{
+    font-size: 1rem;
+    margin: 0 0 5px 0;
+}
+.work-progress-left-top .p2{
+    font-size: 2.25rem;
+}
+.work-progress-left-top .p3{
+    font-size: 1.25rem;
+    margin: 0 0 20px 0;
+}
+.work-progress-left-bottom{
+    margin-top: 30px;
+}
+.work-progress-left-bottom .accordian{
+    border-top: 1px solid rgb(206, 206, 206);
+    border-bottom: 1px solid rgb(206, 206, 206);
+    margin: -1px 0;
+    padding: 15px 0;
+}
+.work-progress-left-bottom .accordian .accordian-heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.work-progress-left-bottom .accordian .accordian-heading .p1{
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.work-progress-left-bottom .accordian .p2{
+    font-size: 1.1rem;
+    margin: 10px 0;
+    padding: 0 10px 0 0;
+}
+.work-progress-left-bottom .accordian .p3{
+    font-weight: bold;
+}
+.work-progress-left-bottom .acor1 .p3{
+    color: #4573D2;
+}
+.work-progress-left-bottom .acor2 .p3{
+    color: #F1BD6C;
+}
+.work-progress-left-bottom .acor3 .p3{
+    color: #938CE1;
+}
+.work-progress-left-bottom .acor4 .p3{
+    color:  #F06A6A; 
+}
+.work-progress-right{
+    width: 60%;
+    padding: 60px;
+}
+.work-progress-right .images-of-accordian{
+    height: 100%;
+    /* height:  780px;  */
+    width: 100%;
+}
+
+/* HOVER CSS */
+.work-progress-left-bottom .accordian .p3:hover,
+.work-progress-left-bottom .accordian .accordian-heading:hover{
+    cursor: pointer;
+}
+
+/* MEDIA QUERIES */
+
+/* Your styles for XS devices */
+@media (max-width: 499.99px) {
+    .work-progress{
+        padding: 50px 20px ;
+    }
+    .work-progress-left{
+        width: 100%;
+        padding: 15px;
+    }
+    .work-progress-left-top .p1{
+        font-size: 0.9rem;
+        margin: 0 0 5px 0;
+    }
+    .work-progress-left-top .p2{
+        font-size: 1.5rem;
+        margin: 20px 0;
+    }
+    .work-progress-left-top .p3{
+        font-size: 1.05rem;
+        margin: 0 0 20px 0;
+    }
+    .work-progress-left-bottom .accordian .accordian-heading .p1{
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    .work-progress-left-bottom .accordian .p2{
+        font-size: 0.9rem;
+        padding: 0 2px 0 0;
+    }
+    .images-of-accordian-md{
+        width: 100%;
+        margin: 40px 0;
+        height: 350px;
+    }
+    .work-progress-right{
+        display: none;
+    }
+}
+
+/* Your styles for SM devices */
+@media (min-width: 500px) and (max-width: 767.99px) {
+    .work-progress{
+        padding: 50px 20px ;
+    }
+    .work-progress-left{
+        width: 100%;
+        padding: 15px;
+    }
+    .work-progress-left-top .p1{
+        font-size: 0.9rem;
+        margin: 0 0 5px 0;
+    }
+    .work-progress-left-top .p2{
+        font-size: 1.5rem;
+        margin: 20px 0;
+    }
+    .work-progress-left-top .p3{
+        font-size: 1.05rem;
+        margin: 0 0 20px 0;
+    }
+    .work-progress-left-bottom .accordian .accordian-heading .p1{
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    .work-progress-left-bottom .accordian .p2{
+        font-size: 0.9rem;
+        padding: 0 2px 0 0;
+    }
+    .images-of-accordian-md{
+        width: 100%;
+        margin: 40px 0;
+        height: 350px;
+    }
+    .work-progress-right{
+        display: none;
+    }
+}
+
+/* Your styles for MD devices */
+@media (min-width: 768px) and (max-width: 991.99px) {
+    .work-progress{
+        padding: 150px 100px;
+    }
+    .work-progress-left{
+        width: 100%;
+        padding: 15px;
+    }
+    .images-of-accordian-md{
+        width: 100%;
+        margin: 40px 0;
+        height: 450px;
+    }
+    .work-progress-right{
+        display: none;
+    }
+}
+
+/* Your styles for LG devices */
+@media (min-width: 992px) and (max-width: 1199.99px) {
+    .work-progress{
+        padding: 100px 50px;
+    }
+    .work-progress-left{
+        width: 50%;
+        padding: 15px;
+    }
+    .work-progress-left-top .p1{
+        font-size: 0.9rem;
+    }
+    .work-progress-left-top .p2{
+        font-size: 2.1rem;
+    }
+    .work-progress-left-top .p3{
+        font-size: 1.05rem;
+        margin: 20px 20px 20px 0 ;
+    }
+    .work-progress-right{
+        padding: 125px 30px;
+    }
+}
+
+/* Your styles for XL devices */
+@media (min-width: 1200px) {
+
+} 
