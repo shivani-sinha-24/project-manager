@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './BlankProjectTemplate.css'
 import calendarlogo from '../../assets/logos/download-removebg-preview.png'
 import listlogo from '../../assets/logos/list-icon-png_265257-removebg-preview.png'
@@ -6,10 +6,24 @@ import dashboardlogo from '../../assets/logos/2705641-middle-removebg-preview.pn
 import timelinelogo from '../../assets/logos/pngtree-gray-decorative-lines-free-of-charge-png-image_4713342-removebg-preview.png'
 import SampleBoard from '../../components/SampleBoard/SampleBoard'
 import SampleList from '../../components/SampleList/SampleList'
+import { useDispatch } from 'react-redux'
+import { createProject, getProjects } from '../../redux/project/ProjectAction'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
+import axios from 'axios'
 
-const BlankProjectTemplate = ({step, setStep, bgImgUrl,setBgImgUrl}) => {
+const BlankProjectTemplate = ({step, setStep, bgImgUrl}) => {
 
-  const [projectName,setProjectName] = useState('');
+  const navigate = useNavigate()
+  const dispatch= useDispatch();
+  const [projectName,setProjectName] = useState('')
+  const user = useSelector(state=>state?.auth?.user)
+  const projects = useSelector(state=>state?.projects?.projects)?.filter(project=>project?.user_id==user?._id)
+  const project = useSelector(state=>state?.projects?.projects)?.filter(project=>project?.name==projectName)
+
+  useEffect(()=>{
+    dispatch(getProjects())
+  },[projectName])
 
   const [sampleList,setSampleList] = useState(false)
   const [sampleBoard,setSampleBoard] = useState(true)
@@ -90,6 +104,18 @@ const BlankProjectTemplate = ({step, setStep, bgImgUrl,setBgImgUrl}) => {
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
   }
+  
+  const createNewProject = ()=>{
+    dispatch(createProject({name:projectName ,user_id:user?._id}))
+    setTimeout(()=>{
+      axios.get(`${process.env.REACT_APP_API_URL}/get-project/${projectName}`)
+      .then(res=> {
+        setProjectName('')
+        res?.status==200 && navigate(`/${res?.data?._id}`);
+      })
+      .catch(err=> console.log(err))
+    },100)
+  }
 
   return (
      <div className="blank-project-template">
@@ -140,7 +166,7 @@ const BlankProjectTemplate = ({step, setStep, bgImgUrl,setBgImgUrl}) => {
                   </div> */}
                 </div>
               </div>
-              <button disabled={!projectName?true:false} type="submit">Continue</button>
+              <button disabled={!projectName?true:false} onClick={handleContinueStep1}>Continue</button>
             </form>
           </div>
         )}  
@@ -181,7 +207,7 @@ const BlankProjectTemplate = ({step, setStep, bgImgUrl,setBgImgUrl}) => {
               ?
               <button className='next-step-btn'onClick={handleContinueStep2}>Continue</button>
               :
-              <button className="go-to-project">Go to Project</button>
+              <button className="go-to-project"onClick={()=>{createNewProject()}}>Go to Project</button>
             }
           </div>
          )}  
@@ -196,7 +222,7 @@ const BlankProjectTemplate = ({step, setStep, bgImgUrl,setBgImgUrl}) => {
               <input type="text" placeholder='Write a section name' name='new_section_name' onChange={e=>{console.log(e.target);setInputText(e.target.value)}}/>
             </form>}
             <button className='add-section-btn' onClick={()=>setAddSampleform(!addSampleform)}><span className="material-symbols-rounded">add</span>Add Section</button>
-            <button className="go-to-project">Go to Project</button>
+            <button className="go-to-project" onClick={()=>createNewProject()}>Go to Project</button>
           </div>
         )} 
         

@@ -5,7 +5,7 @@ import Starred from '../Starred/Starred'
 import Projects from '../Projects/Projects'
 import Team from '../Team/Team'
 
-const LeftMenu = ({ setShowLeftMenu,projects}) => {
+const LeftMenu = ({}) => {
 
   const [showInsights,setShowInsights] = useState(true)
   const [showStarred,setShowStarred] = useState(false)
@@ -23,7 +23,7 @@ const LeftMenu = ({ setShowLeftMenu,projects}) => {
         <div className="left-menu-bottom"></div>
         <Insights showInsights={showInsights} setShowInsights={setShowInsights} />
         <Starred showStarred={showStarred} setShowStarred={setShowStarred} />
-        <Projects showProjects={showProjects} setShowProjects={setShowProjects} projects={projects}/>
+        <Projects showProjects={showProjects} setShowProjects={setShowProjects}/>
         <Team showTeam={showTeam} setShowTeam={setShowTeam} />
       </div>
     </div>

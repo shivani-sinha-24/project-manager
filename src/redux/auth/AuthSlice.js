@@ -15,6 +15,7 @@ const authSlice = createSlice({
         },
         userRegisterSuccess: (state, action) => {
             console.log('action.payload :',action.payload);
+            state.user = action.payload
         },
         userRegisterFailure: (state, action) => {
 

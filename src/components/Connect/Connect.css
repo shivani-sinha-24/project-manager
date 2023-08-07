@@ -1,0 +1,76 @@
+.home-connect{
+    padding: 100px 40% 100px 100px;
+    width: 100%;
+}
+.home-connect .p1{
+    font-weight: bold;
+    font-size:smaller ;
+}
+.home-connect .p2{
+    margin: 10px 0;
+    font-size: 2rem;
+}
+.home-connect .p3{
+    font-size: 1.25rem;
+    /* color: rgb(92, 92, 92);     */
+    color: rgb(55, 55, 55);    
+}
+.home-connect .p3 span{
+    text-decoration: underline;
+}
+
+/* HOVER CSS */
+.home-connect .p3 span:hover{
+    cursor: pointer;
+    color: #F06A6A;
+}
+
+/* MEDIA QUERIES */
+
+/* Your styles for XS devices */
+@media (max-width: 575.99px) {
+    .home-connect{
+        padding: 100px 20px 50px 20px;
+    }
+    .home-connect .p1{
+        font-size:medium ;
+    }
+    .home-connect .p2{
+        margin: 15px 0;
+        font-size: 1.7rem;
+    }
+}
+
+/* Your styles for SM devices */
+@media (min-width: 576px) and (max-width: 767.99px) {
+    .home-connect{
+        padding: 100px 20px 50px 20px;
+    }
+    .home-connect .p1{
+        font-size:medium ;
+    }
+    .home-connect .p2{
+        margin: 15px 0;
+        font-size: 1.5rem;
+    }
+}
+
+/* Your styles for MD devices */
+@media (min-width: 768px) and (max-width: 991.99px) {
+    .home-connect{
+        padding: 100px;
+    }
+}
+
+/* Your styles for LG devices */
+@media (min-width: 992px) and (max-width: 1199.99px) {
+    .home-connect{
+        padding: 100px 50px;
+        width: 60%;
+    }
+}
+
+/* Your styles for XL devices */
+@media (min-width: 1200px) {
+
+} 

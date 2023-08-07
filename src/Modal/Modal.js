@@ -2,7 +2,7 @@ import axios from 'axios';
 import './Modal.css';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getListItems, updateListItem } from '../redux/lists/ListAction';
+import { getListItems, getLists, updateListItem } from '../redux/lists/ListAction';
 import { useSelector } from 'react-redux';
 import Moment from 'react-moment';
 
@@ -101,6 +101,11 @@ export default function Modal({
     }
     dispatch(updateListItem(data))
     dispatch(getListItems())
+  }
+
+  const handleSubtaskSubmit = () => {
+    // setSubTaksArray([...subTaksArray,subtask]);
+    setShowAddSubTask(false)
   }
 
   const handleSubmit = () => {
@@ -450,10 +455,10 @@ export default function Modal({
                         <i className="fa-regular fa-star"></i>
                         <i className="fa-solid fa-paperclip"></i>
                       </div>
-                      <div className="right">
+                      {/* <div className="right">
                         Prince will be notified
-                        <button className='cmnt-btn'>Comment</button>
-                      </div>
+                        <button className='cmnt-btn' onClick={()=>handleCommentSubmit()}>Comment</button>
+                      </div> */}
                     </div>
                   </div>
                   <div className="collaborators">

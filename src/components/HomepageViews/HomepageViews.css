@@ -1,0 +1,185 @@
+.home-view{
+    padding: 20px 100px;
+    width: 100%;
+}
+.home-view-top{
+    margin: 40px 0;
+}
+.home-view-top-efficiency{
+    font-weight: bold;
+    font-size:smaller ;
+}
+.home-view-top-manage{
+    margin: 10px 0;
+    font-size: 2rem;
+}
+.home-view-top-connect{
+    font-size: 1.25rem;
+    color: rgb(92, 92, 92);
+}
+.home-view-bottom{
+    padding: 40px 0;
+}
+.home-view-bottom .views{
+    display: flex;
+    padding: 20px 0;
+    align-items: center;
+}
+.home-view-bottom .views .left-view{
+    width: 60%;
+    height: 80vh;
+}
+.home-view-bottom .views .left-view img{
+    width: 100%;
+    height: 100%;
+}
+.home-view-bottom .views .right-view{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding: 0 55px;
+}
+.home-view-bottom .views .right-view .p1{
+    font-size: x-large !important;
+    margin: 0 0 20px 0;
+}
+.home-view-bottom .views .right-view .p2{
+    font-size: 1.150rem;
+    color: rgb(92, 92, 92);
+    margin: 0 0 20px 0;
+}
+.home-view-bottom .views .right-view .p3{
+    font-size: large !important;
+    margin: 0 0 20px 0;
+    font-weight: bold;
+}
+
+/* HOVER CSS */
+.home-view-bottom .views .right-view .p3:hover{
+    cursor: pointer;
+    color: #F06A6A;
+}
+
+/* MEDIA QUERIES */
+
+/* Your styles for XS devices */
+@media (max-width: 499.99px) {
+    .home-view{
+        padding: 35px 20px 35px 20px;
+    }
+    .home-view-top-efficiency{
+        font-size: 0.9rem ;
+    }
+    .home-view-top-manage{
+        margin: 8px 0;
+        font-size: 1.5rem;
+    }
+    .home-view-top-connect{
+        font-size: 1.099rem;
+        color: rgb(92, 92, 92);
+    }
+    .home-view-bottom .views {
+        flex-direction: column;
+    }
+    .home-view-bottom .views .leftt-view,
+    .home-view-bottom .views .right-view{
+        width: 100%;
+        padding: 0;
+    }
+    .home-view-bottom .views .left-view{
+        overflow: hidden;
+        width: 100%;
+    }
+    .home-view-bottom .views .left-view img{
+        width: 125%;
+        /* scale: 1.35; */
+    }
+    .home-view-bottom .views .right-view .p2{
+        font-size: 1.100rem;
+    }
+}
+
+/* Your styles for SM devices */
+@media (min-width: 500px) and (max-width: 767.99px) {
+    .home-view{
+        padding: 35px 20px 35px 20px;
+    }
+    .home-view-top-efficiency{
+        font-size: 0.9rem ;
+    }
+    .home-view-top-manage{
+        margin: 8px 0;
+        font-size: 1.5rem;
+    }
+    .home-view-top-connect{
+        font-size: 1.099rem;
+        color: rgb(92, 92, 92);
+    }
+    .home-view-bottom .views {
+        flex-direction: column;
+    }
+    .home-view-bottom .views .leftt-view,
+    .home-view-bottom .views .right-view{
+        width: 100%;
+        padding: 0;
+    }
+    .home-view-bottom .views .left-view{
+        overflow: hidden;
+        width: 100%;
+    }
+    .home-view-bottom .views .left-view img{
+        width: 125%;
+        /* scale: 1.35; */
+    }
+    .home-view-bottom .views .right-view .p2{
+        font-size: 1.100rem;
+    }
+
+}
+
+/* Your styles for MD devices */
+@media (min-width: 768px) and (max-width: 991.99px) {
+    .home-view{
+        padding: 100px;
+    }
+    .home-view-bottom .views {
+        flex-direction: column;
+    }
+    .home-view-bottom .views .leftt-view,
+    .home-view-bottom .views .right-view{
+        width: 100%;
+        padding: 0;
+    }
+    .home-view-bottom .views .left-view{
+        overflow: hidden;
+        width: 100%;
+    }
+    .home-view-bottom .views .left-view img{
+        width: 125%;
+        /* scale: 1.35; */
+    }
+    .home-view-bottom .views .right-view .p2{
+        font-size: 1.119rem;
+    }
+}
+
+/* Your styles for LG devices */
+@media (min-width: 992px) and (max-width: 1199.99px) {
+    .home-view{
+        padding: 50px;
+    }
+    .home-view-top{
+        margin: 40px 0 25px 0;
+    }
+    .home-view-bottom .views .right-view{
+        padding: 0 45px;
+    }
+    .home-view-bottom .views .right-view .p2{
+        font-size: 1.119rem;
+    }
+}
+
+/* Your styles for XL devices */
+@media (min-width: 1200px) {
+
+} 

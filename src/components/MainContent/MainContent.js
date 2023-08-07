@@ -12,10 +12,8 @@ import { getSampleProjectCard, updateMultiList, updateSingleList } from '../../r
 import { useParams } from 'react-router-dom'
 
 const MainContent = ({lists,setIsOpen,isOpen,setListItem,listItem,projects}) => {
-const params = useParams()
-  
 
-  console.log('lists :',lists);
+  const params = useParams()
   const dispatch = useDispatch()
   const sampleList = useSelector(state=>state?.lists?.sampleList)
 
@@ -29,7 +27,7 @@ const params = useParams()
       setListsArray(lists ? [...lists] : []);
   }, [lists]);
 
-  console.log(lists[0]?.name);
+  // console.log(lists[0]?.name);
   const onDragEnd = result => {
     const { source, destination } = result;
 
@@ -71,7 +69,7 @@ const params = useParams()
         return newListsArray;
       });
 
-      lists[0].name!='Sample List'&& dispatch(updateSingleList({_id:destination?.droppableId,items:thisListArrayItems}))
+      lists[0].name!='Sample List' && dispatch(updateSingleList({_id:destination?.droppableId,items:thisListArrayItems}))
   
       setLoader(true);
       setTimeout(() => setLoader(false));
@@ -97,7 +95,7 @@ const params = useParams()
       ]
     }
 
-    lists[0].name!='Sample List'&& dispatch(updateMultiList({
+    lists[0].name!='Sample List' && dispatch(updateMultiList({
       'newSourceList_id':newSourceList?._id ,
       'newSourceList_items':newSourceList?.items,
       'newDestinationList_id':newDestinationList?._id,
