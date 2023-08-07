@@ -118,6 +118,10 @@
 .homepage-testimoial-right .top .sales:hover{
     background-color: rgb(93, 162, 131);
 }
+.img-md-sm-xs img{
+    width: 100%;
+    height: 100%;
+}
 
 /* MEDIA QUERIES */
 
@@ -125,9 +129,11 @@
 @media (max-width:  499.99px){
     .homepage-testimoial{
         flex-direction: column;
-        height: fit-content;
+        /* height: fit-content; */
+        height: 100vh;
         padding: 70px 0px 35px 0;
-        background-color: #f5f3f3;
+        background-color: #f1f1f1;
+        margin-bottom: 250px;
     }
     .homepage-testimoial .homepage-testimoial-left,
     .homepage-testimoial .homepage-testimoial-right{
@@ -164,15 +170,30 @@
         padding: 15px 10px;
         font-size: medium;
     }
+    .homepage-testimoial .homepage-testimoial-right .top,
+    .homepage-testimoial .homepage-testimoial-right .middle,
+    .homepage-testimoial .homepage-testimoial-right .bottom{
+        display: none;
+    }
+    .img-md-sm-xs{
+        margin: -250px 0 200px 0;
+        position: relative;
+        width: 100%;
+        background-color: #F06A6A;
+        height: 400px;
+        bottom: -250px;
+    }
 }
 
 /* Your styles for SM devices */
 @media (min-width: 500px) and (max-width: 767.99px) {
     .homepage-testimoial{
         flex-direction: column;
-        height: fit-content;
+        /* height: fit-content; */
+        height: 100vh;
         padding: 70px 0px 35px 0;
         background-color: #f5f3f3;
+        margin-bottom: 200px;
     }
     .homepage-testimoial .homepage-testimoial-left,
     .homepage-testimoial .homepage-testimoial-right{
@@ -211,15 +232,30 @@
         padding: 15px 10px;
         font-size: medium;
     }
+    .homepage-testimoial .homepage-testimoial-right .top,
+    .homepage-testimoial .homepage-testimoial-right .middle,
+    .homepage-testimoial .homepage-testimoial-right .bottom{
+        display: none;
+    }
+    .img-md-sm-xs{
+        margin: -200px 0 200px 0;
+        position: relative;
+        width: 100%;
+        background-color: #F06A6A;
+        height: 500px;
+        bottom: -250px;
+    }
 }
 
 /* Your styles for MD devices */
 @media (min-width: 768px) and (max-width: 991.99px) {
     .homepage-testimoial{
         flex-direction: column;
-        height: fit-content;
+        /* height: fit-content; */
+        height: 100vh;
         padding: 0px 70px;
         background-color: #f5f3f3;
+        margin-bottom: 200px;
     }
     .homepage-testimoial .homepage-testimoial-left,
     .homepage-testimoial .homepage-testimoial-right{
@@ -241,6 +277,19 @@
     .homepage-testimoial-left .middle{
         padding: 0 35px 0 0;
         font-size: 1.2rem;
+    }
+    .homepage-testimoial .homepage-testimoial-right .top,
+    .homepage-testimoial .homepage-testimoial-right .middle,
+    .homepage-testimoial .homepage-testimoial-right .bottom{
+        display: none;
+    }
+    .img-md-sm-xs{
+        margin: -200px 0 200px 0;
+        position: relative;
+        width: 100%;
+        background-color: #F06A6A;
+        height: 500px;
+        bottom: -250px;
     }
 }
 
@@ -269,7 +318,13 @@
         width: 45%;
         padding: 70px 70px 0 0;
     }
+    .img-md-sm-xs{
+        display: none;
+    }
 }
 /* Your styles for XL devices */
 @media (min-width: 1200px) {
+    .img-md-sm-xs{
+        display: none;
+    }
 } 

@@ -11,8 +11,12 @@ export const userRegister = (value) => async (dispatch) => {
     dispatch(userRegisterStarted)
     try {
         const response = await axios.post(`${API_URL}/userCreate`, value)
-        if (response?.status == 200) {
-            dispatch(userRegisterSuccess(response?.data?.data))
+        if (response?.data) {
+            dispatch(userRegisterSuccess(response?.data?.data?.user))
+            sessionStorage.setItem("userId", response?.data?.data?.user?._id);
+            sessionStorage.setItem("name", response?.data?.data?.user?.fullName);
+            sessionStorage.setItem("email", response?.data?.data?.user?.email);
+            dispatch(userLoginSuccess(response?.data?.data?.user));
             toast.success(response?.data?.message)
         }
     } catch (error) {

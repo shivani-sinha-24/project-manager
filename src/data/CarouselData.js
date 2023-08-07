@@ -26,133 +26,133 @@ const caoruselArray = [
       name:'Google Sheets',
       detail:'For reporting.Pull data from Dousoft into sheets to make custom data, charts and more.',
       logo:GoogleSheets,
-      backgroundColor:'',
+      backgroundColor:'#0F9D58',
       bgImage:''
     },
     {
       name:'Zoom',
       detail:'For coordinatio.Turn action items from meeting into tasks in Dousoft right from Zoom.',
       logo:Zoom,
-      backgroundColor:'',
+      backgroundColor:'#00897B',
       bgImage:''
     },
     {
       name:'Adobe Creative Cloud',
       detail:'For communication.See Dousoft tasks, get feedback and more right from your Adobe apps.',
       logo:AdobeCreativeCloud,
-      backgroundColor:'',
+      backgroundColor:'#FF0000',
       bgImage:''
     },
     {
       name:'Google Calendar',
       detail:'For time management.Add your Dousoft tasks to your calendar to see deadlines.',
       logo:GoogleCalendar,
-      backgroundColor:'',
+      backgroundColor:'#4285F4',
       bgImage:''
     },
     {
       name:'Harvest',
       detail:'For time tracking.Track time to record billable hours and create invoices in Dousoft.',
       logo:Harvest,
-      backgroundColor:'',
+      backgroundColor:'#F16D39',
       bgImage:''
     },
     {
       name:'Dropbox',
       detail:'For file sharing.Attach files from dropbox to Dousoft tasks to Dousoft task pane.',
       logo:Dropbox,
-      backgroundColor:'',
+      backgroundColor:'#007EE5',
       bgImage:''
     },
     {
       name:'Slack',
       detail:'For communication.Add, assign, even comment on Dousoft tasks (and more) in Slack.',
       logo:Slack,
-      backgroundColor:'',
+      backgroundColor:'#4A154B',
       bgImage:''
     },
     {
       name:'Google Drive',
       detail:'For file sharing.Attach files from Google Drive to Dousoft tasks from task pane. ',
       logo:GoogleDrive,
-      backgroundColor:'',
+      backgroundColor:'#4285F4',
       bgImage:''
     },
     {
       name:'Jira Cloud',
       detail:'For coordination.Create Jira issues and track work without leaving Dousoft.',
       logo:Jira,
-      backgroundColor:'',
+      backgroundColor:' hsl(0, 0%, 20%)',
       bgImage:''
     },
     {
       name:'Salesforce',
       detail:'For coordination.Collaborate on Dousoft tasks for pre-sales needs in Salesforce.',
       logo:Salesforce,
-      backgroundColor:'',
+      backgroundColor:'#00A1E0',
       bgImage:''
     },
     {
       name:'Gmail',
       detail:'For coordination.Turn email into tasks in Dousoft right from your Gmail inbox.',
       logo:Gmail,
-      backgroundColor:'',
+      backgroundColor:'#DB4437',
       bgImage:''
     },
     {
       name:'One Drive',
       detail:'For file sharing.Attach Microsoft files to Dousoft tasks from Dousoft task pane.',
       logo:Onedrive,
-      backgroundColor:'',
+      backgroundColor:'#0078D4',
       bgImage:''
     },
     {
       name:'Zapier',
       detail:'For connecting apps.Connect with 1000+ apps to share data and automate routine work.',
       logo:Zapier,
-      backgroundColor:'',
+      backgroundColor:'#FF4A00',
       bgImage:''
     },
     {
       name:'Tableau',
       detail:'For reporting.Pull data from Dousoft into Tableau to create custom Dashboards.',
       logo:Tableau,
-      backgroundColor:'',
+      backgroundColor:'#1E8449',
       bgImage:''
     },
     {
       name:'Sharepoint',
       detail:'For file sharing.Attach files from sharepoint to Dousoft tasks from the Dousoft task pane.',
       logo:sharePoint,
-      backgroundColor:'',
+      backgroundColor:'#0078D4',
       bgImage:''
     },
     {
       name:'Outlook',
       detail:'For coordination.Turn emails into tasks in Dousoft right from your Outlook inbox.',
       logo:outlook,
-      backgroundColor:'',
+      backgroundColor:'#0078D4',
       bgImage:''
     },
     {
       name:'Office 365',
       detail:'For communucation.Stay up tp date on work in Dousoft without leaving Microsoft groups.',
       logo:office365,
-      backgroundColor:'',
+      backgroundColor:'#FF3B30',
       bgImage:''
     },
     {
       name:'Box',
       detail:'For file sharing.Attach files from Box to Dousoft tasks from the Dousoft task pane.',
       logo:box,
-      backgroundColor:'',
+      backgroundColor:'hsl(0, 0%, 20%)',
       bgImage:''
     },
     {
       name:'Microsoft Power BI',
       detail:'For reporting.Pull data from Dousoft into Power BI to create custom dashboards.',
       logo:powerBi,
-      backgroundColor:'',
+      backgroundColor:'#00B056',
       bgImage:''
     },
     // {
@@ -173,7 +173,7 @@ const caoruselArray = [
       name:'Microsoft Teams',
       detail:'For communication.Add and collaborate on Dousoft tasks without leaving Teams',
       logo:Team,
-      backgroundColor:'',
+      backgroundColor:'#6264A7',
       bgImage:''
     },
 ]

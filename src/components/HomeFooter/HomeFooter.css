@@ -64,7 +64,7 @@
 /* Your styles for XS devices */
 @media (max-width: 575.99px) {
     .home-footer{
-        padding: 100px 20px 50px 20px;
+        padding: 50px 20px;
     }
     .home-footer .footer-container{
         flex-direction: column;
@@ -77,7 +77,7 @@
 /* Your styles for SM devices */
 @media (min-width: 576px) and (max-width: 767.99px) {
     .home-footer{
-        padding: 100px 20px 50px 20px;
+        padding: 50px 20px;
     }
     .home-footer .footer-container{
         flex-direction: column;
@@ -90,6 +90,9 @@
 
 /* Your styles for MD devices */
 @media (min-width: 768px) and (max-width: 991.99px) {
+    .home-footer{
+        padding: 50px;
+    }
     .home-footer .footer-container{
         flex-direction: column;
         justify-content: center;
@@ -101,7 +104,7 @@
 /* Your styles for LG devices */
 @media (min-width: 992px) and (max-width: 1199.99px) {
     .home-footer{
-        padding: 100px 50px;
+        padding: 100px 50px 50px 50px;
     }
 }
 

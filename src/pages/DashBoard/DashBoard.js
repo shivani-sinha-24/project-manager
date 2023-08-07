@@ -10,20 +10,22 @@ import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getListItems, getLists, getSampleProjectCard } from '../../redux/lists/ListAction'
 import { useSelector } from 'react-redux'
+import { getProjects } from '../../redux/project/ProjectAction'
 
-const DashBoard = ({ bgImgUrl,setBgImgUrl,projects}) => {
+const DashBoard = ({ bgImgUrl,setBgImgUrl}) => {
   const [showRightMenu,setShowRightMenu] = useState(false)
   const [showLeftMenu,setShowLeftMenu] = useState(false)
   const [editBackground,setEditBackground] = useState(false)
   const [isOpen,setIsOpen] = useState(false)
   const [ listItem,setListItem] = useState({})
   const [imgsArray,setImgsArray] = useState([])
+  
   const params = useParams()
   const dispatch = useDispatch()
 
-  const projectDetails = projects.filter(project=>project._id==params.id)
   const lists = useSelector(state=>state?.lists?.lists)?.filter(list=>list?.project_id==params?.id)
   const sampleList = useSelector(state=>state?.lists?.sampleList)
+
   const getImages = async () => {
     axios.get(`${process.env.REACT_APP_UNSPLASH_APP_DUMMY_DASHBOARD_API_URL}`)
     .then(res=>{
@@ -37,15 +39,19 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl,projects}) => {
       console.log(err)
     })
   }
-  console.log(sampleList);
+
   useEffect(()=>{
     // getImages()   //Remove this line of comment to get dimages for background change
+  },[])
+
+  useEffect(()=>{
     dispatch(getLists(params.id));
     dispatch(getListItems())
+    dispatch(getProjects())
     if(lists?.length == 0){
       dispatch(getSampleProjectCard())
     }
-  }, [params.id])
+  }, [params?.id])
 
   const dashboardStyle={
     width: showLeftMenu || showRightMenu ? "80%" : "100%", 
@@ -59,19 +65,21 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl,projects}) => {
   return (
     <div className='dashboard'>
       <div className="left-side-menu" style={{width: showLeftMenu  ? "20%" : "0%"} }>
-        <LeftMenu setShowLeftMenu={setShowLeftMenu} projects={projects} />
+        <LeftMenu setShowLeftMenu={setShowLeftMenu}/>
       </div>
       <div className="center" style={dashboardStyle}>
-        <ShowLeftMenu showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} showLeftMenu={showLeftMenu} setShowLeftMenu={setShowLeftMenu} />
+        <ShowLeftMenu 
+          showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} 
+          showLeftMenu={showLeftMenu} 
+          setShowLeftMenu={setShowLeftMenu}
+         />
         <TopNav 
           showRightMenu={showRightMenu}
-          project={projectDetails[0]} 
           setShowRightMenu={setShowRightMenu}
           showLeftMenu={showLeftMenu}
           setShowLeftMenu={setShowLeftMenu}
         />  
         <MainContent
-           projects={projects} 
            showLeftMenu={showLeftMenu} 
            setShowLeftMenu={setShowLeftMenu} 
            isOpen={isOpen} 
@@ -82,16 +90,16 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl,projects}) => {
            lists={lists?.length>0?lists:sampleList}
           /> 
       </div>
-        <div className="right-side-menu" style={{width: showRightMenu  ? "20%" : "0%"} }>
-            <RightMenu 
-              showRightMenu={showRightMenu} 
-              setShowRightMenu={setShowRightMenu} 
-              editBackground={editBackground}
-              setEditBackground={setEditBackground}
-              imgsArray={imgsArray}
-              setBgImgUrl={setBgImgUrl}
-            />
-        </div>
+      <div className="right-side-menu" style={{width: showRightMenu  ? "20%" : "0%"} }>
+        <RightMenu 
+          showRightMenu={showRightMenu} 
+          setShowRightMenu={setShowRightMenu} 
+          editBackground={editBackground}
+          setEditBackground={setEditBackground}
+          imgsArray={imgsArray}
+          setBgImgUrl={setBgImgUrl}
+        />
+      </div>
     </div>
   )
 }

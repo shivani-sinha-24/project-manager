@@ -12,10 +12,8 @@ import { getSampleProjectCard, updateMultiList, updateSingleList } from '../../r
 import { useParams } from 'react-router-dom'
 
 const MainContent = ({lists,setIsOpen,isOpen,setListItem,listItem,projects}) => {
-const params = useParams()
-  
 
-  console.log('lists :',lists);
+  const params = useParams()
   const dispatch = useDispatch()
   const sampleList = useSelector(state=>state?.lists?.sampleList)
 
@@ -29,7 +27,7 @@ const params = useParams()
       setListsArray(lists ? [...lists] : []);
   }, [lists]);
 
-  console.log(lists[0]?.name);
+  // console.log(lists[0]?.name);
   const onDragEnd = result => {
     const { source, destination } = result;
 

@@ -11,16 +11,16 @@ const HomeFooter = () => {
             <span className="ul">Terms</span> & <span className="ul">Policy</span>
           </div>
           <div className='f-logo'>
-          <i class="fa-brands fa-xl fa-twitter"></i>
-          <i class="fa-brands fa-xl fa-linkedin"></i>
-          <i class="fa-brands fa-xl fa-facebook"></i>
-          <i class="fa-brands fa-xl fa-instagram"></i>
-          <i class="fa-brands fa-xl fa-youtube"></i>
+          <i className="fa-brands fa-xl fa-twitter"></i>
+          <i className="fa-brands fa-xl fa-linkedin"></i>
+          <i className="fa-brands fa-xl fa-facebook"></i>
+          <i className="fa-brands fa-xl fa-instagram"></i>
+          <i className="fa-brands fa-xl fa-youtube"></i>
           </div>
           <div className='f-download'>
             <button className='apple'>
                 <div className="d-logo">
-                <i class="fa-brands fa-apple fa-2xl"></i>
+                <i className="fa-brands fa-apple fa-2xl"></i>
                 </div>
                 <div className="d-text">
                   <div className="p1">Download on the</div>
@@ -29,7 +29,7 @@ const HomeFooter = () => {
             </button>
             <button className='android'>
                 <div className="d-logo">
-                <i class="fa-brands fa-google-play fa-2xl"></i></div>        
+                <i className="fa-brands fa-google-play fa-2xl"></i></div>        
                 <div className="d-text">
                   <div className="p1">GET IT ON</div>
                   <div className="p1">Google Play</div>

@@ -108,6 +108,11 @@ export default function Modal({
     setShowAddSubTask(false)
   }
 
+  const handleSubmit = () => {
+    // setSubTaksArray([...subTaksArray,subtask]);
+    setShowAddSubTask(false)
+  }
+
   return (
     <div className={`modal ${isActive ? "show" : ""} `}>
       <div className="modal-section">
@@ -450,10 +455,10 @@ export default function Modal({
                         <i className="fa-regular fa-star"></i>
                         <i className="fa-solid fa-paperclip"></i>
                       </div>
-                      <div className="right">
+                      {/* <div className="right">
                         Prince will be notified
                         <button className='cmnt-btn' onClick={()=>handleCommentSubmit()}>Comment</button>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div className="collaborators">

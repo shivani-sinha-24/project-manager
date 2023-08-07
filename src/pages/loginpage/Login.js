@@ -31,6 +31,7 @@ const Login = () => {
             }
           })
           .then((res) => {
+            console.log(res.data);
             setProfile(res.data);
             
           })

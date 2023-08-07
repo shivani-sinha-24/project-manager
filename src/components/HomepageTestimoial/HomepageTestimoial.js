@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './HomepageTestimoial.css'
+import t2 from '../../assets/logos/testimonial-2.jpeg'
 
 const HomepageTestimoial = () => {
 
@@ -54,7 +55,7 @@ const HomepageTestimoial = () => {
         </div>
         <hr />
         <div className="middle">
-        Want to drive efficiency across your organization? Asana is flexible and easy for all teams to use, so you can deliver quality work together, faster.
+        Want to drive efficiency across your organization? Dousoft is flexible and easy for all teams to use, so you can deliver quality work together, faster.
         </div>
         <div className="bottom">
           <button className='btn1'>Get Started</button>
@@ -75,6 +76,9 @@ const HomepageTestimoial = () => {
         <div className="bottom">
         <i className="fa-solid fa-arrow-left" onClick={()=>decreaseTestNum()}></i>
         <i className="fa-solid fa-arrow-right" onClick={()=>increaseTestNum()}></i>
+        </div>
+        <div className="img-md-sm-xs">
+          <img src={t2} alt="" />
         </div>
       </div>
     </div>

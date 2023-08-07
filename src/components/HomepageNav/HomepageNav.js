@@ -19,16 +19,16 @@ const HomepageNav = ({showNavMenu,setShowNavMenu}) => {
       <div className="home-nav-right">
         <div className='lang'><i className="fa-solid fa-globe"></i></div>
         <div className='sales-xl'>Contact Sales</div>
-        <i class="fa-regular fa-message sales-lg"></i>
+        <i className="fa-regular fa-message sales-lg"></i>
         <div className='login-xl'>Login</div>
-        <i class="fa-regular fa-circle-user login-lg"></i>
+        <i className="fa-regular fa-circle-user login-lg"></i>
         <div className='right-nav-get-started'>Get Started</div>
         {
           showNavMenu
           ?
-          <i class="fa-solid fa-xmark"onClick={()=>setShowNavMenu(false)}></i>
+          <i className="fa-solid fa-xmark"onClick={()=>setShowNavMenu(false)}></i>
           :
-          <i class="fa-solid fa-bars menu-lg" onClick={()=>setShowNavMenu(true)}></i>
+          <i className="fa-solid fa-bars menu-lg" onClick={()=>setShowNavMenu(true)}></i>
         }
       </div>
     </div>

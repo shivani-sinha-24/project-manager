@@ -25,7 +25,7 @@ const Register = () => {
     validationSchema,
     onSubmit:values=>{
       dispatch(userRegister(values));
-      navigate('/login');
+      navigate('/projects/new');
     }
   })
   

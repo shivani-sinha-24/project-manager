@@ -40,7 +40,7 @@ const GetStarted = () => {
             <p>Blog</p>
             <p>Investor Relations</p>
             <p>Sitemap</p>
-            <p>Transparency Statement</p>
+            <p>Mdeern Slavery Transparency Statement</p>
           </div>
           <div>
             <p className='top'>Workflow Solutions</p>
@@ -57,15 +57,15 @@ const GetStarted = () => {
           </div>
           <div>
             <p className='top'>Resources</p>
-            <p>Asana Guide</p>
+            <p>Dousoft Guide</p>
             <p>Forum</p>
             <p>Support</p>
             <p>App Directory</p>
             <p>Developers & API</p>
             <p>Partners</p>
-            <p>Asana Community</p>
+            <p>Dousoft Community</p>
             <p>Events</p>
-            <p>Asana for Nonprofits</p>
+            <p>Dousoft for Nonprofits</p>
             <p>Accessibility</p>
           </div>
           <div>

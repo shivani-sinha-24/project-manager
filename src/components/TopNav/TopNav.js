@@ -1,11 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import './TopNav.css'
+import { useSelector, useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { getProjects } from '../../redux/project/ProjectAction'
 
-const TopNav = ({showRightMenu,setShowRightMenu,showLeftMenu,setShowLeftMenu,project}) => {
+const TopNav = ({showRightMenu,setShowRightMenu,showLeftMenu,setShowLeftMenu}) => {
+
+  const params = useParams()
+  const dispatch = useDispatch()
+  const projects = useSelector(state=>state?.projects?.projects)?.filter(project=>project?._id==params?.id)
+
+  useEffect(()=>{
+    dispatch(getProjects())
+  },[params?.id])
+  
+  const user = useSelector(state=>state?.auth?.user)
+
   return (
      <div className='top-nav'> 
       <ul className="left">
-        <li >{project?.name||'Dummy Dashboard'}</li>
+        <li >{projects[0]?.name}</li>
         <li ><span className="material-symbols-rounded">star</span></li>
         <li ><span className="material-symbols-rounded">group</span><span  className={showLeftMenu?" hide":""}> Workspace visibility</span></li>
         <li ><span className="material-symbols-rounded">horizontal_distribute</span> Board</li>
