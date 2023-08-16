@@ -104,7 +104,6 @@ export default function Modal({
     dispatch(updateListItem(data))
     // window.location.href = `/${projectId}`;
     navigate(`/${projectId}`);
-    setIsOpen(false)
   }
 
   const handleSubmit = () => {

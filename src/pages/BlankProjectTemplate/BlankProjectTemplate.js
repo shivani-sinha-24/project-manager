@@ -219,7 +219,7 @@ const BlankProjectTemplate = ({step, setStep, bgImgUrl}) => {
             }
             { addSampleform &&
               <form action="POST" onSubmit={(e)=>{e.preventDefault();setSections([...scetions,inputText]);setAddSampleform(false)}}>
-              <input type="text" placeholder='Write a section name' name='new_section_name' onChange={e=>{console.log(e.target);setInputText(e.target.value)}}/>
+              <input type="text" placeholder='Write a section name' name='new_section_name' onChange={e=>{setInputText(e.target.value)}}/>
             </form>}
             <button className='add-section-btn' onClick={()=>setAddSampleform(!addSampleform)}><span className="material-symbols-rounded">add</span>Add Section</button>
             <button className="go-to-project" onClick={()=>createNewProject()}>Go to Project</button>
