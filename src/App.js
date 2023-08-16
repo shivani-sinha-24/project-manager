@@ -13,29 +13,18 @@ import { getListItems, getLists } from './redux/lists/ListAction';
 import { useSelector } from 'react-redux';
 import Homepage from './pages/homepage/Homepage';
 import { getProjects } from './redux/project/ProjectAction';
+import InvitationPage from './pages/invitationPage/InvitationPage';
 
 
 const App = () => {
   const [step, setStep] = useState(1);
   const [ bgImgUrl,setBgImgUrl] = useState("https://wallpapers.com/images/hd/hd-ship-in-the-sea-sunset-e2vkyaaw9zh4i8d8.jpg")
-  // const [projects, setProjects] = useState([
-  //   {name:'Dousoft',_id:'1', projects:[]},
-  //   {name:'Prince',_id:'2', projects:[]},
-  //   {name:'Shivani',_id:'3', projects:[]},
-  //   {name:'Kartik',_id:'4', projects:[]}
-  // ])
   
   const authenticate = sessionStorage.getItem("accessToken");
   
   const dispatch = useDispatch()
   const navigate =useNavigate()
 
-  // useEffect(()=>{
-  //   if(authenticate){
-  //     navigate('/')
-  //   }
-  // },[authenticate])
-  
   const user = useSelector(state=>(state?.auth?.user))
   
   useEffect(()=>{
@@ -51,9 +40,12 @@ const App = () => {
       <Routes>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path='/' element={<Homepage />}/>
+        
         {
           authenticate ?
           <>
+            <Route path='/:id/invitation/:user_id' element={<InvitationPage/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/' element={<Homepage />}/>

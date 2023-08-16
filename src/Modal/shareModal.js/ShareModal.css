@@ -1,0 +1,62 @@
+.share-modal {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 900;
+    font-size: large;
+}
+.share-modal-section {
+  padding: 20px;
+  width: 30%;
+  height: fit-content;
+  background: var(--modal-section-bg);
+  border-radius: var(--border-5px);
+  overflow: hidden;
+}
+.share-modal-section .share-modal-section-top{
+    margin: -5px -10px 10px -10px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+    text-align: right;
+}
+.share-modal-section .share-modal-section-top i{
+    font-weight: bolder;
+}
+.share-modal-section form{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+}
+.share-modal-section form input,
+.share-modal-section form button{
+    border-radius: 3px;
+    border: 1px solid black;
+}
+.share-modal-section form label{
+    font-weight: bolder;
+    width: 100%;
+    font-size: larger;
+}
+.share-modal-section form input{
+    width: 100%;
+    padding: 10px;
+}
+.share-modal-section form button{
+    width: 50%;
+    padding: 10px;
+    font-size: large;
+    font-weight: bold;
+}
+
+/* HOVER CSS */
+.share-modal-section form button:hover,
+.share-modal-section .share-modal-section-top i:hover{
+    cursor: pointer;
+}

@@ -89,23 +89,22 @@ export const updateSingleList = (value) => async (dispatch) => {
   dispatch(updateSingleListRequest());
     try {
       const response = await axios.put(`${API_URL}/updatetSingleList`,value);
-      if(response){
+      if(response?.data?.status_code == 200 ){
         dispatch(updateSingleListSuccess( response.data.lists )); 
-        toast.success(response.data.message)
+        // toast.success(response.data.message)
       }
     } catch (error) {
       dispatch(updateSingleListFailure(error.message));
     }
-  };
+};
   
-  export const updateMultiList = (value) => async (dispatch) => {
+export const updateMultiList = (value) => async (dispatch) => {
   dispatch(updateMultiListRequest());
     try {
       const response = await axios.put(`${API_URL}/updateMultiList`,value);
-      console.log(response,'response')
-      if(response.status==200){
+      if(response?.data?.status_code == 200 ){
         dispatch(updateMultiListSuccess( response.data.lists )); 
-        toast.success(response.data.message)
+        // toast.success(response.data.message)
       }
     } catch (error) {
       dispatch(updateMultiListFailure(error.message));

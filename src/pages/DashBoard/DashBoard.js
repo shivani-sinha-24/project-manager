@@ -16,10 +16,11 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl}) => {
   const [showRightMenu,setShowRightMenu] = useState(false)
   const [showLeftMenu,setShowLeftMenu] = useState(false)
   const [editBackground,setEditBackground] = useState(false)
-  const [isOpen,setIsOpen] = useState(false)
+  const [IsListItemOpen,setIsListItemOpen] = useState(false)
   const [ listItem,setListItem] = useState({})
   const [imgsArray,setImgsArray] = useState([])
-  
+  const [isShareOpen,setIsShareOpen] = useState(false)
+
   const params = useParams()
   const dispatch = useDispatch()
 
@@ -72,23 +73,27 @@ const DashBoard = ({ bgImgUrl,setBgImgUrl}) => {
           showRightMenu={showRightMenu} setShowRightMenu={setShowRightMenu} 
           showLeftMenu={showLeftMenu} 
           setShowLeftMenu={setShowLeftMenu}
-         />
+        />
         <TopNav 
           showRightMenu={showRightMenu}
           setShowRightMenu={setShowRightMenu}
           showLeftMenu={showLeftMenu}
           setShowLeftMenu={setShowLeftMenu}
+          isShareOpen={isShareOpen}
+          setIsShareOpen={setIsShareOpen}
         />  
         <MainContent
-           showLeftMenu={showLeftMenu} 
-           setShowLeftMenu={setShowLeftMenu} 
-           isOpen={isOpen} 
-           setIsOpen={setIsOpen} 
-           setListItem={setListItem} 
-           listItem={listItem} 
-           imagesArray={imgsArray}
-           lists={lists?.length>0?lists:sampleList}
-          /> 
+          showLeftMenu={showLeftMenu} 
+          setShowLeftMenu={setShowLeftMenu} 
+          IsListItemOpen={IsListItemOpen} 
+          setIsListItemOpen={setIsListItemOpen} 
+          setListItem={setListItem} 
+          listItem={listItem} 
+          imagesArray={imgsArray}
+          lists={lists?.length>0?lists:sampleList}
+          isShareOpen={isShareOpen}
+          setIsShareOpen={setIsShareOpen}
+        /> 
       </div>
       <div className="right-side-menu" style={{width: showRightMenu  ? "20%" : "0%"} }>
         <RightMenu 

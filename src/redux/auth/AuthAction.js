@@ -13,6 +13,7 @@ export const userRegister = (value) => async (dispatch) => {
         const response = await axios.post(`${API_URL}/userCreate`, value)
         if (response?.data) {
             dispatch(userRegisterSuccess(response?.data?.data?.user))
+            sessionStorage.setItem("accessToken", response?.data?.data?.token);
             sessionStorage.setItem("userId", response?.data?.data?.user?._id);
             sessionStorage.setItem("name", response?.data?.data?.user?.fullName);
             sessionStorage.setItem("email", response?.data?.data?.user?.email);
@@ -34,7 +35,7 @@ export const userLogin = (value) => async (dispatch) => {
             sessionStorage.setItem("name", response?.data?.data?.responseUser?.fullName);
             sessionStorage.setItem("email", response?.data?.data?.responseUser?.email);
             dispatch(userLoginSuccess(response?.data?.data?.responseUser));
-            window.location.href = '/';
+            // window.location.href = '/';
             toast.success(response?.data?.message)
         }else{
         toast.error(response?.data?.message)

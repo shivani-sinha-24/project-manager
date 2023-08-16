@@ -9,7 +9,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Modal({
   isActive,
-  setIsOpen,
+  setIsListItemOpen,
   listItem,
   projects,
   projectId
@@ -121,7 +121,7 @@ export default function Modal({
             <button onClick={() => updateItem()}><i className="fa-solid fa-check"></i> Mark Complete</button>
           </div>
           <div className="modal-header-right">
-            <button onClick={() => { setIsOpen(false) }}>X</button>
+            <button onClick={() => { setIsListItemOpen(false) }}>X</button>
           </div>
         </div>
 
