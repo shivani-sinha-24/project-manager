@@ -57,7 +57,6 @@ const MainContent = ({isShareOpen,setIsShareOpen,lists,setIsListItemOpen,IsListI
     //   return
     // }
     if (source?.droppableId === destination?.droppableId) {
-
       const destinationListItem = sourceList?.items?.[destination.index];
       let thisListArrayItems = [...listsArray[sourceListIndex]?.items]; // Create a copy of the items array
       thisListArrayItems[source.index] = destinationListItem;
@@ -121,6 +120,9 @@ const MainContent = ({isShareOpen,setIsShareOpen,lists,setIsListItemOpen,IsListI
         projects={projects}
         setIsListItemOpen={setIsListItemOpen}
         IsListItemOpen={IsListItemOpen}
+        setIsOpen={setIsOpen}
+        projectId={params.id}
+        isOpen={isOpen}
         listItem={listItem}
       />
     )}

@@ -64,8 +64,8 @@ export const updateListItem = (value) => async (dispatch) => {
   dispatch(updateListItemRequest());
     try {
       const response = await axios.put(`${API_URL}/updatetListItem`,value);
-      if(response){
-        dispatch(updateListItemSuccess( response.data )); 
+      if(response.status==200){
+        dispatch(updateListItemSuccess( response.data));
         toast.success(response.data.message)
       }
     } catch (error) {
