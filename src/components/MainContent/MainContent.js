@@ -12,7 +12,6 @@ import { getSampleProjectCard, updateMultiList, updateSingleList } from '../../r
 import { useParams } from 'react-router-dom'
 
 const MainContent = ({lists,setIsOpen,isOpen,setListItem,listItem,projects}) => {
-
   const params = useParams()
   const dispatch = useDispatch()
   const sampleList = useSelector(state=>state?.lists?.sampleList)
@@ -56,7 +55,6 @@ const MainContent = ({lists,setIsOpen,isOpen,setListItem,listItem,projects}) => 
     //   return
     // }
     if (source?.droppableId === destination?.droppableId) {
-      console.log('droppableId :',destination?.droppableId);
       const destinationListItem = sourceList?.items?.[destination.index];
       let thisListArrayItems = [...listsArray[sourceListIndex]?.items]; // Create a copy of the items array
       thisListArrayItems[source.index] = destinationListItem;
@@ -119,6 +117,7 @@ const MainContent = ({lists,setIsOpen,isOpen,setListItem,listItem,projects}) => 
       <Modal
         projects={projects}
         setIsOpen={setIsOpen}
+        projectId={params.id}
         isOpen={isOpen}
         listItem={listItem}
       />
