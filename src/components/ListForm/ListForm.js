@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 
 const ListForm = ({setListsArray,listsArray,setShowListForm}) => {
     const params = useParams()
-    console.log('params :',params);
     const dispatch = useDispatch() 
     const listObj = {}
     const formik = useFormik({

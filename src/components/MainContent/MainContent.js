@@ -28,7 +28,6 @@ const MainContent = ({isShareOpen,setIsShareOpen,lists,setIsListItemOpen,IsListI
       setListsArray(lists ? [...lists] : []);
   }, [lists]);
 
-  // console.log(lists[0]?.name);
   const onDragEnd = result => {
     const { source, destination } = result;
 
@@ -39,25 +38,7 @@ const MainContent = ({isShareOpen,setIsShareOpen,lists,setIsListItemOpen,IsListI
     const sourceList = listsArray?.find(el => el?._id === source?.droppableId)
     const sourceListIndex = listsArray?.findIndex(el => el?._id === source?.droppableId)
     const sourcelistItem = sourceList?.items?.[source.index] 
-
-    // if(source?.droppableId === destination?.droppableId){
-    //   console.log('droppableId :',destination?.droppableId);
-    //   const destinationListItem =  sourceList?.items?.[destination.index]
-    //   let thisListArrayItems = listsArray?.[sourceListIndex]?.items
-    //   console.log('thisListArrayItems :',thisListArrayItems);
-    //   thisListArrayItems[source.index] = destinationListItem
-    //   thisListArrayItems[destination.index] = sourcelistItem
-    //   setListsArray([
-    //     ...listsArray?.slice(0, sourceListIndex),
-    //     {...(listsArray?.[sourceListIndex]), items: thisListArrayItems},
-    //     ...listsArray?.slice(sourceListIndex+1)
-    //   ])
-    //   setLoader(true)
-    //   setTimeout(() => setLoader(false))        
-    //   return
-    // }
     if (source?.droppableId === destination?.droppableId) {
-
       const destinationListItem = sourceList?.items?.[destination.index];
       let thisListArrayItems = [...listsArray[sourceListIndex]?.items]; // Create a copy of the items array
       thisListArrayItems[source.index] = destinationListItem;
@@ -121,6 +102,7 @@ const MainContent = ({isShareOpen,setIsShareOpen,lists,setIsListItemOpen,IsListI
         projects={projects}
         setIsListItemOpen={setIsListItemOpen}
         IsListItemOpen={IsListItemOpen}
+        projectId={params.id}
         listItem={listItem}
       />
     )}

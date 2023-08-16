@@ -10,7 +10,6 @@ const List = ({list,setListItemAdded,setListsArray,listsArray, index}) => {
   const [showListItemForm,setListItemForm] = useState(false)
   // const [listItemsArray,setListItemsArray] = useState([])
   const dispatch = useDispatch()
-  // console.log('list :',list);
 
 
   const [loader, setLoader] = useState(false)

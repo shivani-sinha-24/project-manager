@@ -66,8 +66,7 @@ const listSlice = createSlice({
     },
     updateListItemSuccess: (state, action) => {
       state.loading = false;
-      state.lists = action.payload.lists;
-      state.listItems = action.payload.listItems;
+      state.listItems = action.payload;
     },
     updateListItemFailure: (state, action) => {
       state.loading = false;

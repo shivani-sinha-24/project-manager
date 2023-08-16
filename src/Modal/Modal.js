@@ -2,17 +2,20 @@ import axios from 'axios';
 import './Modal.css';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getListItems, getLists, updateListItem } from '../redux/lists/ListAction';
+import { getListItems, updateListItem } from '../redux/lists/ListAction';
 import { useSelector } from 'react-redux';
 import Moment from 'react-moment';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Modal({
   isActive,
   setIsListItemOpen,
   listItem,
-  projects
+  projects,
+  projectId
 }) {
   const user = useSelector(state => state?.auth?.user?.fullName)
+  const navigate = useNavigate();
   const date = new Date().getDate()
   const month = new Date().getMonth()
   const year = new Date().getFullYear()
@@ -33,13 +36,12 @@ export default function Modal({
   const [subTaksArray, setSubTaksArray] = useState({})
 
   //important useState
-  console.log(listItem);
   const [selectedRecent, setSelectedRecent] = useState(listItem?.tasks_date || 'Recently Assigned');
-  const [selectedStatus, setSelectedStatus] = useState('On Track');
+  const [selectedStatus, setSelectedStatus] = useState(listItem?.status || 'On Track');
   const [cardName, setSelectedCardName] = useState(listItem?.name || '');
-  const [selectedDueDate, setSelectedDueDate] = useState('');
-  const [selectedPriority, setSelectedPriority] = useState('Medium');
-  const [selectedTaskDetail, setSelectedTaskDetail] = useState('Medium');
+  const [selectedDueDate, setSelectedDueDate] = useState(listItem?.due_date || '');
+  const [selectedPriority, setSelectedPriority] = useState(listItem?.priority || 'Medium');
+  const [selectedTaskDetail, setSelectedTaskDetail] = useState(listItem?.description || '');
   let itemDetails = {
     _id: listItem?._id,
     name: '',
@@ -91,8 +93,8 @@ export default function Modal({
 
   const updateItem = () => {
     let data = {
-      "_id":listItem?._id,
-      "selectedRecent": selectedRecent,
+      "_id": listItem?._id,
+      "assigneeStatus": selectedRecent,
       "status": selectedStatus,
       "name": cardName,
       "due_date": selectedDueDate,
@@ -100,12 +102,8 @@ export default function Modal({
       "description": selectedTaskDetail
     }
     dispatch(updateListItem(data))
-    dispatch(getListItems())
-  }
-
-  const handleSubtaskSubmit = () => {
-    // setSubTaksArray([...subTaksArray,subtask]);
-    setShowAddSubTask(false)
+    // window.location.href = `/${projectId}`;
+    navigate(`/${projectId}`);
   }
 
   const handleSubmit = () => {
@@ -150,7 +148,7 @@ export default function Modal({
                       <div className="dropdown-recent-top">
                         My Tasks
                       </div>
-                      <div className="dropdown-recent-bottom">
+                      <div className="dropdown-recent-bottom" value={listItem.status}>
                         <div onClick={() => {
                           itemDetails = ({ ...itemDetails, task_date: 'Recently assigned' })
                           setSelectedRecent('Recently assigned')
@@ -177,7 +175,7 @@ export default function Modal({
               <div className="grid-item1">Due Date</div>
               <div className="grid-item">
                 <div className="d-flex">
-                  <input type="date" style={{ outline: "none", border: "none" }} onChange={(e) => { setSelectedDueDate(e.target.value) }} />
+                  <input type="date" style={{ outline: "none", border: "none" }} onChange={(e) => { setSelectedDueDate(e.target.value) }} value={selectedDueDate} />
                   {/* <button className='calendar'>
                     <i className="fa-regular fa-xl fa-calendar"> </i> {date}-{month}-{year}
                   </button>
@@ -259,7 +257,7 @@ export default function Modal({
                     {selectedPriority}<span className="material-symbols-rounded">expand_more</span>
                   </button>
                   {showDropdownPriority &&
-                    <div className="dropdown-priority drop-down-container">
+                    <div className="dropdown-priority drop-down-container" value={selectedPriority}>
                       <div className="dropdown-priority-top">
                         <div onClick={() => {
                           setSelectedPriority('---')
@@ -290,7 +288,7 @@ export default function Modal({
                     {selectedStatus}<span className="material-symbols-rounded">expand_more</span>
                   </button>
                   {showDropdownStatus &&
-                    <div className="dropdown-status drop-down-container">
+                    <div className="dropdown-status drop-down-container" value={selectedStatus}>
                       <div className="dropdown-status-top">
                         <div onClick={() => {
                           setSelectedStatus('---')
@@ -320,11 +318,14 @@ export default function Modal({
           </div>
           <div className="task-description">
             {
-              showDesc
-                ?
-                <textarea className='description' type='text' name="description" id="description" placeholder='Type / for menu' onChange={(e) => { setSelectedTaskDetail(e.target.value) }}></textarea>
+              selectedTaskDetail.length > 0 ?
+                <textarea className='description' type='text' value={selectedTaskDetail} name="description" id="description" placeholder='Type / for menu' onChange={(e) => { setSelectedTaskDetail(e.target.value) }}></textarea>
                 :
-                <div className="description" onClick={() => setShowDesc(true)}>What is this task about?</div>
+                showDesc
+                  ?
+                  <textarea className='description' type='text' name="description" id="description" placeholder='Type / for menu' onChange={(e) => { setSelectedTaskDetail(e.target.value) }}></textarea>
+                  :
+                  <div className="description" onClick={() => setShowDesc(true)}>What is this task about?</div>
             }
           </div>
           <div className='sub-task-container'>
@@ -455,10 +456,10 @@ export default function Modal({
                         <i className="fa-regular fa-star"></i>
                         <i className="fa-solid fa-paperclip"></i>
                       </div>
-                      {/* <div className="right">
+                      <div className="right">
                         Prince will be notified
-                        <button className='cmnt-btn' onClick={()=>handleCommentSubmit()}>Comment</button>
-                      </div> */}
+                        <button className='cmnt-btn'>Comment</button>
+                      </div>
                     </div>
                   </div>
                   <div className="collaborators">

@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { getListItems } from '../../redux/lists/ListAction';
+import { getListItems,getLists } from '../../redux/lists/ListAction';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom'
+
 
 const ListItem = ({ list, item, setListItem, setIsListItemOpen, provided, snapshot, setListsArray, listsArray }) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const [itemName, setItemName] = useState(item.name);
-
-  const dispatch= useDispatch()
-  const listItem = useSelector((state)=>state?.lists?.listItems?.filter(listItem=>listItem._id==item))
-  
-  useEffect(()=>{
+  const params = useParams()
+  const dispatch = useDispatch()
+  const listItem = useSelector((state) => state?.lists?.listItems?.filter(listItem => listItem?._id == item))
+  useEffect(() => {
+    dispatch(getLists(params?.id));
     dispatch(getListItems())
-  },[])
+  }, [])
 
-    const grid = 5;
-    
-    const getItemStyle = (isDragging, draggableStyle) => ({
+  const grid = 5;
+
+  const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
     userSelect: 'none',
     // color: isDragging &&'black',
@@ -44,21 +46,18 @@ const ListItem = ({ list, item, setListItem, setIsListItemOpen, provided, snapsh
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // Find the index of the List in the listsArray
     const listIndex = listsArray.findIndex((element) => element._id === list._id);
     if (listIndex !== -1) {
       // Find the index of the item in the items array
-      console.log(listsArray[listIndex].items);
       const itemIndex = listsArray[listIndex].items.findIndex((itemObj) => itemObj === item);
-
       if (itemIndex !== -1) {
         // Create a copy of the listsArray
         const updatedListsArray = [...listsArray];
 
         // Update the name of the item
         updatedListsArray[listIndex].items[itemIndex].name = itemName;
-        
+
         // Update the state with the updated listsArray
         setListsArray(updatedListsArray);
       }
@@ -71,20 +70,18 @@ const ListItem = ({ list, item, setListItem, setIsListItemOpen, provided, snapsh
     <div className="list-name">
       <div
         onClick={() => handleListItemClick(listItem[0])}
-        className={!showEditForm?'visible child1':'hidden child1'}
+        className={!showEditForm ? 'visible child1' : 'hidden child1'}
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
-        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+        style={getItemStyle(snapshot?.isDragging, provided?.draggableProps?.style)}
       >
-        {/* <span onClick={() => handleListItemClick(item)}>{item.name}</span> */}
         <span>{listItem[0]?.name}</span>
-        {/* <span className="pencil material-symbols-rounded" onClick={() => handlePencilClick(true)}> */}
-        <span className="pencil material-symbols-rounded" >
+        <span className="pencil material-symbols-rounded">
           edit
         </span>
       </div>
-      <div className={showEditForm?'visible':'hidden'}>
+      <div className={showEditForm ? 'visible' : 'hidden'}>
         <form onSubmit={handleSubmit}>
           <input
             type="text"

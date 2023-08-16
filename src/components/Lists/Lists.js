@@ -44,7 +44,6 @@ const List = ({ list, setListItemAdded, setListsArray, listsArray, setIsListItem
       setListItemAdded(true);
     }
   });
-// console.log(item.id);
   return (
     <>
       <div className="list-title">{list.name}</div>
