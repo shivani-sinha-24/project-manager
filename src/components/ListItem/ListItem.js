@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getListItems } from '../../redux/lists/ListAction';
 import { useSelector } from 'react-redux';
 
-const ListItem = ({ list, item, setListItem, setIsOpen, provided, snapshot, setListsArray, listsArray }) => {
+const ListItem = ({ list, item, setListItem, setIsListItemOpen, provided, snapshot, setListsArray, listsArray }) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const [itemName, setItemName] = useState(item.name);
 
@@ -39,7 +39,7 @@ const ListItem = ({ list, item, setListItem, setIsOpen, provided, snapshot, setL
 
   const handleListItemClick = (item) => {
     setListItem(item);
-    setIsOpen(true);
+    setIsListItemOpen(true);
   };
 
   const handleSubmit = (e) => {

@@ -6,12 +6,13 @@ import List from '../Lists/Lists'
 import { DragDropContext } from 'react-beautiful-dnd';
 import Modal from '../../Modal/Modal'
 import axios from 'axios'
+import ShareModal from '../../Modal/shareModal.js/ShareModal'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { getSampleProjectCard, updateMultiList, updateSingleList } from '../../redux/lists/ListAction'
 import { useParams } from 'react-router-dom'
 
-const MainContent = ({lists,setIsOpen,isOpen,setListItem,listItem,projects}) => {
+const MainContent = ({isShareOpen,setIsShareOpen,lists,setIsListItemOpen,IsListItemOpen,setListItem,listItem,projects}) => {
 
   const params = useParams()
   const dispatch = useDispatch()
@@ -56,12 +57,12 @@ const MainContent = ({lists,setIsOpen,isOpen,setListItem,listItem,projects}) => 
     //   return
     // }
     if (source?.droppableId === destination?.droppableId) {
-      console.log('droppableId :',destination?.droppableId);
+
       const destinationListItem = sourceList?.items?.[destination.index];
       let thisListArrayItems = [...listsArray[sourceListIndex]?.items]; // Create a copy of the items array
       thisListArrayItems[source.index] = destinationListItem;
       thisListArrayItems[destination.index] = sourcelistItem;
-      console.log(thisListArrayItems);
+
       // Update the state by creating a new array and updating the modified list
       setListsArray(prevListsArray => {
         const newListsArray = [...prevListsArray];
@@ -115,14 +116,15 @@ const MainContent = ({lists,setIsOpen,isOpen,setListItem,listItem,projects}) => 
   
   return (
     <>
-    {isOpen && (
+    {IsListItemOpen && (
       <Modal
         projects={projects}
-        setIsOpen={setIsOpen}
-        isOpen={isOpen}
+        setIsListItemOpen={setIsListItemOpen}
+        IsListItemOpen={IsListItemOpen}
         listItem={listItem}
       />
     )}
+    {isShareOpen && <ShareModal isShareOpen={isShareOpen} setIsShareOpen={setIsShareOpen}/>}
     <div className="lists-container">
       {/* <div className="scroll" style={{width: `${(listsArray?.length*350) + 540}px`}}> */}
       <div className="scroll" style={{width: `${(listsArray?.length*350) + 350}px`,height:'100%'}}>
@@ -137,8 +139,8 @@ const MainContent = ({lists,setIsOpen,isOpen,setListItem,listItem,projects}) => 
                   listsArray={listsArray.length?listsArray:null} 
                   setListsArray={setListsArray} 
                   list={list}
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
+                  IsListItemOpen={IsListItemOpen}
+                  setIsListItemOpen={setIsListItemOpen}
                   setListItem={setListItem}
                 />
               </div>

@@ -16,12 +16,10 @@ const API_URL = process.env.REACT_APP_API_URL;
 export const getLists = (value) => async (dispatch) => {
     dispatch(getListsStarted());
     try {
-      // console.log(value);
       const response = await axios.get(`${API_URL}/getProjectCard/${value}`);
       if(response?.data){
         dispatch(getListsSuccess( response?.data )); 
       }
-      // console.log(response);
     } catch (error) {
       dispatch(getListsFailure(error.message));
     }
@@ -29,12 +27,10 @@ export const getLists = (value) => async (dispatch) => {
 export const getSampleProjectCard = (value) => async (dispatch) => {
   dispatch(getSampleProjectCardStarted());
   try {
-    // console.log(value);
     const response = await axios.get(`${API_URL}/getSampleProjectCard/`);
     if(response?.data){
       dispatch(getSampleProjectCardSuccess( response?.data )); 
     }
-    // console.log(response);
   } catch (error) {
     dispatch(getSampleProjectCardFailure(error.message));
   }
@@ -52,7 +48,6 @@ export const creatList = (value) => async (dispatch) => {
 }
 
 export const creatListItem = (value) => async (dispatch) => {
-  console.log('creatListItem');
   dispatch(createListItemRequest());
     try {
       const response = await axios.post(`${API_URL}/createtListItem`,value);
@@ -94,25 +89,22 @@ export const updateSingleList = (value) => async (dispatch) => {
   dispatch(updateSingleListRequest());
     try {
       const response = await axios.put(`${API_URL}/updatetSingleList`,value);
-      if(response){
-        console.log('ffffffffffff',response.data);
+      if(response?.data?.status_code == 200 ){
         dispatch(updateSingleListSuccess( response.data.lists )); 
-        toast.success(response.data.message)
+        // toast.success(response.data.message)
       }
     } catch (error) {
       dispatch(updateSingleListFailure(error.message));
     }
-  };
+};
   
-  export const updateMultiList = (value) => async (dispatch) => {
-  // console.log('value :',value);
+export const updateMultiList = (value) => async (dispatch) => {
   dispatch(updateMultiListRequest());
     try {
       const response = await axios.put(`${API_URL}/updateMultiList`,value);
-      if(response){
-        console.log('ffffffffffff',response.data);
+      if(response?.data?.status_code == 200 ){
         dispatch(updateMultiListSuccess( response.data.lists )); 
-        toast.success(response.data.message)
+        // toast.success(response.data.message)
       }
     } catch (error) {
       dispatch(updateMultiListFailure(error.message));

@@ -58,6 +58,19 @@ const Login = () => {
     validationSchema,
     onSubmit: values => {
       dispatch(userLogin(values));
+      setTimeout(()=>{
+        axios.get(`${process.env.REACT_APP_API_URL}/user/${values?.email}`)
+        .then(res=>{
+          if(res?.status==200){
+            if(res?.data?.invitation){
+              // navigate(`/${res?.data?.invitation?.project_id}`)
+              navigate(`/${res?.data?.invitation?.project_id}/invitation/${res?.data?.user?._id}`)
+            }else{
+              navigate('/');
+            }
+          }
+        })
+      },100)
     }
   })
   const authenticate = sessionStorage.getItem("accessToken");

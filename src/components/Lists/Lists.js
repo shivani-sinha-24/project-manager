@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { creatListItem } from '../../redux/lists/ListAction';
 
-const List = ({ list, setListItemAdded, setListsArray, listsArray, setIsOpen, index, isOpen, setListItem }) => {
+const List = ({ list, setListItemAdded, setListsArray, listsArray, setIsListItemOpen, index, IsListItemOpen, setListItem }) => {
   const [showListItemForm, setShowListItemForm] = useState(false);
   const [listItemsArray, setListItemsArray] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -61,7 +61,7 @@ const List = ({ list, setListItemAdded, setListsArray, listsArray, setIsOpen, in
                       provided={provided}
                       snapshot={snapshot}
                       item={item}
-                      setIsOpen={setIsOpen}
+                      setIsListItemOpen={setIsListItemOpen}
                       setListItem={setListItem}
                       list={list}
                       listsArray={listsArray}

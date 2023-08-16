@@ -14,7 +14,6 @@ const authSlice = createSlice({
             state.loading = true;
         },
         userRegisterSuccess: (state, action) => {
-            console.log('action.payload :',action.payload);
             state.user = action.payload
         },
         userRegisterFailure: (state, action) => {
@@ -25,7 +24,6 @@ const authSlice = createSlice({
         },
         userLoginSuccess: (state, action) => {
 
-            console.log('action.payload :',action.payload);
             state.user = action.payload
         },
         userLoginFailure: (state, action) => {

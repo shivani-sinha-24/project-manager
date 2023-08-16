@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getProjects } from '../../redux/project/ProjectAction'
 
-const TopNav = ({showRightMenu,setShowRightMenu,showLeftMenu,setShowLeftMenu}) => {
+const TopNav = ({isShareOpen,setIsShareOpen,showRightMenu,setShowRightMenu,showLeftMenu,setShowLeftMenu}) => {
 
   const params = useParams()
   const dispatch = useDispatch()
@@ -30,12 +30,12 @@ const TopNav = ({showRightMenu,setShowRightMenu,showLeftMenu,setShowLeftMenu}) =
         <li ><span className="material-symbols-rounded">flash_on</span> Automation</li>
         <li ><span className="material-symbols-rounded">filter_list</span> Filter</li>
         <li className="nav-item profile">
-            <div className="p-logo"></div>
-            <div className="p-share"><span className="material-symbols-rounded">person_add</span> Share</div>
+          <div className="p-logo"></div>
+          <div className="p-share" onClick={()=>setIsShareOpen(!isShareOpen)}><span className="material-symbols-rounded">person_add</span> Share</div>
         </li>
         {
           !showRightMenu &&
-        <li onClick={()=>{setShowRightMenu(true);setShowLeftMenu(false)}}><span className="material-symbols-rounded">more_horiz</span></li>
+          <li onClick={()=>{setShowRightMenu(true);setShowLeftMenu(false)}}><span className="material-symbols-rounded">more_horiz</span></li>
         }
       </ul>
     </div>

@@ -40,7 +40,7 @@ const GetStarted = () => {
             <p>Blog</p>
             <p>Investor Relations</p>
             <p>Sitemap</p>
-            <p>Mdeern Slavery Transparency Statement</p>
+            <p>Modern Slavery Transparency Statement</p>
           </div>
           <div>
             <p className='top'>Workflow Solutions</p>
