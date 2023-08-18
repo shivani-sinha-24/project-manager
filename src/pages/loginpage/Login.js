@@ -14,27 +14,31 @@ const Login = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState([]);
   const [profile, setProfile] = useState([]);
-  const login = useGoogleLogin({
+
+  const googleLogin = useGoogleLogin({
     onSuccess: (codeResponse) => setUser(codeResponse),
     onError: (error) => console.log('Login Failed:', error)
   });
 
   useEffect(
     () => {
-      setProfile(null);
-      if (user) {
-        axios
-          .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-            headers: {
-              Authorization: `Bearer ${user.access_token}`,
-              Accept: 'application/json'
-            }
-          })
-          .then((res) => {
-            setProfile(res.data);
-            
-          })
-          .catch((err) => console.log(err));
+    setProfile(null);
+    if (user) {
+      axios
+        .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+          headers: {
+            Authorization: `Bearer ${user.access_token}`,
+            Accept: 'application/json'
+          }
+        })
+        .then((res) => {
+          console.log(res.data);
+          const values = {...res?.data,type:"Google Auth"}
+          dispatch(userLogin(values));
+          setProfile(res.data);
+          navigateFunc(values);
+        })
+        .catch((err) => console.log(err));
       }
     },
     [user]
@@ -56,19 +60,10 @@ const Login = () => {
     },
     validationSchema,
     onSubmit: values => {
+      values = {...values,type:"Email"}
       dispatch(userLogin(values));
       setTimeout(()=>{
-        axios.get(`${process.env.REACT_APP_API_URL}/user/${values?.email}`)
-        .then(res=>{
-          if(res?.status==200){
-            if(res?.data?.invitation){
-              // navigate(`/${res?.data?.invitation?.project_id}`)
-              navigate(`/${res?.data?.invitation?.project_id}/invitation/${res?.data?.user?._id}`)
-            }else{
-              navigate('/');
-            }
-          }
-        })
+      navigateFunc(values);
       },100)
     }
   })
@@ -81,6 +76,22 @@ const Login = () => {
       dispatch(getListItems())
     }
   }, [authenticate, navigate]);
+
+  const navigateFunc = (values) =>{
+    axios.get(`${process.env.REACT_APP_API_URL}/user/${values?.email}`)
+      .then(res=>{
+        if(res?.status==200){
+          if(res?.data?.invitation){
+            // navigate(`/${res?.data?.invitation?.project_id}`)
+            console.log(res?.data);
+            navigate(`/${res?.data?.invitation?.project_id}/invitation/${res?.data?.user?._id}`)
+          }else{
+            navigate('/');
+          }
+        }
+      })
+      .catch(err=>console.log(err))
+  }
 
   return (
     <div className='login-page'>
@@ -101,7 +112,7 @@ const Login = () => {
           {/* {profile ? (
             <button onClick={logOut}>Log out</button>
           ) : ( */}
-            <button onClick={() => login()}>Sign in with Google 🚀 </button>
+            <button onClick={() => googleLogin()}>Sign in with Google 🚀 </button>
           {/* )} */}
         </div>
         <p>Don't have an account? <Link to={'/register'}>Sign Up</Link></p>

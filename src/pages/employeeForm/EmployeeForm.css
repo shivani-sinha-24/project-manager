@@ -1,0 +1,118 @@
+.employee-form{
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0;
+    /* min-height: 100%; */
+    /* height: fit-content; */
+    /* width: 100%; */
+    overflow-x: hidden;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+.employee-form .employee-form-top,
+.employee-form .steps{
+    padding: 10px;
+    /* width: 100%; */
+}
+.employee-form .employee-form-top{
+    border-bottom: 2px solid grey;
+    gap: 20px;
+}
+.employee-form .employee-form-top .heading{
+    font-weight: bolder;
+    font-size: 1.25rem;
+}
+.employee-form .steps{
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.employee-form .steps .step{
+    width: 4%;
+    border-radius: 50%;
+    border: 2px solid grey ;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.35rem;
+    color: grey;
+}
+.employee-form .length{
+    width: 20%;
+    border-bottom: 5px solid rgb(144, 142, 142,0.2);
+}
+.employee-form .employee-form-bottom{
+    padding: 10px 180px;
+    /* border: 1px solid black; */
+    margin: 10px 0;
+}
+.employee-form .employee-form-bottom .form1{
+    border: 1px solid black;
+    padding: 30px 100px ;
+    border: 2px solid grey ;
+    font-size: medium;
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+.form-row {
+  display: flex;
+  margin-bottom: 15px;
+}
+.form-row .input-error{
+    width: 70%;
+}
+.form-row .input-error .error{
+    color: red;
+    padding: 5px 0;
+}
+.form-label {
+  flex: 1;
+  width: 20%;
+  font-weight: bold;
+  /* margin-right: 10px; */
+}
+.form-input {
+  flex: 2;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-weight: 600;
+  color: rgb(94, 94, 94);
+}
+.form-input[type="file"] {
+  padding: 0;
+}
+.form-button ,.step1-button,.step2-button-prev,.step2-button-next{
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: medium;
+    font-weight: bold;
+}
+.step-btns{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ************************************ HOVER CSS ************************************ */
+
+.employee-form .steps .step:hover{
+    cursor: pointer;
+}
+.employee-form .form-button:hover,.employee-form .step1-button:hover  {
+  background-color: #0056b3;
+}
