@@ -23,10 +23,12 @@ const HomepageNav = ({showNavMenu,setShowNavMenu}) => {
         <img src={logo} alt="" />
       </div>
       <div className="home-nav-center">
-        <div>Product</div>
+        {/* <div>Product</div> */}
+        <Link to={'/projects'}>Project</Link>
         <div>Use Cases</div>
         <div>Resources</div>
-        <div>Enterprise</div>
+        {/* <div>Enterprise</div> */}
+        <Link to={'/employee/form'} >Employees</Link>
         <div>Pricing</div>
       </div>
       <div className="home-nav-right">

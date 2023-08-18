@@ -14,10 +14,14 @@ import { useSelector } from 'react-redux';
 import Homepage from './pages/homepage/Homepage';
 import { getProjects } from './redux/project/ProjectAction';
 import InvitationPage from './pages/invitationPage/InvitationPage';
+import EmployeePage from './pages/employeepage/EmployeePage';
+import EmployeeForm from './pages/employeeForm/EmployeeForm';
+import EmployeeListPage from './pages/employeeListPage/EmployeeListPage';
 
 
 const App = () => {
   const [step, setStep] = useState(1);
+  const [employeestep, setemployeeStep] = useState(1);
   const [ bgImgUrl,setBgImgUrl] = useState("https://wallpapers.com/images/hd/hd-ship-in-the-sea-sunset-e2vkyaaw9zh4i8d8.jpg")
   
   const authenticate = sessionStorage.getItem("accessToken");
@@ -63,6 +67,14 @@ const App = () => {
                 setBgImgUrl={setBgImgUrl} 
               />}
             >
+              <Route index element={
+                <BlankProjectTemplate
+                  step={step}
+                  setStep={setStep}
+                  bgImgUrl={bgImgUrl}
+                  setBgImgUrl={setBgImgUrl}
+                />}
+              />
             <Route path='/projects/new' element={
               <BlankProjectTemplate 
                 step={step} 
@@ -71,6 +83,20 @@ const App = () => {
                 setBgImgUrl={setBgImgUrl}
               />}
             />
+            </Route>
+            <Route path='/employee' element={ 
+              <EmployeePage
+                employeestep={employeestep}
+                setemployeeStep={setemployeeStep}
+              />} 
+            >
+              <Route index element={<EmployeeListPage/>}/>
+              <Route path='/employee/form' element={
+                <EmployeeForm
+                  employeestep={employeestep}
+                  setemployeeStep={setemployeeStep}
+                />} 
+              />
             </Route>
           </>
           :
