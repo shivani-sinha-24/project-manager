@@ -1,8 +1,10 @@
 import React from 'react'
 import './EmployeePage.css'
 import { Outlet, useNavigate } from 'react-router-dom'
+import EmployeeModal from '../../Modal/EmployeeModal/EmployeeModal';
 
-const EmployeePage = ({employeestep, setemployeeStep}) => {
+const EmployeePage = ({employeestep, setemployeeStep, employeeModal ,setEmployeeModal, empforModal}) => {
+    
     const navigate = useNavigate();
     const showPreviousStep = (employeestep)=>{
         setemployeeStep(employeestep)
@@ -10,6 +12,9 @@ const EmployeePage = ({employeestep, setemployeeStep}) => {
   
   return (
     <div className='employee-page'>
+        {
+            employeeModal && <EmployeeModal empforModal={empforModal} setEmployeeModal={setEmployeeModal} />
+        }
         <div className='employee-page-top'>
             <div className="left">
                 <button>
