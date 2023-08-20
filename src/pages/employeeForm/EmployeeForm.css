@@ -55,7 +55,7 @@
     /* display: flex; */
     /* flex-direction: column; */
 }
-.form-container {
+.employee-form .form-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -63,24 +63,24 @@
   border-radius: 5px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
-.form-row {
+.employee-form .form-row {
   display: flex;
   margin-bottom: 15px;
 }
-.form-row .input-error{
+.employee-form .form-row .input-error{
     width: 70%;
 }
-.form-row .input-error .error{
+.employee-form .form-row .input-error .error{
     color: red;
     padding: 5px 0;
 }
-.form-label {
+.employee-form .form-label {
   flex: 1;
   width: 20%;
   font-weight: bold;
   /* margin-right: 10px; */
 }
-.form-input {
+.employee-form .form-input {
   flex: 2;
   width: 100%;
   padding: 10px;
@@ -89,10 +89,23 @@
   font-weight: 600;
   color: rgb(94, 94, 94);
 }
-.form-input[type="file"] {
-  padding: 0;
+.employee-form .form-input[type="file"] {
+  padding: 0px;
 }
-.form-button ,.step1-button,.step2-button-prev,.step2-button-next{
+.employee-form .radio-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+.employee-form .radio-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.employee-form .radio-group input[type="radio"] {
+    margin-right: 5px;
+}
+.employee-form .form-button ,.step1-button,.step2-button-prev,.step2-button-next{
     background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
@@ -102,7 +115,7 @@
     font-size: medium;
     font-weight: bold;
 }
-.step-btns{
+.employee-form .step-btns{
     display: flex;
     align-items: center;
     justify-content: space-between;

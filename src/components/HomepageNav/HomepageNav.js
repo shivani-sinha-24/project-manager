@@ -28,7 +28,7 @@ const HomepageNav = ({showNavMenu,setShowNavMenu}) => {
         <div>Use Cases</div>
         <div>Resources</div>
         {/* <div>Enterprise</div> */}
-        <Link to={'/employee/form'} >Employees</Link>
+        <Link to={'/employee'} >Employees</Link>
         <div>Pricing</div>
       </div>
       <div className="home-nav-right">

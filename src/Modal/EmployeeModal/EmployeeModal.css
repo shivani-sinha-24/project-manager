@@ -1,0 +1,78 @@
+.emp-modal {
+  top: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 900;
+  font-size: large;
+  color: black;
+}
+.emp-modal .emp-modal-section {
+  padding: 20px;
+  width: 30%;
+  height: fit-content;
+  background: var(--modal-section-bg);
+  border-radius: var(--border-5px);
+  overflow: hidden;
+}
+.emp-modal .emp-modal-section .em-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 15px 8px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid grey;
+  font-weight: bold;
+}
+.emp-modal .emp-modal-section .em-bottom{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.emp-modal .emp-modal-section .em-bottom .e-photo{
+  padding: 5px;
+}
+.emp-modal .emp-modal-section .em-bottom .e-photo img{
+  width: 120px;
+  height: 120px;
+  padding: 0px;
+  border-radius: 5px;
+  background-color: grey;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.emp-modal .emp-modal-section .em-bottom .flex,
+.emp-modal .emp-modal-section .em-bottom .heading{
+  width: 100%;
+}
+
+.emp-modal .emp-modal-section .em-bottom .heading{
+  color: grey;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.emp-modal .emp-modal-section .em-bottom .flex .e-detail{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: medium;
+}
+.emp-modal .emp-modal-section .em-bottom .flex .e-detail :nth-child(1){
+  width: 25%;
+  font-weight: bold;
+}
+.emp-modal .emp-modal-section .em-bottom .flex .e-detail :nth-child(2){
+  color: grey;
+  width: 60%;
+}
+
+/* ******************************** HOVER CSS ******************************** */
+
+.emp-modal .emp-modal-section .em-top :nth-child(2):hover{
+  cursor: pointer;
+}

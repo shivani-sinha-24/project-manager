@@ -1,0 +1,68 @@
+.emp-list-page{
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0;
+    /* min-height: 100%; */
+    /* height: fit-content; */
+    /* width: 100%; */
+    overflow-x: hidden;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+.emp-list-page .employee-list-top,
+.emp-list-page .steps{
+    padding: 10px;
+    /* width: 100%; */
+}
+.emp-list-page .employee-list-top{
+    border-bottom: 2px solid grey;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.emp-list-page .employee-list-top .heading{
+    font-weight: bolder;
+    font-size: 1.25rem;
+}
+.emp-list-page .employee-list-top .add-emp{
+    font-weight: bold;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 15px;
+    background:#ddd;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.emp-list-page .employee-list-bottom{
+    padding: 20px;
+    /* border: 1px solid black; */
+    margin: 10px 0;
+}
+.emp-list-page .employee-list-bottom table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.emp-list-page .employee-list-bottom th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.emp-list-page .employee-list-bottom th {
+    background-color: #f2f2f2;
+}
+
+.emp-list-page .employee-list-bottom tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* ******************************** HOVER CSS ******************************** */
+
+.emp-list-page .employee-list-bottom td:hover{
+    cursor: pointer;
+}

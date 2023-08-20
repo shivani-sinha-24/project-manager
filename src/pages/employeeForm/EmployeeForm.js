@@ -1,106 +1,222 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './EmployeeForm.css'
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { creatEmployee } from "../../redux/employee/EmployeeAction";
+import { useNavigate } from "react-router-dom";
 
 const EmployeeForm = ({employeestep, setemployeeStep}) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const [experienced, setExperienced] = useState(false); 
+    const [fresher, setfresher] = useState(false); 
     
     const validationSchema = Yup.object().shape({
+        //step1 Personal Information
         name: Yup.string().required("Name is required"),
+        email: Yup.string().email("Invalid email address").required("Email is required"),
         fatherName: Yup.string().required("Father's Name is required"),
-        designation: Yup.string().required("Designation is required"),
-        image: Yup.mixed().required("image is required"),
-        empId: Yup.string().required("Employee ID is required"),
         mobile: Yup.string().required("Mobile Number is required"),
-        documents: Yup.mixed().required("Documents are required"),
-        joinDate: Yup.date().required("Date of Joining is required"),
         birthday: Yup.date().required("Birth Day is required"),
-        maritalStatus: Yup.string().required("Marital Status is required"),
+        bloodGroup: Yup.string().required("Blood Group is required"),
+        localAddress: Yup.string().required("Local Address is required"),
+        permanentAddress: Yup.string().required("Permanent Address is required"),
+        maritalStatus: Yup.string().oneOf(["single", "married"], "Select a valid marital status").required("Marital Status is required"),
         // anniversary: Yup.date().when("maritalStatus", {
         //   is: "married",
         //   then: Yup.date().required("Anniversary Date is required"),
         //   otherwise: Yup.date().nullable(),
         // }),
+        gender: Yup.string().oneOf(["male", "female","other"], "Select a valid gender").required("Gender is required"),
+        //step2 Official Details
+        department: Yup.string().required("Department is required"),
+        designation: Yup.string().required("Designation is required"),
+        empId: Yup.string().required("Employee ID is required"),
+        joinDate: Yup.date().required("Date of Joining is required"),
         salary: Yup.number().required("Salary is required"),
-      });
+        experienced: Yup.string().oneOf(["experienced", "fresher",], "Select a valid Experience").required("Experience Information is required"),
+        //step3 Bank Details
+        bankName: Yup.string().required("Bank Name is required"),
+        bankAccountNo: Yup.string().required("Bank Account No is required"),
+        bankBranchName: Yup.string().required("Bank Branch Name is required"),
+        bankIFSCCode: Yup.string().required("Bank IFSC Code is required"),
+        //step4 upload Documents
+        image: Yup.mixed().required("Image is required"),
+        idProofPAN: Yup.mixed().required("PAN Card is required"),
+        idProofAadharFront: Yup.mixed().required("Aadhar Card Front is required"),
+        idProofAadharBack: Yup.mixed().required("Aadhar Card Back is required"),
+        passbook: fresher && Yup.mixed().required("Bank Passbook is required"),
+        expCertificate: experienced && Yup.mixed().required("Exp Certificate is required"),
+        payslip1: experienced && Yup.mixed().required("Payslip of 1st month is required"),
+        payslip2: experienced && Yup.mixed().required("Payslip of 2nd month is required"),
+        payslip3: experienced && Yup.mixed().required("Payslip of 3rd month is required"),
+    });
     
-      const formik = useFormik({
-        initialValues: {
-          name: "",
-          fatherName: "",
-          designation: "",
-          image: undefined,
-          empId: "",
-          mobile: "",
-          documents: undefined,
-          joinDate: "",
-          birthday: "",
-          maritalStatus: "",
-          anniversary: null,
-          salary: "",
-        },
-        validationSchema,
-        onSubmit: (values) => {
-            // Handle form submission here
+    const formik = useFormik({
+    initialValues: {
+        //step1 Personal Information
+        name: "",
+        email: "",
+        fatherName: "",
+        mobile: "",
+        birthday: "",
+        bloodGroup: "",
+        localAddress: "",
+        permanentAddress: "",
+        maritalStatus: "",
+        anniversary: null,
+        gender: "",
+        //step2 Official Details
+        designation: "",
+        department: "",
+        empId: "",
+        joinDate: "",
+        salary: "",
+        experienced: "",
+        //step3 Bank Details
+        bankName: "",
+        bankAccountNo: "",
+        bankBranchName: "",
+        bankIFSCCode: "",
+        //step4 Upload Documents
+        image: undefined,
+        expCertificate: undefined,
+        idProofPAN:undefined,
+        idProofAadharFront: undefined, 
+        idProofAadharBack: undefined, 
+        payslip1: undefined, 
+        payslip2: undefined, 
+        payslip3: undefined, 
+        passbook: undefined,
+    },
+    validationSchema,
+    onSubmit: (values) => {
+        // Handle form submission here
+        if( employeestep == 4 ){
             let formData = new FormData();
             for (let value in values) {
-            formData.append(value, values[value]);
+                formData.append(value, values[value]);
             }
-            dispatch(creatEmployee(formData))
-        },
-      });
+            dispatch(creatEmployee(formData));
+            navigate('/employee')
+        }
+    },
+    });
+
+    const showErr = () => {
+        formik.handleSubmit();
+        toast.warning("All fields are required to move to next step!!")
+    }
+
+    const step2func = () => {
+        (formik.values.name && formik.values.fatherName && formik.values.maritalStatus && formik.values.mobile && formik.values.birthday && formik.values.email && formik.values.bloodGroup && formik.values.localAddress && formik.values.permanentAddress && formik.values.gender)
+        ?
+        setemployeeStep(2)
+        :
+        showErr();
+    };
+
+    const step3func = () => {
+        (formik.values.department && formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && formik.values.experienced)
+        ?
+            setemployeeStep(3)
+        :
+            showErr()
+        };
+
+    const step4func = () => {
+        (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankIFSCCode)
+        ?
+            setemployeeStep(4)
+        :
+            showErr()
+    };
+
+    useEffect(()=>{
+        //Reset formik error everytime employeestep changes
+        formik.setErrors({});
+    },[employeestep])
+
+    useEffect(()=>{
+
+        if(formik.values.experienced == 'experienced'){
+            setExperienced(true)
+        }else{ 
+            setExperienced(false)
+        };
+
+        if(formik.values.experienced == 'fresher'){
+            setfresher(true)
+        }else{ 
+            setfresher(false)
+        };
+
+    },[formik.values])
 
   return (
     <div className='employee-form'>
         <div className="employee-form-top">
-            <div className="heading">{employeestep==1?'Personal Information':employeestep==2?'Ofiicial Details':'Upload Documents'}</div>
+            <div className="heading">
+                {employeestep == 1 ?'Personal Information' : employeestep == 2 ? 'Ofiicial Details' : employeestep == 3?'Bank Details':'Upload Documents'}
+            </div>
         </div>
         <div className="steps">
-            <div 
-                className="step" 
+            <div className="step" 
                 style={{
-                    color:employeestep>=1 &&  '#007bff',
-                    border:employeestep>=1 && '4px solid#007bff',
-                    scale:employeestep==1 && '1.09'
+                    color: (employeestep == 1 || (formik.values.name && formik.values.fatherName && formik.values.maritalStatus && formik.values.mobile && formik.values.birthday && formik.values.email && formik.values.bloodGroup && formik.values.localAddress && formik.values.permanentAddress && formik.values.gender)) &&  '#007bff',
+                    border: (employeestep == 1 || (formik.values.name && formik.values.fatherName && formik.values.maritalStatus && formik.values.mobile && formik.values.birthday && formik.values.email && formik.values.bloodGroup && formik.values.localAddress && formik.values.permanentAddress && formik.values.gender)) && '4px solid #007bff',
+                    scale: (employeestep == 1 || (formik.values.name && formik.values.fatherName && formik.values.maritalStatus && formik.values.mobile && formik.values.birthday && formik.values.email && formik.values.bloodGroup && formik.values.localAddress && formik.values.permanentAddress && formik.values.gender)) && '1.09',
                 }}
             >
                 <div className="number" onClick={()=>setemployeeStep(1)}>1</div>
-                {/* <div className="detail">Please, fill the personal information</div> */}
             </div>
-            <div 
-                className="length" 
+            <div className="length" 
                 style={{
-                    borderBottom: formik.values.name && formik.values.fatherName && formik.values.maritalStatus && formik.values.mobile && formik.values.birthday && '5px solid#007bff'
-                }}
-            ></div>
+                    borderBottom: (formik.values.name && formik.values.fatherName && formik.values.maritalStatus && formik.values.mobile && formik.values.birthday && formik.values.email && formik.values.bloodGroup && formik.values.localAddress && formik.values.permanentAddress && formik.values.gender) && '5px solid #007bff',
+                }}>
+            </div>
             <div className="step" 
                 style={{
-                    color:(employeestep==2 || (formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary) ) && '#007bff',
-                    border:(employeestep==2 || (formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary) ) && '4px solid#007bff',
-                    scale:(employeestep==2 || (formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary) ) && '1.09'}
-                }
-            >
-                <div className="number" onClick={()=>{formik.values.name && formik.values.fatherName && formik.values.maritalStatus && formik.values.mobile && formik.values.birthday && setemployeeStep(2)}}>2</div>
-                {/* <div className="detail">Fill the job information</div> */}
-            </div>
-            <div className="length" style={{
-                borderBottom:formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && '5px solid#007bff'}}></div>
-            <div className="step" 
-                style={{
-                    color: (employeestep === 3 || (formik.values.image && formik.values.documents)) && '#007bff',
-                    border: (employeestep === 3 || (formik.values.image && formik.values.documents)) && '4px solid #007bff',
-                    scale: (employeestep === 3 || (formik.values.image && formik.values.documents)) && '1.09',
+                    color: (employeestep == 2 || (formik.values.department && formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && formik.values.experienced) ) && '#007bff',
+                    border: (employeestep == 2 || (formik.values.department && formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && formik.values.experienced) ) && '4px solid #007bff',
+                    scale: (employeestep == 2 || (formik.values.department && formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && formik.values.experienced) ) && '1.09',
                 }}
             >
-                <div className="number" onClick={()=>formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && setemployeeStep(3)}>3</div>
-                {/* <div className="detail">Fill the family information</div> */}
+                <div className="number" onClick={()=>{step2func()}}>2</div>
+            </div>
+            <div className="length" 
+                style={{
+                    borderBottom:(formik.values.department && formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && formik.values.experienced) && '5px solid #007bff',
+                }}>
+            </div>
+            <div className="step" 
+                style={{
+                    color: (employeestep === 3 || (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankIFSCCode)) && '#007bff',
+                    border: (employeestep === 3 || (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankIFSCCode)) && '4px solid #007bff',
+                    scale: (employeestep === 3 || (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankIFSCCode)) && '1.09',
+                }}
+            >
+                <div className="number" onClick={()=>step3func()}>3</div>
+            </div>
+            <div className="length" 
+                style={{
+                    borderBottom: (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankIFSCCode) && '5px solid #007bff',
+                }}>
+            </div>
+            <div className="step" 
+                style={{
+                    color: (employeestep === 4 || (formik.values.image && formik.values.idProofPAN && formik.values.idProofAadharFront && formik.values.idProofAadharBack && ((formik.values.payslip1 && formik.values.payslip2 && formik.values.payslip3 && formik.values.expCertificate) || formik.values.passbook ))) && '#007bff',
+                    border: (employeestep === 4 || (formik.values.image && formik.values.idProofPAN && formik.values.idProofAadharFront && formik.values.idProofAadharBack && ((formik.values.payslip1 && formik.values.payslip2 && formik.values.payslip3 && formik.values.expCertificate) || formik.values.passbook ))) && '4px solid #007bff',
+                    scale: (employeestep === 4 || (formik.values.image && formik.values.idProofPAN && formik.values.idProofAadharFront && formik.values.idProofAadharBack && ((formik.values.payslip1 && formik.values.payslip2 && formik.values.payslip3 && formik.values.expCertificate) || formik.values.passbook ))) && '1.09',
+                }}
+            >
+                <div className="number" onClick={()=>step4func()}>4</div>
             </div>
         </div>
         <form className="employee-form-bottom" onSubmit={formik.handleSubmit} encType="multipart/form-data">
+
             {employeestep == 1 && 
             <>
                 <div className="form-row">
@@ -122,7 +238,26 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
                             <div className="error">{formik?.errors?.name} **</div>
                         }
                     </div>
-                </div>      
+                </div>  
+                <div className="form-row">
+                    <label className="form-label" htmlFor="email">Email:</label>
+                    <div className="input-error">
+                        <input
+                            className="form-input"
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            placeholder="Enter Email"
+                        />
+                        {formik?.touched?.email && formik?.errors?.email && (
+                            <div className="error">{formik?.errors?.email} **</div>
+                        )}
+                    </div>
+                </div>    
                 <div className="form-row">
                     <label className="form-label" htmlFor="fatherName">Father's Name:</label>
                     <div className="input-error">
@@ -181,7 +316,62 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
                             <div className="error">{formik?.errors?.birthday} **</div>
                         }
                     </div>
-                </div>                
+                </div>
+                <div className="form-row">
+                    <label className="form-label" htmlFor="bloodGroup">Blood Group:</label>
+                    <div className="input-error">
+                        <input
+                            className="form-input"
+                            type="text"
+                            id="bloodGroup"
+                            name="bloodGroup"
+                            required
+                            value={formik.values.bloodGroup}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            placeholder="Enter Blood Group"
+                        />
+                        {formik?.touched?.bloodGroup && formik?.errors?.bloodGroup && (
+                            <div className="error">{formik?.errors?.bloodGroup} **</div>
+                        )}
+                    </div>
+                </div>
+                <div className="form-row">
+                    <label className="form-label" htmlFor="localAddress">Local Address:</label>
+                    <div className="input-error">
+                        <textarea
+                            className="form-input"
+                            id="localAddress"
+                            name="localAddress"
+                            required
+                            value={formik.values.localAddress}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            placeholder="Enter Local Address"
+                        />
+                        {formik?.touched?.localAddress && formik?.errors?.localAddress && (
+                            <div className="error">{formik?.errors?.localAddress} **</div>
+                        )}
+                    </div>
+                </div>            
+                <div className="form-row">
+                    <label className="form-label" htmlFor="permanentAddress">Permanent Address:</label>
+                    <div className="input-error">
+                        <textarea
+                            className="form-input"
+                            id="permanentAddress"
+                            name="permanentAddress"
+                            required
+                            value={formik.values.permanentAddress}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            placeholder="Enter Local Address"
+                        />
+                        {formik?.touched?.permanentAddress && formik?.errors?.permanentAddress && (
+                            <div className="error">{formik?.errors?.permanentAddress} **</div>
+                        )}
+                    </div>
+                </div>            
                 <div className="form-row">
                     <label className="form-label" htmlFor="maritalStatus">Marital Status:</label>
                     <div className="input-error">
@@ -210,21 +400,83 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
                             <input className="form-input" type="date" id="anniversary" name="anniversary"/>
                         </div>
                     </div>
-                } 
+                }
+                <div className="form-row">
+                    <label className="form-label" htmlFor="gender">Gender:</label>
+                    <div className="input-error">
+                        <div className="radio-group">
+                            <label>
+                                <input
+                                    type="radio"
+                                    id="male"
+                                    name="gender"
+                                    value="male"
+                                    checked={formik.values.gender === "male"}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
+                                Male
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    id="female"
+                                    name="gender"
+                                    value="female"
+                                    checked={formik.values.gender === "female"}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
+                                Female
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    id="other"
+                                    name="gender"
+                                    value="other"
+                                    checked={formik.values.gender === "other"}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
+                                Other
+                            </label>
+                        </div>
+                        {formik?.touched?.gender && formik?.errors?.gender && (
+                            <div className="error">{formik?.errors?.gender} **</div>
+                        )}
+                    </div>
+                </div>
                 <button 
                     className="step1-button" 
                     onClick={e=>{
                         e.preventDefault();
-                        formik.values.name && formik.values.fatherName && formik.values.maritalStatus && formik.values.mobile && formik.values.birthday 
-                        ?
-                          setemployeeStep(2)
-                        :
-                          toast.warning("All fields are required!!")
+                        step2func();
                     }}
                 >Next</button>
             </>}
+
             {employeestep == 2 && 
             <>
+                <div className="form-row">
+                    <label className="form-label" htmlFor="department">Department:</label>
+                    <div className="input-error">
+                        <input
+                            className="form-input"
+                            type="text"
+                            id="department"
+                            name="department"
+                            required
+                            value={formik.values.department}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            placeholder="Enter Department"
+                        />
+                        {formik?.touched?.department && formik?.errors?.department && (
+                            <div className="error">{formik?.errors?.department} **</div>
+                        )}
+                    </div>
+                </div>
                 <div className="form-row">
                     <label className="form-label" htmlFor="designation">Designation:</label>
                     <div className="input-error">
@@ -303,22 +555,143 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
                         }
                     </div>
                 </div>
+                <div className="form-row">
+                    <label className="form-label" htmlFor="experienced">Experience:</label>
+                    <div className="input-error">
+                        <div className="radio-group">
+                            <label>
+                                <input
+                                    type="radio"
+                                    id="experienced"
+                                    name="experienced"
+                                    value="experienced"
+                                    checked={formik.values.experienced === "experienced"}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
+                                Experienced
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    id="fresher"
+                                    name="experienced"
+                                    value="fresher"
+                                    checked={formik.values.experienced === "fresher"}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
+                                Fresher
+                            </label>
+                        </div>
+                        {formik?.touched?.experienced && formik?.errors?.experienced && (
+                            <div className="error">{formik?.errors?.experienced} **</div>
+                        )}
+                    </div>
+                </div>
                 <div className="step-btns">
-                    <button className="step2-button-prev" onClick={e=>{e.preventDefault();setemployeeStep(1)}}>Back</button>
+                    <button className="step2-button-prev" onClick={e=>{e.preventDefault();setemployeeStep(employeestep-1)}}>Back</button>
                     <button 
                         className="step2-button-next"
                         onClick={e=>{
                             e.preventDefault();
-                            formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary 
-                            ?
-                              setemployeeStep(3)
-                            :
-                              toast.warning("All fields are required!!")
+                            step3func();
                         }}
                     >Next</button>
                 </div>
             </>}
-            {employeestep == 3 && 
+
+            {employeestep == 3 &&
+            <>
+                <div className="form-row">
+                    <label className="form-label" htmlFor="bankName">Bank Name:</label>
+                    <div className="input-error">
+                        <input
+                            className="form-input"
+                            type="text"
+                            id="bankName"
+                            name="bankName"
+                            required
+                            value={formik.values.bankName}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            placeholder="Enter Bank Name"
+                        />
+                        {formik?.touched?.bankName && formik?.errors?.bankName && (
+                            <div className="error">{formik?.errors?.bankName} **</div>
+                        )}
+                    </div>
+                </div>
+                <div className="form-row">
+                    <label className="form-label" htmlFor="bankAccountNo">Bank Account No:</label>
+                    <div className="input-error">
+                        <input
+                            className="form-input"
+                            type="text"
+                            id="bankAccountNo"
+                            name="bankAccountNo"
+                            required
+                            value={formik.values.bankAccountNo}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            placeholder="Enter Bank Account No"
+                        />
+                        {formik?.touched?.bankAccountNo && formik?.errors?.bankAccountNo && (
+                            <div className="error">{formik?.errors?.bankAccountNo} **</div>
+                        )}
+                    </div>
+                </div>
+                <div className="form-row">
+                    <label className="form-label" htmlFor="bankBranchName">Bank Branch Name:</label>
+                    <div className="input-error">
+                        <input
+                            className="form-input"
+                            type="text"
+                            id="bankBranchName"
+                            name="bankBranchName"
+                            required
+                            value={formik.values.bankBranchName}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            placeholder="Enter Bank Branch Name"
+                        />
+                        {formik?.touched?.bankBranchName && formik?.errors?.bankBranchName && (
+                            <div className="error">{formik?.errors?.bankBranchName} **</div>
+                        )}
+                    </div>
+                </div>
+                <div className="form-row">
+                    <label className="form-label" htmlFor="bankIFSCCode">Bank IFSC Code:</label>
+                    <div className="input-error">
+                        <input
+                            className="form-input"
+                            type="text"
+                            id="bankIFSCCode"
+                            name="bankIFSCCode"
+                            required
+                            value={formik.values.bankIFSCCode}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            placeholder="Enter Bank IFSC Code"
+                        />
+                        {formik?.touched?.bankIFSCCode && formik?.errors?.bankIFSCCode && (
+                            <div className="error">{formik?.errors?.bankIFSCCode} **</div>
+                        )}
+                </div>
+                </div> <div className="step-btns">
+                    <button className="step2-button-prev" onClick={e=>{e.preventDefault();setemployeeStep(employeestep-1)}}>Back</button>
+                    <button 
+                        className="step2-button-next"
+                        onClick={e=>{
+                            e.preventDefault();
+                            step4func();
+                        }}
+                    >Next</button>
+                </div>
+            </>
+            }
+
+            {employeestep == 4 && 
             <>
                 <div className="form-row">
                     <label className="form-label" htmlFor="image">Image:</label>
@@ -340,33 +713,185 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
                             <div className="error">{formik?.errors?.image} **</div>
                         }
                     </div>
-                </div>               
+                </div>
                 <div className="form-row">
-                    <label className="form-label" htmlFor="documents">Documents Upload:</label>
+                    <label className="form-label" htmlFor="idProofPAN">PAN Card:</label>
                     <div className="input-error">
                         <input
                             className="form-input"
                             type="file"
-                            id="documents"
-                            name="documents"
-                            multiple
+                            id="idProofPAN"
+                            name="idProofPAN"
+                            accept=".pdf, .jpg, .jpeg, .png"
+                            required
                             onChange={(event) => {
-                                formik.setFieldValue("documents", event.currentTarget.files[0]);
+                                formik.setFieldValue("idProofPAN", event.currentTarget.files[0]);
                             }}
                             onBlur={formik.handleBlur}
-                            accept=".pdf, .jpg, .jpeg, .png"
                         />
-                        {
-                            formik?.touched?.documents && formik?.errors?.documents &&
-                            <div className="error">{formik?.errors?.documents} **</div>
-                        }
+                        {formik?.touched?.idProofPAN && formik?.errors?.idProofPAN && (
+                            <div className="error">{formik?.errors?.idProofPAN} **</div>
+                        )}
                     </div>
-                </div> 
+                </div>
+                <div className="form-row">
+                    <label className="form-label" htmlFor="idProofAadharFront">Aadhar Card (Front):</label>
+                    <div className="input-error">
+                        <input
+                            className="form-input"
+                            type="file"
+                            id="idProofAadharFront"
+                            name="idProofAadharFront"
+                            accept=".pdf, .jpg, .jpeg, .png"
+                            required
+                            onChange={(event) => {
+                                formik.setFieldValue("idProofAadharFront", event.currentTarget.files[0]);
+                            }}
+                            onBlur={formik.handleBlur}
+                        />
+                        {formik?.touched?.idProofAadharFront && formik?.errors?.idProofAadharFront && (
+                            <div className="error">{formik?.errors?.idProofAadharFront} **</div>
+                        )}
+                    </div>
+                </div>
+                <div className="form-row">
+                    <label className="form-label" htmlFor="idProofAadharBack">Aadhar Card (Back):</label>
+                    <div className="input-error">
+                        <input
+                            className="form-input"
+                            type="file"
+                            id="idProofAadharBack"
+                            name="idProofAadharBack"
+                            accept=".pdf, .jpg, .jpeg, .png"
+                            required
+                            onChange={(event) => {
+                                formik.setFieldValue("idProofAadharBack", event.currentTarget.files[0]);
+                            }}
+                            onBlur={formik.handleBlur}
+                        />
+                        {formik?.touched?.idProofAadharBack && formik?.errors?.idProofAadharBack && (
+                            <div className="error">{formik?.errors?.idProofAadharBack} **</div>
+                        )}
+                    </div>
+                </div>
+                {
+                    formik.values.experienced == 'experienced' &&
+                    <>
+                        <div className="form-row">
+                            <label className="form-label" htmlFor="expCertificate">Exp Certificate:</label>
+                            <div className="input-error">
+                                <input
+                                    className="form-input"
+                                    type="file"
+                                    id="expCertificate"
+                                    name="expCertificate"
+                                    accept=".pdf, .jpg, .jpeg, .png"
+                                    required
+                                    onChange={(event) => {
+                                        formik.setFieldValue("expCertificate", event.currentTarget.files[0]);
+                                    }}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik?.touched?.expCertificate && formik?.errors?.expCertificate && (
+                                    <div className="error">{formik?.errors?.expCertificate} **</div>
+                                )}
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <label className="form-label" htmlFor="payslip1">Payslip (1st month):</label>
+                            <div className="input-error">
+                                <input
+                                    className="form-input"
+                                    type="file"
+                                    id="payslip1"
+                                    name="payslip1"
+                                    accept=".pdf, .jpg, .jpeg, .png"
+                                    required
+                                    multiple
+                                    onChange={(event) => {
+                                        formik.setFieldValue("payslip1", event.currentTarget.files[0]);
+                                    }}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik?.touched?.payslip1 && formik?.errors?.payslip1 && (
+                                    <div className="error">{formik?.errors?.payslip1} **</div>
+                                )}
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <label className="form-label" htmlFor="payslip2">Payslip (2nd month):</label>
+                            <div className="input-error">
+                                <input
+                                    className="form-input"
+                                    type="file"
+                                    id="payslip2"
+                                    name="payslip2"
+                                    accept=".pdf, .jpg, .jpeg, .png"
+                                    required
+                                    multiple
+                                    onChange={(event) => {
+                                        formik.setFieldValue("payslip2", event.currentTarget.files[0]);
+                                    }}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik?.touched?.payslip2 && formik?.errors?.payslip2 && (
+                                    <div className="error">{formik?.errors?.payslip2} **</div>
+                                )}
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <label className="form-label" htmlFor="payslip3">Payslip (3rd month):</label>
+                            <div className="input-error">
+                                <input
+                                    className="form-input"
+                                    type="file"
+                                    id="payslip3"
+                                    name="payslip3"
+                                    accept=".pdf, .jpg, .jpeg, .png"
+                                    required
+                                    multiple
+                                    onChange={(event) => {
+                                        formik.setFieldValue("payslip3", event.currentTarget.files[0]);
+                                    }}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik?.touched?.payslip3 && formik?.errors?.payslip3 && (
+                                    <div className="error">{formik?.errors?.payslip3} **</div>
+                                )}
+                            </div>
+                        </div>
+
+                    </>
+                }
+                {
+                    formik.values.experienced == 'fresher' && 
+                    <div className="form-row">
+                        <label className="form-label" htmlFor="passbook">Bank Passbook:</label>
+                        <div className="input-error">
+                            <input
+                                className="form-input"
+                                type="file"
+                                id="passbook"
+                                name="passbook"
+                                accept=".pdf, .jpg, .jpeg, .png"
+                                required
+                                onChange={(event) => {
+                                    formik.setFieldValue("passbook", event.currentTarget.files[0]);
+                                }}
+                                onBlur={formik.handleBlur}
+                            />
+                            {formik?.touched?.passbook && formik?.errors?.passbook && (
+                                <div className="error">{formik?.errors?.passbook} **</div>
+                            )}
+                        </div>
+                    </div>
+                }
                 <div className="step-btns">
-                    <button className="step2-button-prev" onClick={e=>{e.preventDefault();setemployeeStep(1)}}>Back</button>
+                    <button className="step2-button-prev" onClick={e=>{e.preventDefault();setemployeeStep(employeestep-1)}}>Back</button>
                     <button className="form-button" type="submit" onClick={e=>{e.preventDefault();formik.handleSubmit()}}>Submit</button>
                 </div>
             </>}
+
         </form>
     </div>
   )

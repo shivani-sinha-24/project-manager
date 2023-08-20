@@ -22,6 +22,8 @@ import EmployeeListPage from './pages/employeeListPage/EmployeeListPage';
 const App = () => {
   const [step, setStep] = useState(1);
   const [employeestep, setemployeeStep] = useState(1);
+  const [employeeModal,setEmployeeModal] = useState(false)
+  const [empforModal,setEmpforModal] = useState('')
   const [ bgImgUrl,setBgImgUrl] = useState("https://wallpapers.com/images/hd/hd-ship-in-the-sea-sunset-e2vkyaaw9zh4i8d8.jpg")
   
   const authenticate = sessionStorage.getItem("accessToken");
@@ -37,7 +39,6 @@ const App = () => {
     dispatch(getProjects())
   },[])
   
-
   return (
     <>
       <ToastContainer/>
@@ -86,11 +87,20 @@ const App = () => {
             </Route>
             <Route path='/employee' element={ 
               <EmployeePage
+                empforModal={empforModal}
+                employeeModal={employeeModal}
+                setEmployeeModal={setEmployeeModal}
                 employeestep={employeestep}
                 setemployeeStep={setemployeeStep}
               />} 
             >
-              <Route index element={<EmployeeListPage/>}/>
+              <Route index element={
+                <EmployeeListPage 
+                  employeeModal={employeeModal}
+                  setEmployeeModal={setEmployeeModal}
+                  setEmpforModal={setEmpforModal}
+                />}
+              />
               <Route path='/employee/form' element={
                 <EmployeeForm
                   employeestep={employeestep}

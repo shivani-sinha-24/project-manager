@@ -12,7 +12,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 export const getEmployee = (value) => async (dispatch) => {
     dispatch(getEmployeeStarted());
     try {
-      const response = await axios.get(`${API_URL}/get-employee`);
+      const response = await axios.get(`${API_URL}/getEmpList`);
       if(response?.data){
         dispatch(getEmployeeSuccess( response?.data )); 
       }
