@@ -24,31 +24,26 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
         localAddress: Yup.string().required("Local Address is required"),
         permanentAddress: Yup.string().required("Permanent Address is required"),
         maritalStatus: Yup.string().oneOf(["single", "married"], "Select a valid marital status").required("Marital Status is required"),
-        // anniversary: Yup.date().when("maritalStatus", {
-        //   is: "married",
-        //   then: Yup.date().required("Anniversary Date is required"),
-        //   otherwise: Yup.date().nullable(),
-        // }),
         gender: Yup.string().oneOf(["male", "female","other"], "Select a valid gender").required("Gender is required"),
         //step2 Official Details
         department: Yup.string().required("Department is required"),
         designation: Yup.string().required("Designation is required"),
         empId: Yup.string().required("Employee ID is required"),
-        joinDate: Yup.date().required("Date of Joining is required"),
+        dateofJoining: Yup.date().required("Date of Joining is required"),
         salary: Yup.number().required("Salary is required"),
         experienced: Yup.string().oneOf(["experienced", "fresher",], "Select a valid Experience").required("Experience Information is required"),
         //step3 Bank Details
         bankName: Yup.string().required("Bank Name is required"),
         bankAccountNo: Yup.string().required("Bank Account No is required"),
         bankBranchName: Yup.string().required("Bank Branch Name is required"),
-        bankIFSCCode: Yup.string().required("Bank IFSC Code is required"),
+        bankifsc: Yup.string().required("Bank IFSC Code is required"),
         //step4 upload Documents
         image: Yup.mixed().required("Image is required"),
-        idProofPAN: Yup.mixed().required("PAN Card is required"),
-        idProofAadharFront: Yup.mixed().required("Aadhar Card Front is required"),
-        idProofAadharBack: Yup.mixed().required("Aadhar Card Back is required"),
+        panCard: Yup.mixed().required("PAN Card is required"),
+        adharf: Yup.mixed().required("Aadhar Card Front is required"),
+        adharb: Yup.mixed().required("Aadhar Card Back is required"),
         passbook: fresher && Yup.mixed().required("Bank Passbook is required"),
-        expCertificate: experienced && Yup.mixed().required("Exp Certificate is required"),
+        expCer: experienced && Yup.mixed().required("Exp Certificate is required"),
         payslip1: experienced && Yup.mixed().required("Payslip of 1st month is required"),
         payslip2: experienced && Yup.mixed().required("Payslip of 2nd month is required"),
         payslip3: experienced && Yup.mixed().required("Payslip of 3rd month is required"),
@@ -66,30 +61,29 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
         localAddress: "",
         permanentAddress: "",
         maritalStatus: "",
-        anniversary: null,
+        anniversaryDate: null,
         gender: "",
         //step2 Official Details
         designation: "",
         department: "",
         empId: "",
-        joinDate: "",
+        dateofJoining: "",
         salary: "",
         experienced: "",
         //step3 Bank Details
         bankName: "",
         bankAccountNo: "",
         bankBranchName: "",
-        bankIFSCCode: "",
+        bankifsc: "",
         //step4 Upload Documents
         image: undefined,
-        expCertificate: undefined,
-        idProofPAN:undefined,
-        idProofAadharFront: undefined, 
-        idProofAadharBack: undefined, 
+        expCer: undefined,
+        panCard:undefined,
+        adharf: undefined, 
+        adharb: undefined, 
         payslip1: undefined, 
         payslip2: undefined, 
-        payslip3: undefined, 
-        passbook: undefined,
+        payslip3: undefined
     },
     validationSchema,
     onSubmit: (values) => {
@@ -119,7 +113,7 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
     };
 
     const step3func = () => {
-        (formik.values.department && formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && formik.values.experienced)
+        (formik.values.department && formik.values.designation && formik.values.empId && formik.values.dateofJoining && formik.values.salary && formik.values.experienced)
         ?
             setemployeeStep(3)
         :
@@ -127,7 +121,7 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
         };
 
     const step4func = () => {
-        (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankIFSCCode)
+        (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankifsc)
         ?
             setemployeeStep(4)
         :
@@ -179,37 +173,37 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
             </div>
             <div className="step" 
                 style={{
-                    color: (employeestep == 2 || (formik.values.department && formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && formik.values.experienced) ) && '#007bff',
-                    border: (employeestep == 2 || (formik.values.department && formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && formik.values.experienced) ) && '4px solid #007bff',
-                    scale: (employeestep == 2 || (formik.values.department && formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && formik.values.experienced) ) && '1.09',
+                    color: (employeestep == 2 || (formik.values.department && formik.values.designation && formik.values.empId && formik.values.dateofJoining && formik.values.salary && formik.values.experienced) ) && '#007bff',
+                    border: (employeestep == 2 || (formik.values.department && formik.values.designation && formik.values.empId && formik.values.dateofJoining && formik.values.salary && formik.values.experienced) ) && '4px solid #007bff',
+                    scale: (employeestep == 2 || (formik.values.department && formik.values.designation && formik.values.empId && formik.values.dateofJoining && formik.values.salary && formik.values.experienced) ) && '1.09',
                 }}
             >
                 <div className="number" onClick={()=>{step2func()}}>2</div>
             </div>
             <div className="length" 
                 style={{
-                    borderBottom:(formik.values.department && formik.values.designation && formik.values.empId && formik.values.joinDate && formik.values.salary && formik.values.experienced) && '5px solid #007bff',
+                    borderBottom:(formik.values.department && formik.values.designation && formik.values.empId && formik.values.dateofJoining && formik.values.salary && formik.values.experienced) && '5px solid #007bff',
                 }}>
             </div>
             <div className="step" 
                 style={{
-                    color: (employeestep === 3 || (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankIFSCCode)) && '#007bff',
-                    border: (employeestep === 3 || (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankIFSCCode)) && '4px solid #007bff',
-                    scale: (employeestep === 3 || (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankIFSCCode)) && '1.09',
+                    color: (employeestep === 3 || (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankifsc)) && '#007bff',
+                    border: (employeestep === 3 || (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankifsc)) && '4px solid #007bff',
+                    scale: (employeestep === 3 || (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankifsc)) && '1.09',
                 }}
             >
                 <div className="number" onClick={()=>step3func()}>3</div>
             </div>
             <div className="length" 
                 style={{
-                    borderBottom: (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankIFSCCode) && '5px solid #007bff',
+                    borderBottom: (formik.values.bankName && formik.values.bankAccountNo && formik.values.bankBranchName && formik.values.bankifsc) && '5px solid #007bff',
                 }}>
             </div>
             <div className="step" 
                 style={{
-                    color: (employeestep === 4 || (formik.values.image && formik.values.idProofPAN && formik.values.idProofAadharFront && formik.values.idProofAadharBack && ((formik.values.payslip1 && formik.values.payslip2 && formik.values.payslip3 && formik.values.expCertificate) || formik.values.passbook ))) && '#007bff',
-                    border: (employeestep === 4 || (formik.values.image && formik.values.idProofPAN && formik.values.idProofAadharFront && formik.values.idProofAadharBack && ((formik.values.payslip1 && formik.values.payslip2 && formik.values.payslip3 && formik.values.expCertificate) || formik.values.passbook ))) && '4px solid #007bff',
-                    scale: (employeestep === 4 || (formik.values.image && formik.values.idProofPAN && formik.values.idProofAadharFront && formik.values.idProofAadharBack && ((formik.values.payslip1 && formik.values.payslip2 && formik.values.payslip3 && formik.values.expCertificate) || formik.values.passbook ))) && '1.09',
+                    color: (employeestep === 4 || (formik.values.image && formik.values.panCard && formik.values.adharf && formik.values.adharb && ((formik.values.payslip1 && formik.values.payslip2 && formik.values.payslip3 && formik.values.expCer) || formik.values.passbook ))) && '#007bff',
+                    border: (employeestep === 4 || (formik.values.image && formik.values.panCard && formik.values.adharf && formik.values.adharb && ((formik.values.payslip1 && formik.values.payslip2 && formik.values.payslip3 && formik.values.expCer) || formik.values.passbook ))) && '4px solid #007bff',
+                    scale: (employeestep === 4 || (formik.values.image && formik.values.panCard && formik.values.adharf && formik.values.adharb && ((formik.values.payslip1 && formik.values.payslip2 && formik.values.payslip3 && formik.values.expCer) || formik.values.passbook ))) && '1.09',
                 }}
             >
                 <div className="number" onClick={()=>step4func()}>4</div>
@@ -395,9 +389,9 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
                 {
                     formik?.values?.maritalStatus == "married" && 
                     <div className="form-row">
-                        <label className="form-label" htmlFor="anniversary">Anniversary Date:</label>
+                        <label className="form-label" htmlFor="anniversaryDate">Anniversary Date:</label>
                         <div className="input-error">
-                            <input className="form-input" type="date" id="anniversary" name="anniversary"/>
+                            <input className="form-input" type="date" id="anniversaryDate" name="anniversaryDate"/>
                         </div>
                     </div>
                 }
@@ -517,21 +511,21 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
                     </div>
                 </div>                 
                 <div className="form-row">
-                    <label className="form-label" htmlFor="joinDate">Date of Joining:</label>
+                    <label className="form-label" htmlFor="dateofJoining">Date of Joining:</label>
                     <div className="input-error">
                         <input 
                             className="form-input" 
                             type="date" 
-                            id="joinDate" 
-                            name="joinDate" 
+                            id="dateofJoining" 
+                            name="dateofJoining" 
                             required 
-                            value={formik?.values?.joinDate} 
+                            value={formik?.values?.dateofJoining} 
                             onChange={formik.handleChange} 
                             onBlur={formik.handleBlur}
                         />
                         {
-                            formik?.touched?.joinDate && formik?.errors?.joinDate &&
-                            <div className="error">{formik?.errors?.joinDate} **</div>
+                            formik?.touched?.dateofJoining && formik?.errors?.dateofJoining &&
+                            <div className="error">{formik?.errors?.dateofJoining} **</div>
                         }
                     </div>
                 </div> 
@@ -661,21 +655,21 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
                     </div>
                 </div>
                 <div className="form-row">
-                    <label className="form-label" htmlFor="bankIFSCCode">Bank IFSC Code:</label>
+                    <label className="form-label" htmlFor="bankifsc">Bank IFSC Code:</label>
                     <div className="input-error">
                         <input
                             className="form-input"
                             type="text"
-                            id="bankIFSCCode"
-                            name="bankIFSCCode"
+                            id="bankifsc"
+                            name="bankifsc"
                             required
-                            value={formik.values.bankIFSCCode}
+                            value={formik.values.bankifsc}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             placeholder="Enter Bank IFSC Code"
                         />
-                        {formik?.touched?.bankIFSCCode && formik?.errors?.bankIFSCCode && (
-                            <div className="error">{formik?.errors?.bankIFSCCode} **</div>
+                        {formik?.touched?.bankifsc && formik?.errors?.bankifsc && (
+                            <div className="error">{formik?.errors?.bankifsc} **</div>
                         )}
                 </div>
                 </div> <div className="step-btns">
@@ -715,62 +709,62 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
                     </div>
                 </div>
                 <div className="form-row">
-                    <label className="form-label" htmlFor="idProofPAN">PAN Card:</label>
+                    <label className="form-label" htmlFor="panCard">PAN Card:</label>
                     <div className="input-error">
                         <input
                             className="form-input"
                             type="file"
-                            id="idProofPAN"
-                            name="idProofPAN"
+                            id="panCard"
+                            name="panCard"
                             accept=".pdf, .jpg, .jpeg, .png"
                             required
                             onChange={(event) => {
-                                formik.setFieldValue("idProofPAN", event.currentTarget.files[0]);
+                                formik.setFieldValue("panCard", event.currentTarget.files[0]);
                             }}
                             onBlur={formik.handleBlur}
                         />
-                        {formik?.touched?.idProofPAN && formik?.errors?.idProofPAN && (
-                            <div className="error">{formik?.errors?.idProofPAN} **</div>
+                        {formik?.touched?.panCard && formik?.errors?.panCard && (
+                            <div className="error">{formik?.errors?.panCard} **</div>
                         )}
                     </div>
                 </div>
                 <div className="form-row">
-                    <label className="form-label" htmlFor="idProofAadharFront">Aadhar Card (Front):</label>
+                    <label className="form-label" htmlFor="adharf">Aadhar Card (Front):</label>
                     <div className="input-error">
                         <input
                             className="form-input"
                             type="file"
-                            id="idProofAadharFront"
-                            name="idProofAadharFront"
+                            id="adharf"
+                            name="adharf"
                             accept=".pdf, .jpg, .jpeg, .png"
                             required
                             onChange={(event) => {
-                                formik.setFieldValue("idProofAadharFront", event.currentTarget.files[0]);
+                                formik.setFieldValue("adharf", event.currentTarget.files[0]);
                             }}
                             onBlur={formik.handleBlur}
                         />
-                        {formik?.touched?.idProofAadharFront && formik?.errors?.idProofAadharFront && (
-                            <div className="error">{formik?.errors?.idProofAadharFront} **</div>
+                        {formik?.touched?.adharf && formik?.errors?.adharf && (
+                            <div className="error">{formik?.errors?.adharf} **</div>
                         )}
                     </div>
                 </div>
                 <div className="form-row">
-                    <label className="form-label" htmlFor="idProofAadharBack">Aadhar Card (Back):</label>
+                    <label className="form-label" htmlFor="adharb">Aadhar Card (Back):</label>
                     <div className="input-error">
                         <input
                             className="form-input"
                             type="file"
-                            id="idProofAadharBack"
-                            name="idProofAadharBack"
+                            id="adharb"
+                            name="adharb"
                             accept=".pdf, .jpg, .jpeg, .png"
                             required
                             onChange={(event) => {
-                                formik.setFieldValue("idProofAadharBack", event.currentTarget.files[0]);
+                                formik.setFieldValue("adharb", event.currentTarget.files[0]);
                             }}
                             onBlur={formik.handleBlur}
                         />
-                        {formik?.touched?.idProofAadharBack && formik?.errors?.idProofAadharBack && (
-                            <div className="error">{formik?.errors?.idProofAadharBack} **</div>
+                        {formik?.touched?.adharb && formik?.errors?.adharb && (
+                            <div className="error">{formik?.errors?.adharb} **</div>
                         )}
                     </div>
                 </div>
@@ -778,22 +772,22 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
                     formik.values.experienced == 'experienced' &&
                     <>
                         <div className="form-row">
-                            <label className="form-label" htmlFor="expCertificate">Exp Certificate:</label>
+                            <label className="form-label" htmlFor="expCer">Exp Certificate:</label>
                             <div className="input-error">
                                 <input
                                     className="form-input"
                                     type="file"
-                                    id="expCertificate"
-                                    name="expCertificate"
+                                    id="expCer"
+                                    name="expCer"
                                     accept=".pdf, .jpg, .jpeg, .png"
                                     required
                                     onChange={(event) => {
-                                        formik.setFieldValue("expCertificate", event.currentTarget.files[0]);
+                                        formik.setFieldValue("expCer", event.currentTarget.files[0]);
                                     }}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik?.touched?.expCertificate && formik?.errors?.expCertificate && (
-                                    <div className="error">{formik?.errors?.expCertificate} **</div>
+                                {formik?.touched?.expCer && formik?.errors?.expCer && (
+                                    <div className="error">{formik?.errors?.expCer} **</div>
                                 )}
                             </div>
                         </div>

@@ -7,12 +7,12 @@ import { getEmployee } from '../../redux/employee/EmployeeAction';
 
 const EmployeeListPage = ({ setEmployeeModal, setEmpforModal }) => {
   const dispatch = useDispatch();
-  const employees = useSelector(state=>state?.employees?.employees)
+  const employees = useSelector(state => state?.employees?.employees)
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getEmployee());
-  },[])
-  
+  }, [])
+
   const employeesArray = [
     {
       _id: 1,
@@ -98,36 +98,48 @@ const EmployeeListPage = ({ setEmployeeModal, setEmpforModal }) => {
   ];
   return (
     <div className='emp-list-page'>
-      
       <div className="employee-list-top">
-          <div className="heading">
+        <div className="heading">
           List of Employees
-          </div>
-          <Link to={'/employee/form'} className="add-emp">
-            <i className="fa-solid fa-plus"></i>
-            Add Employees
-          </Link>
+        </div>
+        <Link to={'/employee/form'} className="add-emp">
+          <i className="fa-solid fa-plus"></i>
+          Add Employees
+        </Link>
       </div>
       <div className="employee-list-bottom">
         <table>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Department</th>
-                <th>Designation</th>
-                <th>Salary</th>
-            </tr>
-            {
-              employees.length>0 &&
-              employees.map((emp,index,employees)=>
-              <tr onClick={()=>{setEmpforModal(employees[index]);setEmployeeModal(true)}}>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Salary</th>
+            <th>Attendence</th>
+            <th>Action</th>
+          </tr>
+          {
+            employees.length > 0 &&
+            employees.map((emp, index, employees) =>
+              <tr >
                 <td>{emp?.name}</td>
                 <td>{emp?.email}</td>
                 <td>{emp.department}</td>
                 <td>{emp?.designation}</td>
                 <td>{emp?.salary}</td>
+                <td>
+                  <>
+                    <Link to={`/employee/attendence/${emp._id}`} className="add-emp">
+                      <button id="attendenceButton">
+                        <i className="fa-solid fa-plus"></i>
+                        Attendence
+                      </button>
+                    </Link>
+                  </>
+                </td>
+                <td><button onClick={() => { setEmpforModal(employees[index]); setEmployeeModal(true) }} > View </button></td>
               </tr>)
-            }
+          }
         </table>
       </div>
     </div>
