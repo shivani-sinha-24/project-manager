@@ -18,6 +18,8 @@ import EmployeePage from './pages/employeepage/EmployeePage';
 import Attendence from './pages/employeeAttendence/EmployeeAttendence';
 import EmployeeForm from './pages/employeeForm/EmployeeForm';
 import EmployeeListPage from './pages/employeeListPage/EmployeeListPage';
+import HRHomepage from './pages/HRHomepage/HRHomepage';
+import EmployeeDetail from './pages/employeeDetail/EmployeeDetail';
 
 
 const App = () => {
@@ -108,11 +110,24 @@ const App = () => {
                     setemployeeStep={setemployeeStep}
                   />}
                 />
+                <Route path='/employee/:id' element={
+                  <EmployeeDetail
+                    employeestep={employeestep}
+                    setemployeeStep={setemployeeStep}
+                  />}
+                />
+                <Route path='/employee/update/:id' element={
+                  <EmployeeForm
+                    employeestep={employeestep}
+                    setemployeeStep={setemployeeStep}
+                  />}
+                />
                 <Route path='/employee/attendence/:id' element={
                   <Attendence />
                 }
                 />
               </Route>
+              <Route path='/home/hr' element={<HRHomepage/>}/>
             </>
             :
             <Route path="*" element={<Navigate to="/login" replace />} />

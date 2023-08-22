@@ -20,8 +20,8 @@ const EmployeePage = ({employeestep, setemployeeStep, employeeModal ,setEmployee
                 <button>
                     <span className="material-symbols-rounded" onClick={()=>{employeestep=='1'?navigate(-1):showPreviousStep(employeestep-1)}}>arrow_back</span>
                 </button>
-                <span>Employee Data </span>
-                <span>/ Employee Data Form</span>
+                <span>Employee Page </span>
+                {/* <span>/ Employee Data Form</span> */}
             </div>
             <div className="right">
                 <button>

@@ -60,6 +60,19 @@
 .emp-list-page .employee-list-bottom tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+div.rdt_TableHeadRow,
+div.rdt_TableHeader div.sc-bjEwCx.bsxMp{
+    font-weight: bold !important;
+}
+div.rdt_TableCell,
+div.rdt_TableHeadRow,
+div.rdt_Pagination{
+    font-size: medium !important;
+}
+.action-btns {
+    display: flex;
+    gap: 5px;
+}
 
 /* ******************************** HOVER CSS ******************************** */
 

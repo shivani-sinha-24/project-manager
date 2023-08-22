@@ -3,99 +3,116 @@ import './EmployeeListPage.css'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getEmployee } from '../../redux/employee/EmployeeAction';
+import { deleteEmployee, getEmployee } from '../../redux/employee/EmployeeAction';
+import DataTable, { createTheme } from "react-data-table-component";
+
+createTheme("solarized", {
+  text: {
+    primary: "#268bd2",
+    secondary: "#2aa198"
+  },
+  background: {
+    default: "#002b36"
+  },
+  context: {
+    background: "#cb4b16",
+    text: "#FFFFFF"
+  },
+  divider: {
+    default: "#073642"
+  },
+  action: {
+    button: "rgba(0,0,0,.54)",
+    hover: "rgba(0,0,0,.08)",
+    disabled: "rgba(0,0,0,.12)"
+  }
+});
 
 const EmployeeListPage = ({ setEmployeeModal, setEmpforModal }) => {
   const dispatch = useDispatch();
   const employees = useSelector(state => state?.employees?.employees)
+  const [filteredData, setFilteredData] = useState(employees);
+
+  const handleSearch = (searchValue) => {
+    const filtered = employees.filter((employee) =>
+      employee.name.toLowerCase().includes(searchValue.toLowerCase()) || employee.email.toLowerCase().includes(searchValue.toLowerCase())  || employee.department.toLowerCase().includes(searchValue.toLowerCase()) || employee.designation.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
+
 
   useEffect(() => {
     dispatch(getEmployee());
   }, [])
 
-  const employeesArray = [
+  const columns = [
     {
-      _id: 1,
-      name: "John Doe",
-      email: "john@example.com",
-      department: "IT",
-      designation: "Developer",
-      salary: 50000,
+      name: "Employee ID",
+      selector: (row) => row._id,
+      sortable: true
     },
     {
-      _id: 2,
-      name: "Jane Smith",
-      email: "jane@example.com",
-      department: "HR",
-      designation: "HR Manager",
-      salary: 60000,
+      name: "Employee Name",
+      selector: (row) => row.name,
+      sortable: true
+    },{
+      name: "Employee Email",
+      selector: (row) => row.email,
+      sortable: true       
     },
     {
-      _id: 3,
-      name: "Michael Johnson",
-      email: "michael@example.com",
-      department: "Sales",
-      designation: "Sales Executive",
-      salary: 45000,
+      name: "Department",
+      selector: (row) => row.department,
+      sortable: true
     },
     {
-      _id: 4,
-      name: "Emily Brown",
-      email: "emily@example.com",
-      department: "Marketing",
-      designation: "Marketing Specialist",
-      salary: 55000,
+      name: "Designation",
+      selector: (row) => row.designation,
+      sortable: true
     },
     {
-      _id: 5,
-      name: "David Lee",
-      email: "david@example.com",
-      department: "Finance",
-      designation: "Financial Analyst",
-      salary: 58000,
+      name: "Salary",
+      selector: (row) => row.salary,
+      sortable: true
     },
     {
-      _id: 6,
-      name: "Sophia Williams",
-      email: "sophia@example.com",
-      department: "IT",
-      designation: "System Administrator",
-      salary: 52000,
+      name: "Attendence",
+      selector: (row) => {},
+      cell: (row) =>(
+      <Link to={`/employee/attendence/${row._id}`} className="add-emp">
+        <button id="attendenceButton" style={{backgroundColor:'#ebd805',height:'fit-content',padding:'8px 10px',border:'1px solid black',borderRadius:'5px',fontWeight:'bolder',display:'flex',alignItems:'center',gap:'5px'}}>
+          <i className="fa-solid fa-plus fa-lg"></i>Attendence
+        </button>
+      </Link>
+      )
     },
     {
-      _id: 7,
-      name: "Daniel Miller",
-      email: "daniel@example.com",
-      department: "Sales",
-      designation: "Sales Manager",
-      salary: 65000,
+      name: "Action",
+      selector: (row) => row.action,
+      cell: (row) => (
+        <span className='action-btns'>
+          <Link to={`/employee/${row._id}`}>
+            <button className="tb-btn-action" style={{backgroundColor:'#ebd805',height:'fit-content',padding:'8px 10px',border:'none',borderRadius:'5px'}}>
+              <i className="fa-solid fa-lg fa-eye" style={{color:'white'}}></i>
+            </button>
+          </Link>
+          <Link to={`/employee/update/${row._id}`} className="add-emp">
+            <button className="tb-btn-action" style={{backgroundColor:'#057ceb',height:'fit-content',padding:'8px 10px',border:'none',borderRadius:'5px'}}>
+              <i className="fa-solid fa-lg fa-pencil" style={{color:'white'}}></i>
+            </button>
+          </Link>
+          <button className="tb-btn-action" style={{backgroundColor:'red',height:'fit-content',padding:'8px 10px',border:'none',borderRadius:'5px'}} onClick={() => handleDeleteEmployee(row._id)}>
+            <i className="fa-solid fa-lg fa-trash" style={{color:'white'}}></i>
+          </button>
+        </span>
+      ),
     },
-    {
-      _id: 8,
-      name: "Olivia Davis",
-      email: "olivia@example.com",
-      department: "HR",
-      designation: "HR Specialist",
-      salary: 48000,
-    },
-    {
-      _id: 9,
-      name: "William Wilson",
-      email: "william@example.com",
-      department: "Marketing",
-      designation: "Marketing Manager",
-      salary: 62000,
-    },
-    {
-      _id: 10,
-      name: "Ava Martinez",
-      email: "ava@example.com",
-      department: "Finance",
-      designation: "Accountant",
-      salary: 53000,
-    },
-    // Add more employee objects here
   ];
+
+  const handleDeleteEmployee = (employeeId) => {
+    dispatch(deleteEmployee(employeeId))
+  };
+
   return (
     <div className='emp-list-page'>
       <div className="employee-list-top">
@@ -108,39 +125,17 @@ const EmployeeListPage = ({ setEmployeeModal, setEmpforModal }) => {
         </Link>
       </div>
       <div className="employee-list-bottom">
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Department</th>
-            <th>Designation</th>
-            <th>Salary</th>
-            <th>Attendence</th>
-            <th>Action</th>
-          </tr>
-          {
-            employees.length > 0 &&
-            employees.map((emp, index, employees) =>
-              <tr >
-                <td>{emp?.name}</td>
-                <td>{emp?.email}</td>
-                <td>{emp.department}</td>
-                <td>{emp?.designation}</td>
-                <td>{emp?.salary}</td>
-                <td>
-                  <>
-                    <Link to={`/employee/attendence/${emp._id}`} className="add-emp">
-                      <button id="attendenceButton">
-                        <i className="fa-solid fa-plus"></i>
-                        Attendence
-                      </button>
-                    </Link>
-                  </>
-                </td>
-                <td><button onClick={() => { setEmpforModal(employees[index]); setEmployeeModal(true) }} > View </button></td>
-              </tr>)
+        <DataTable
+          columns={columns}
+          data={filteredData?.length ? filteredData : employees}
+          pagination
+          subHeader
+          subHeaderComponent={
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <input style={{ padding:'8px 10px', borderRadius:'5px'}} type="text" placeholder="Search employees here..." onChange={(e) => handleSearch(e.target.value)} />
+            </div>
           }
-        </table>
+        />
       </div>
     </div>
   )

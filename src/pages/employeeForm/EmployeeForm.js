@@ -4,14 +4,22 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { creatEmployee } from "../../redux/employee/EmployeeAction";
-import { useNavigate } from "react-router-dom";
+import { creatEmployee, getEmployee, updateEmployee } from "../../redux/employee/EmployeeAction";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const EmployeeForm = ({employeestep, setemployeeStep}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const params = useParams()
     const [experienced, setExperienced] = useState(false); 
-    const [fresher, setfresher] = useState(false); 
+    const [fresher, setfresher] = useState(false);
+  
+    useEffect(()=>{
+      dispatch(getEmployee())
+    },[])
+  
+    const employee = useSelector(state=>state?.employees?.employees).filter(emp=> emp._id == params.id)[0]
     
     const validationSchema = Yup.object().shape({
         //step1 Personal Information
@@ -52,38 +60,39 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
     const formik = useFormik({
     initialValues: {
         //step1 Personal Information
-        name: "",
-        email: "",
-        fatherName: "",
-        mobile: "",
-        birthday: "",
-        bloodGroup: "",
-        localAddress: "",
-        permanentAddress: "",
-        maritalStatus: "",
-        anniversaryDate: null,
-        gender: "",
+        name: employee?.name ||"",
+        email: employee?.email ||"",
+        fatherName: employee?.fatherName ||"",
+        mobile: employee?.mobile ||"",
+        birthday: employee?.birthday ||"",
+        bloodGroup: employee?.bloodGroup ||"",
+        localAddress: employee?.localAddress ||"",
+        permanentAddress: employee?.permanentAddress ||"",
+        maritalStatus: employee?.maritalStatus ||"",
+        anniversaryDate: employee?.anniversaryDate ||null,
+        gender: employee?.gender ||"",
         //step2 Official Details
-        designation: "",
-        department: "",
-        empId: "",
-        dateofJoining: "",
-        salary: "",
-        experienced: "",
+        designation: employee?.designation ||"",
+        department: employee?.department ||"",
+        empId: employee?.empId ||"",
+        dateofJoining: employee?.dateofJoining ||"",
+        salary: employee?.salary ||"",
+        experienced: employee?.experienced ||"",
         //step3 Bank Details
-        bankName: "",
-        bankAccountNo: "",
-        bankBranchName: "",
-        bankifsc: "",
+        bankName: employee?.bankName ||"",
+        bankAccountNo: employee?.bankAccountNo ||"",
+        bankBranchName: employee?.bankBranchName ||"",
+        bankifsc: employee?.bankifsc ||"",
         //step4 Upload Documents
-        image: undefined,
-        expCer: undefined,
-        panCard:undefined,
-        adharf: undefined, 
-        adharb: undefined, 
-        payslip1: undefined, 
-        payslip2: undefined, 
-        payslip3: undefined
+        image: employee?.image ||undefined,
+        expCer: employee?.expCer ||undefined,
+        panCard:employee?.panCard ||undefined,
+        adharf: employee?.adharf ||undefined, 
+        adharb: employee?.adharb ||undefined, 
+        payslip1: employee?.payslip1 ||undefined, 
+        payslip2: employee?.payslip2 ||undefined, 
+        payslip3: employee?.payslip3 ||undefined,
+        passbook: employee?.passbook ||undefined
     },
     validationSchema,
     onSubmit: (values) => {
@@ -93,12 +102,17 @@ const EmployeeForm = ({employeestep, setemployeeStep}) => {
             for (let value in values) {
                 formData.append(value, values[value]);
             }
-            dispatch(creatEmployee(formData));
+            if(employee !== undefined){
+                dispatch(updateEmployee(formData))
+            }else{
+                dispatch(creatEmployee(formData));
+            }
+            dispatch(getEmployee())
             navigate('/employee')
         }
     },
     });
-
+    
     const showErr = () => {
         formik.handleSubmit();
         toast.warning("All fields are required to move to next step!!")

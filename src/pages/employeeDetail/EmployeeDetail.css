@@ -1,0 +1,77 @@
+.emp-detail-page{
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+.emp-detail-page .employee-detail-top{
+    padding-bottom: 10px;
+    border-bottom: 2px solid grey;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.emp-detail-page .employee-detail-top .heading{
+    font-weight: bolder;
+    font-size: 1.25rem;
+}
+.emp-detail-page .employee-detail-top .add-emp{
+    font-weight: bold;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 15px;
+    background:#ddd;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.emp-detail-page .employee-detail-bottom {
+    display: flex;
+    padding: 10px 0;
+}
+.emp-detail-page .employee-detail-bottom .detail-right,
+.emp-detail-page .employee-detail-bottom .detail-left{
+    padding: 20px;
+}
+.emp-detail-page .employee-detail-bottom .detail-left{
+    width: 25%;
+}
+.emp-detail-page .employee-detail-bottom .detail-left img{
+    width: 280px;
+    height: 280px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+    background-color: pink;
+    border-radius: 5px;
+}
+.emp-detail-page .employee-detail-bottom .detail-right{
+    width: 75%;
+}
+.emp-detail-page  .employee-detail-bottom .detail-right .section{
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 10px 10px 20px;
+    margin:0 0 10px 0;
+}
+.emp-detail-page  .employee-detail-bottom .detail-right .section .sec-top {
+    text-decoration:underline;
+}
+.emp-detail-page  .employee-detail-bottom .detail-right .section .sec-bottom{
+    padding: 10px 0;
+}
+.emp-detail-page  .employee-detail-bottom .detail-right .section .sec-bottom .detail{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 00px;
+    margin-bottom: 2.5px;
+}
+.emp-detail-page  .employee-detail-bottom .detail-right .section .sec-bottom .detail .info{
+    width: 80%;
+}
+.emp-detail-page  .employee-detail-bottom .detail-right .section .sec-bottom .detail .detail-label{
+    width: 20%;
+}

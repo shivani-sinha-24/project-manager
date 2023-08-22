@@ -26,7 +26,7 @@ const HomepageNav = ({showNavMenu,setShowNavMenu}) => {
         {/* <div>Product</div> */}
         <Link to={'/projects'}>Project</Link>
         <div>Use Cases</div>
-        <div>Resources</div>
+        <Link to={'/home/hr'}>Human Resource</Link>
         {/* <div>Enterprise</div> */}
         <Link to={'/employee'} >Employees</Link>
         <div>Pricing</div>

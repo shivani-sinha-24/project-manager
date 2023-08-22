@@ -36,7 +36,7 @@ export const creatEmployee = (value) => async (dispatch) => {
 export const updateEmployee = (value) => async (dispatch) => {
   dispatch(updateEmployeeRequest());
     try {
-      const response = await axios.put(`${API_URL}/update-employee`,value);
+      const response = await axios.put(`${API_URL}/updateEmp`,value);
       if(response.status==200){
         dispatch(updateEmployeeSuccess( response.data));
         toast.success(response.data.message)
@@ -49,7 +49,7 @@ export const updateEmployee = (value) => async (dispatch) => {
 export const deleteEmployee = (value) => async (dispatch) => {
     dispatch(deleteEmployeeRequest());
       try {
-        const response = await axios.put(`${API_URL}/delete-employee`,value);
+        const response = await axios.delete(`${API_URL}/deleteEmp/${value}`);
         if(response.status==200){
           dispatch(deleteEmployeeSuccess( response.data));
           toast.success(response.data.message)
