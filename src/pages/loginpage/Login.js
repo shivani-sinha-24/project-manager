@@ -96,7 +96,7 @@ const Login = () => {
   return (
     <div className='login-page'>
       <div className="container">
-        <h1>Log In to Dousoft</h1>
+        <h1>Log In to My Project Manager</h1>
         <form onSubmit={formik.handleSubmit}>
           <input type="email" placeholder="Email" name='email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
           {formik.errors.email && formik.touched.email &&

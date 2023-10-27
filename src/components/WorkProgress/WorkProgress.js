@@ -44,7 +44,7 @@ const WorkProgress = () => {
           <div className="work-progress-left-top">
             <p className='p1'>STREAMLINE YOUR WORK AND PROCESSES</p>
             <p className='p2'>Prioritize revenue-driving work</p>
-            <p className='p3'>Dousoft helps you organize complex work across teams to drive business outcomes.</p>
+            <p className='p3'>My Project Manager helps you organize complex work across teams to drive business outcomes.</p>
           </div>
           <div className="work-progress-left-bottom">
             <div className="accordian acor1" style={{borderTop:accorNum==1 && '5px solid #4573D2'}} >

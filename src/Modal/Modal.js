@@ -191,7 +191,7 @@ export default function Modal({
                 <div>
                   <div className="d-flex project">
                     <button >
-                      Dousoft
+                      My Project Manager
                     </button>
                     <button className='dropdown-button' onClick={() => showProjectDropdown()}>
                       {selectedProject}<span className="material-symbols-rounded">expand_more</span>
@@ -373,7 +373,7 @@ export default function Modal({
                   showPrevTasks ?
                     <div >
                       <div className='activities-body'>Prince Raj assigned to Prince Raj. <span>11 days ago</span></div>
-                      <div className='activities-body'>Prince Raj added to Dousoft. <span>11 days ago</span></div>
+                      <div className='activities-body'>Prince Raj added to My Project Manager. <span>11 days ago</span></div>
                     </div>
                     :
                     <div className="show-prev-tasks" onClick={() => setShowPrevTasks(true)}>Show Previous tasks</div>

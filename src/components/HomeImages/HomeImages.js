@@ -25,7 +25,7 @@ const HomeImages = () => {
       details: 'See template',
     },
     {
-      name: 'See Dousoft in action',
+      name: 'See My Project Manager in action',
       image:card2,
       details: 'View demo',
     },
@@ -72,27 +72,27 @@ const HomeImages = () => {
   // dynamic reviews
   const reviews = [
     {
-      review:`"I cannot stress how important it is to have all of our informationin one central place. We use Dousoft to capture all of our documents, notes, and next steps so we keep consistency."`,
+      review:`"I cannot stress how important it is to have all of our informationin one central place. We use My Project Manager to capture all of our documents, notes, and next steps so we keep consistency."`,
       by:'Ashlee George// Associate Director at Impact Justice',
       img:c2
     },
     {
-      review:`"We wouldn't have such a great connection with different departments if we weren't for Dousoft. I can interact with the engineers directly and establish working relationships, and that collaboration has been extremely been valuable."`,
+      review:`"We wouldn't have such a great connection with different departments if we weren't for My Project Manager. I can interact with the engineers directly and establish working relationships, and that collaboration has been extremely been valuable."`,
       by:'Kyler Rose// Marketing Services Manager',
       img:c3
     },
     {
-      review:`"With Dousoft, we save an estimated 50hours per week that used to be spent answering email and attending check-in meetings."`,
+      review:`"With My Project Manager, we save an estimated 50hours per week that used to be spent answering email and attending check-in meetings."`,
       by:'Jamie chappell// Creative Director',
       img:c4
     },
     {
-      review:`"From the C level down to each and every individual contributor of the company, everybody uses Dousoft...It's increasing our productivity."`,
+      review:`"From the C level down to each and every individual contributor of the company, everybody uses My Project Manager...It's increasing our productivity."`,
       by:'Jon Hofamnn// Director of Strategy at Viessmann',
       img:c5
     },
     {
-      review:`"In government we have no shortage of challenges, but there are a lot of things we can control. There are processes that we can improve upon and refine. Tools like Dousoft are what allow us to do better."`,
+      review:`"In government we have no shortage of challenges, but there are a lot of things we can control. There are processes that we can improve upon and refine. Tools like My Project Manager are what allow us to do better."`,
       by:'Mayor Jorge Elorza// City of Providence',
       img:c6
     },
@@ -120,7 +120,7 @@ const HomeImages = () => {
         <p className="p2">
           Whether you want to start with a pre-built template for marketing,
           operations, product, learn more from a demo, or talk to our support
-          team, Dousoft can help with that.
+          team, My Project Manager can help with that.
         </p>
       </div>
       <div className="home-images-bottom">

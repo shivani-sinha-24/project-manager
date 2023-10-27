@@ -37,6 +37,9 @@ const HomeCarousel = () => {
         arrows={false}
         responsive={responsive}
         autoPlay={true}
+        autoPlaySpeed={100}
+        customTransition="transform 5000ms ease-in-out" // Custom slide transition effect
+        transitionDuration={5000} // Duration of the transition in milliseconds
         swipeable={true}
         draggable={true}
         showDots={false}

@@ -18,7 +18,7 @@ const HomeNavDD = () => {
       <div className="dd-menu-bottom">
         <div>View Demo</div>
         <div className='border'>Contact Sales</div>
-        <div>Download Dousoft</div>
+        <div>Download My Project Manager</div>
       </div>
     </div>
   )

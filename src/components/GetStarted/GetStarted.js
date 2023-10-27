@@ -16,7 +16,7 @@ const GetStarted = () => {
         </div>
         <div className="links">
           <div>
-            <p className='top'>Dousoft</p>
+            <p className='top'>My Project Manager</p>
             <p>Home</p>
             <p>Product</p>
             <p>Pricing</p>
@@ -24,7 +24,7 @@ const GetStarted = () => {
             <p>Business</p>
             <p>Enterprise</p>
             <p>Customer Success</p>
-            <p>Dousoft Templates</p>
+            <p>My Project Manager Templates</p>
             <p>Trust & Security</p>
             <p>Status</p>
           </div>
@@ -57,15 +57,15 @@ const GetStarted = () => {
           </div>
           <div>
             <p className='top'>Resources</p>
-            <p>Dousoft Guide</p>
+            <p>My Project Manager Guide</p>
             <p>Forum</p>
             <p>Support</p>
             <p>App Directory</p>
             <p>Developers & API</p>
             <p>Partners</p>
-            <p>Dousoft Community</p>
+            <p>My Project Manager Community</p>
             <p>Events</p>
-            <p>Dousoft for Nonprofits</p>
+            <p>My Project Manager for Nonprofits</p>
             <p>Accessibility</p>
           </div>
           <div>

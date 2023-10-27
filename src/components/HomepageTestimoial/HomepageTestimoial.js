@@ -55,7 +55,7 @@ const HomepageTestimoial = () => {
         </div>
         <hr />
         <div className="middle">
-        Want to drive efficiency across your organization? Dousoft is flexible and easy for all teams to use, so you can deliver quality work together, faster.
+        Want to drive efficiency across your organization? My Project Manager is flexible and easy for all teams to use, so you can deliver quality work together, faster.
         </div>
         <div className="bottom">
           <button className='btn1'>Get Started</button>

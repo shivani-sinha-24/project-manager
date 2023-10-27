@@ -5,7 +5,7 @@ const HomeFooter = () => {
   return (
     <div className='home-footer'>
         <div className="footer-container">
-          <div className='copy'>	&#169; {new Date().getFullYear()} Dousoft,Inc</div>
+          <div className='copy'>	&#169; {new Date().getFullYear()} My Project Manager,Inc</div>
           <div className='lang'><i className="fa-solid fa-globe"></i> <span>English</span></div>
           <div className='t-n-p'>
             <span className="ul">Terms</span> & <span className="ul">Policy</span>

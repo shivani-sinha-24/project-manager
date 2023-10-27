@@ -35,7 +35,7 @@ const InvitationPage = () => {
       <div className="invitation-container">
         <h1>Invitation Response</h1>
         <p>
-          You have received an invitation to join the Dousoft working team. Please respond by clicking one of the buttons below.
+          You have received an invitation to join the My Project Manager working team. Please respond by clicking one of the buttons below.
         </p>
         <a onClick={acceptInvitation} className="btn accept-btn">Accept</a>
         <a onClick={rejectInvitation} className="btn reject-btn">Reject</a>
